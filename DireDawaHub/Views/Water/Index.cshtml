@@ -1,0 +1,53 @@
+@model IEnumerable<DireDawaHub.Models.WaterSchedule>
+@{
+    ViewData["Title"] = "Water Tracker";
+}
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>💧 Water Distribution Schedules</h2>
+        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Contributor")))
+        {
+            <a asp-action="Create" class="btn btn-primary fw-bold px-4" style="border-radius: 8px;">+ Add New Schedule</a>
+        }
+    </div>
+
+<div class="row">
+    @foreach (var item in Model) {
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0" style="border-radius: 12px; overflow: hidden; transition: transform 0.2s;">
+                <div class="card-header border-0 text-white @(item.Status == "Active" ? "bg-success" : (item.Status == "Delayed" ? "bg-danger" : "bg-primary"))">
+                    <div class="d-flex justify-content-between align-items-center py-1">
+                        <span class="fw-bold fs-5">@item.Location</span>
+                        <span class="badge bg-light text-dark shadow-sm">@item.Status</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="mb-1 text-muted small text-uppercase fw-bold">Start Time</p>
+                    <h6 class="fw-bold mb-3">@item.StartTime.ToString("f")</h6>
+                    
+                    <p class="mb-1 text-muted small text-uppercase fw-bold">End Time</p>
+                    <h6 class="fw-bold mb-3">@item.EndTime.ToString("f")</h6>
+
+                    @if(!string.IsNullOrEmpty(item.Notes)) {
+                        <hr class="text-muted opacity-25" />
+                        <p class="mb-0 text-muted" style="font-size: 0.9rem;">
+                            <strong>Note:</strong> @item.Notes
+                        </p>
+                    }
+                </div>
+                <div class="card-footer bg-white border-top text-end p-3">
+                    <button class="btn btn-sm btn-outline-secondary px-3 me-2">Edit</button>
+                    <button class="btn btn-sm btn-outline-danger px-3">Delete</button>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if(!Model.Any()) {
+        <div class="col-12 text-center text-muted mt-5 py-5 bg-white rounded-3 shadow-sm">
+            <div style="font-size: 3rem; margin-bottom: 20px;">🚰</div>
+            <h4>No water schedules posted currently.</h4>
+            <p>Access is currently stable, or no upcoming distributions have been scheduled.</p>
+        </div>
+    }
+</div>

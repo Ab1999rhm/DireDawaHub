@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- Core Application -->
+  <data name="PageTitle" xml:space="preserve"><value>Dire Dawa Community Hub</value></data>
+  <data name="AppTitle" xml:space="preserve"><value>Dire Dawa Community Hub</value></data>
+  <data name="SubTitle" xml:space="preserve"><value>Your central connection to essential city services, healthcare availability, agricultural markets, and local employment opportunities in Dire Dawa.</value></data>
+  
+  <!-- Search & Navigation -->
+  <data name="SearchPlaceholder" xml:space="preserve"><value>Search water schedules, clinics, market prices, or job listings...</value></data>
+  <data name="ViewAll" xml:space="preserve"><value>View All</value></data>
+  
+  <!-- Quick Navigation -->
+  <data name="QuickWater" xml:space="preserve"><value>Water Supply</value></data>
+  <data name="QuickHealth" xml:space="preserve"><value>Healthcare</value></data>
+  <data name="QuickMarkets" xml:space="preserve"><value>Markets</value></data>
+  <data name="QuickJobs" xml:space="preserve"><value>Employment</value></data>
+  
+  <!-- Section Headers -->
+  <data name="WaterHeader" xml:space="preserve"><value>Water Distribution Schedule</value></data>
+  <data name="HealthHeader" xml:space="preserve"><value>Healthcare Facilities</value></data>
+  <data name="AgHeader" xml:space="preserve"><value>Agricultural Market Prices</value></data>
+  <data name="JobsHeader" xml:space="preserve"><value>Employment Opportunities</value></data>
+  
+  <!-- Status Badges -->
+  <data name="StatusFlowing" xml:space="preserve"><value>Water Flowing</value></data>
+  <data name="StatusScheduled" xml:space="preserve"><value>Scheduled</value></data>
+  <data name="StatusDelayed" xml:space="preserve"><value>Delayed</value></data>
+  <data name="ServiceNotice" xml:space="preserve"><value>Service Notice</value></data>
+  
+  <!-- Live Feed & Statistics -->
+  <data name="LiveFeed" xml:space="preserve"><value>Live City Feed</value></data>
+  <data name="StatWater" xml:space="preserve"><value>Water Schedules</value></data>
+  <data name="StatClinics" xml:space="preserve"><value>Clinics Open</value></data>
+  <data name="StatMarkets" xml:space="preserve"><value>Market Prices</value></data>
+  <data name="StatJobs" xml:space="preserve"><value>Open Positions</value></data>
+  
+  <!-- Healthcare -->
+  <data name="DoctorsOnDuty" xml:space="preserve"><value>Doctors on Duty</value></data>
+  <data name="EmergencyLine" xml:space="preserve"><value>Emergency Line</value></data>
+  <data name="MedicinesAvailable" xml:space="preserve"><value>Medicines Available</value></data>
+  <data name="MedicinesLow" xml:space="preserve"><value>Medicines Low</value></data>
+  <data name="Updated" xml:space="preserve"><value>Updated</value></data>
+  
+  <!-- Market -->
+  <data name="PerKilogram" xml:space="preserve"><value>per kilogram</value></data>
+  
+  <!-- Employment -->
+  <data name="TrainingOpportunity" xml:space="preserve"><value>Training Opportunity</value></data>
+  <data name="FullTimePosition" xml:space="preserve"><value>Full-Time Position</value></data>
+  
+  <!-- Empty States -->
+  <data name="NoWaterSchedules" xml:space="preserve"><value>No water distribution schedules currently available. Check back soon for updates.</value></data>
+  <data name="NoClinics" xml:space="preserve"><value>No clinic information available at this time.</value></data>
+  <data name="NoMarketData" xml:space="preserve"><value>No agricultural market data available. New pricing will be posted soon.</value></data>
+  <data name="NoJobs" xml:space="preserve"><value>No job listings currently available. Check back for new opportunities.</value></data>
+</root>

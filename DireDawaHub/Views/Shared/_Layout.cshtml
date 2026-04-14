@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Dire Dawa Hub</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           DIRE DAWA HUB - LAYOUT STYLES
+           Consistent with Dashboard Design System
+           ============================================ */
+        
+        :root {
+            --dd-primary: #1e40af;
+            --dd-primary-light: #3b82f6;
+            --dd-primary-dark: #1e3a8a;
+            --dd-gray-100: #f1f5f9;
+            --dd-gray-200: #e2e8f0;
+            --dd-gray-400: #94a3b8;
+            --dd-gray-600: #475569;
+            --dd-gray-800: #1e293b;
+            --dd-dark: #0f172a;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+        }
+        
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            margin: 0; 
+            background-color: var(--dd-gray-100);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(30, 64, 175, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(13, 148, 136, 0.03) 0%, transparent 20%);
+            background-attachment: fixed;
+        }
+        
+        /* Contributor Layout CSS */
+        .wrapper { display: flex; height: 100vh; overflow: hidden; }
+        
+        .sidebar { 
+            width: 280px; 
+            background: linear-gradient(180deg, var(--dd-dark) 0%, var(--dd-gray-800) 100%);
+            color: #ffffff; 
+            display: flex; 
+            flex-direction: column; 
+            z-index: 10;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-header { 
+            padding: 24px 20px; 
+            font-size: 1.25rem; 
+            font-weight: 800; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            letter-spacing: -0.02em;
+        }
+        
+        .sidebar-nav { 
+            flex-grow: 1; 
+            padding-top: 16px; 
+        }
+        
+        .nav-link.custom-nav { 
+            color: var(--dd-gray-400); 
+            padding: 14px 24px; 
+            font-weight: 500; 
+            font-size: 0.9375rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            transition: all 0.2s ease;
+            border-left: 4px solid transparent;
+            margin: 2px 0;
+        }
+        
+        .nav-link.custom-nav:hover { 
+            color: #ffffff; 
+            background: rgba(255, 255, 255, 0.05); 
+            border-left-color: var(--dd-primary-light);
+        }
+        
+        .nav-link.custom-nav.active {
+            color: #ffffff;
+            background: rgba(59, 130, 246, 0.15);
+            border-left-color: var(--dd-primary-light);
+        }
+        
+        .main-content { 
+            flex-grow: 1; 
+            overflow-y: auto; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        
+        .topbar { 
+            background: #ffffff; 
+            height: 70px; 
+            padding: 0 30px; 
+            box-shadow: var(--shadow-sm); 
+            display: flex; 
+            align-items: center; 
+            justify-content: flex-end; 
+            border-bottom: 1px solid var(--dd-gray-200);
+        }
+        
+        .content-area { 
+            padding: 30px; 
+            flex-grow: 1; 
+        }
+
+        /* Public Layout CSS */
+        .public-navbar { 
+            background: linear-gradient(135deg, var(--dd-primary) 0%, var(--dd-primary-dark) 100%);
+            box-shadow: var(--shadow-md); 
+            padding: 16px 0; 
+        }
+        
+        .public-navbar .navbar-brand {
+            color: white !important;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        
+        .public-navbar .nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 500;
+        }
+        
+        .public-navbar .nav-link:hover {
+            color: white !important;
+        }
+        
+        .auth-btn { 
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff; 
+            border: 2px solid rgba(255, 255, 255, 0.3); 
+            padding: 10px 22px; 
+            border-radius: var(--radius-sm); 
+            font-weight: 600; 
+            text-decoration: none; 
+            transition: all 0.2s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .auth-btn:hover { 
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-1px);
+        }
+        
+        /* Language Selector */
+        .lang-selector a {
+            transition: all 0.2s ease;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .lang-selector a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .lang-selector a.text-primary {
+            background: rgba(255, 255, 255, 0.2) !important;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        .public-footer {
+            background: white;
+            border-top: 1px solid var(--dd-gray-200);
+            padding: 1.5rem 0;
+        }
+        
+        .public-footer p {
+            color: var(--dd-gray-600);
+            font-size: 0.875rem;
+        }
+        
+        /* Scrollbar for sidebar */
+        .sidebar-nav::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .sidebar-nav::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .sidebar-nav::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    @if (User.Identity != null && User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Contributor")))
+    {
+        // -------------------------------------------------------------
+        // MANAGER PLATFORM: Only for Verified Contributors & Admins
+        // -------------------------------------------------------------
+        <div class="wrapper">
+            <aside class="sidebar">
+                <div class="sidebar-header">Dire Dawa Hub ✨</div>
+                <div class="sidebar-nav">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link custom-nav" asp-area="" asp-controller="Home" asp-action="Index">📰 View Public Site</a></li>
+                        <li><hr class="dropdown-divider opacity-25 mx-3 my-2" style="border-color: white;" /></li>
+                        
+                        @if (User.IsInRole("Contributor")) 
+                        {
+                            <li class="sidebar-header" style="font-size: 0.8rem; padding: 10px 20px; color: #94a3b8; border: none; letter-spacing: 1px;">DATA WORKSPACE</li>
+                            <li class="nav-item"><a class="nav-link custom-nav" asp-area="" asp-controller="Contributor" asp-action="Index">👩‍💻 My Dashboard</a></li>
+                            <li class="nav-item"><a class="nav-link custom-nav" asp-area="" asp-controller="Water" asp-action="Index">💧 Water Tracker</a></li>
+                            <li class="nav-item"><a class="nav-link custom-nav" asp-area="" asp-controller="Health" asp-action="Index">🏥 Health Directory</a></li>
+                            <li class="nav-item"><a class="nav-link custom-nav" asp-area="" asp-controller="Jobs" asp-action="Index">💼 Job Board</a></li>
+                            <li class="nav-item"><a class="nav-link custom-nav" asp-area="" asp-controller="Agriculture" asp-action="Index">🌾 Agriculture</a></li>
+                        }
+                        
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="sidebar-header" style="font-size: 0.8rem; padding: 10px 20px; color: #94a3b8; border: none; letter-spacing: 1px;">ADMINISTRATOR</li>
+                            <li class="nav-item"><a class="nav-link custom-nav fw-bold" asp-area="" asp-controller="Admin" asp-action="Index" style="color: #93c5fd;">🛡️ System Analytics</a></li>
+                            <li class="nav-item"><a class="nav-link custom-nav" asp-area="" asp-controller="Admin" asp-action="ManageUsers">👥 Identity Registry</a></li>
+                        }
+                    </ul>
+                </div>
+            </aside>
+            <main class="main-content">
+                <div class="topbar">
+                    <span class="me-3 fw-bold text-muted">@User.Identity.Name</span>
+                    <a class="btn btn-outline-danger btn-sm fw-bold px-3 py-2" style="border-radius: 6px;" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                </div>
+                <div class="content-area">@RenderBody()</div>
+            </main>
+        </div>
+    }
+    else
+    {
+        // -------------------------------------------------------------
+        // CIVILIAN PLATFORM: Pure Read-Only Digital Notice Board
+        // -------------------------------------------------------------
+        <nav class="public-navbar sticky-top">
+            <div class="container d-flex justify-content-between align-items-center">
+                <a class="navbar-brand fw-bold mb-0 h1 text-decoration-none" href="/" style="color: #111827; font-size: 1.4rem;">
+                    🌍 Dire Dawa Hub
+                </a>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="lang-selector d-none d-md-flex align-items-center text-white-50 fw-bold me-2" style="font-size: 13px; gap:8px;">
+                        <span style="font-size: 1.1rem; margin-right: 4px;">🌐</span>
+                        <form asp-controller="Language" asp-action="SetLanguage" method="post" id="langForm" style="margin: 0; display: flex; align-items: center; gap: 6px;">
+                            <input type="hidden" id="langCulture" name="culture" value="" />
+                            <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                            <a href="javascript:void(0)" class="text-decoration-none @(Context.Request.Cookies[".AspNetCore.Culture"]?.Contains("en") == true ? "text-primary" : "text-white-50")" onclick="document.getElementById('langCulture').value='en'; document.getElementById('langForm').submit();">EN</a>
+                            <span class="text-white-25">|</span>
+                            <a href="javascript:void(0)" class="text-decoration-none @(Context.Request.Cookies[".AspNetCore.Culture"]?.Contains("am") == true ? "text-primary" : "text-white-50")" onclick="document.getElementById('langCulture').value='am'; document.getElementById('langForm').submit();">አማ</a>
+                            <span class="text-white-25">|</span>
+                            <a href="javascript:void(0)" class="text-decoration-none @(Context.Request.Cookies[".AspNetCore.Culture"]?.Contains("om") == true ? "text-primary" : "text-white-50")" onclick="document.getElementById('langCulture').value='om'; document.getElementById('langForm').submit();">Oro</a>
+                            <span class="text-white-25">|</span>
+                            <a href="javascript:void(0)" class="text-decoration-none @(Context.Request.Cookies[".AspNetCore.Culture"]?.Contains("so") == true ? "text-primary" : "text-white-50")" onclick="document.getElementById('langCulture').value='so'; document.getElementById('langForm').submit();">So</a>
+                        </form>
+                    </div>
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="badge bg-warning text-dark px-3 py-2 border border-warning shadow-sm" style="border-radius: 6px; font-size: 0.85rem;"><i class="bi bi-hourglass-split"></i> Pending Security Approval</span>
+                            <a class="auth-btn" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <a class="auth-btn" asp-area="" asp-controller="Account" asp-action="Login">Contributors Portal</a>
+                    }
+                </div>
+            </div>
+        </nav>
+        
+        <div class="container my-5">
+            @RenderBody()
+        </div>
+        
+        <footer class="public-footer text-center">
+            <div class="container">
+                <p class="mb-0 fw-medium">© 2026 Dire Dawa Community Resource Hub. Community driven data.</p>
+            </div>
+        </footer>
+    }
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    <div id="signalr-notifications" class="notification-container"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script>
+        const notificationContainer = document.getElementById("signalr-notifications");
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/notificationHub")
+            .withAutomaticReconnect()
+            .build();
+
+        connection.on("ReceiveWaterAlert", function (location, status, notes) {
+            // Determine if the alert is inherently dangerous
+            const isDanger = status.toLowerCase().includes('delay') || status.toLowerCase().includes('critical') || status.toLowerCase().includes('stop');
+            
+            const notif = document.createElement("div");
+            notif.className = "notification shadow-lg";
+            if (isDanger) notif.style.borderLeftColor = "#ef4444";
+            
+            notif.innerHTML = `
+                <div class="notification-icon water" style="font-size:1.5rem">💧</div>
+                <div class="notification-content">
+                    <div class="notification-title" style="color: ${isDanger ? '#ef4444' : '#0284c7'}">LIVE UPDATE: ${location}</div>
+                    <div class="notification-message">
+                        <strong>${status}</strong> - ${notes}
+                    </div>
+                </div>
+            `;
+            
+            // Pop up globally on all screens!
+            notificationContainer.appendChild(notif);
+            
+            setTimeout(() => {
+                notif.remove();
+            }, 6000); 
+        });
+
+        connection.start().catch(function(err) {
+            console.error("SignalR: " + err.toString());
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

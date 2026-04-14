@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="AppTitle" xml:space="preserve"><value>የድሬዳዋ የመረጃ ማዕከል</value></data>
+  <data name="SubTitle" xml:space="preserve"><value>ለከተማ አገልግሎቶች፣ የህክምና መረጃ፣ የስራ እድሎች እና የግብርና ገበያ ዋጋዎች ዲጂታል እና ወቅታዊ የማስታወቂያ ሰሌዳ።</value></data>
+  <data name="SearchPlaceholder" xml:space="preserve"><value>ክሊኒኮችን፣ የውሃ መርሃ ግብሮችን፣ የሰብል ዋጋዎችን ወይም ስራዎችን ለመፈለግ እዚህ ይፃፉ...</value></data>
+  <data name="WaterHeader" xml:space="preserve"><value>የውሃ ስርጭት መርሃ ግብር</value></data>
+  <data name="HealthHeader" xml:space="preserve"><value>የክሊኒክ ማውጫ</value></data>
+  <data name="AgHeader" xml:space="preserve"><value>የገበያ ዋጋዎች</value></data>
+  <data name="JobsHeader" xml:space="preserve"><value>የስራ ማስታወቂያ ሰሌዳ</value></data>
+  <data name="LiveFeed" xml:space="preserve"><value>ቀጥታ የከተማ መረጃ</value></data>
+</root>

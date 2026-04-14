@@ -1,0 +1,49 @@
+@model IEnumerable<DireDawaHub.Models.AgricultureMarket>
+@{
+    ViewData["Title"] = "Agriculture Hub";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>🌾 Agriculture & Market Hub</h2>
+    @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Contributor")))
+    {
+        <a asp-action="Create" class="btn btn-success fw-bold px-4 text-white" style="border-radius: 8px;">+ New Market Report</a>
+    }
+</div>
+
+<div class="row">
+    @foreach (var item in Model) {
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0 h-100" style="border-radius: 12px; border-top: 5px solid #10b981 !important;">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill fw-bold">Live Price</span>
+                        <small class="text-muted">@item.RecordedDate.ToString("MMM dd, yyyy")</small>
+                    </div>
+                    
+                    <h3 class="fw-bold mb-1">@item.CropName</h3>
+                    <p class="text-muted"><i class="bi bi-shop"></i> @item.MarketLocation</p>
+                    
+                    <div class="p-3 bg-light rounded-3 d-flex justify-content-between align-items-center my-4">
+                        <span class="text-uppercase fw-bold text-muted small">Price / KG</span>
+                        <span class="fw-bold fs-3 text-dark">ETB @item.PricePerKg.ToString("0.00")</span>
+                    </div>
+
+                    @if(!string.IsNullOrEmpty(item.DiseaseAlerts)) {
+                        <div class="alert alert-danger mb-0" style="border-radius: 8px;">
+                            <strong><i class="bi bi-exclamation-triangle"></i> ALERT:</strong> @item.DiseaseAlerts
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+    @if(!Model.Any()) {
+        <div class="col-12 text-center text-muted mt-5 py-5 bg-white rounded-3 shadow-sm">
+            <div style="font-size: 3rem; margin-bottom: 20px;">🚜</div>
+            <h4>No agricultural updates recorded.</h4>
+            <p>Market officials can post new pricing and health alerts here.</p>
+        </div>
+    }
+</div>

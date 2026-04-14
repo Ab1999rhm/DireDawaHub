@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="AppTitle" xml:space="preserve"><value>Giddugala Qabeenya Dire Dawa</value></data>
+  <data name="SubTitle" xml:space="preserve"><value>Gabatee beeksisa dijitaalaa yeroo dhugaa tajaajila magaalummaa, argama yaalaa, carraa hojii, fi gatii gabaa qonnaaf.</value></data>
+  <data name="SearchPlaceholder" xml:space="preserve"><value>Kilinikoota, sagantaa bishaanii, gatii midhaanii, ykn hojiiwwan barbaaduuf asitti barreessi...</value></data>
+  <data name="WaterHeader" xml:space="preserve"><value>Raabsa Bishaanii Kallattii</value></data>
+  <data name="HealthHeader" xml:space="preserve"><value>Galmee Kilinikaa</value></data>
+  <data name="AgHeader" xml:space="preserve"><value>Gatii Gabaa</value></data>
+  <data name="JobsHeader" xml:space="preserve"><value>Gabatee Hojii</value></data>
+  <data name="LiveFeed" xml:space="preserve"><value>Oduu Magaalaa</value></data>
+</root>

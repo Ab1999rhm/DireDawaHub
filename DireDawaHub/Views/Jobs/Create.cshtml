@@ -1,0 +1,51 @@
+@model DireDawaHub.Models.JobPosting
+@{
+    ViewData["Title"] = "Post a Job";
+}
+
+<div class="card shadow-sm border-0" style="border-radius: 12px; max-width: 700px; margin: 0 auto; margin-top: 20px;">
+    <div class="card-body p-5">
+        <h3 class="mb-4 fw-bold" style="color: #111827;">Post Job Opportunity</h3>
+        <p class="text-muted mb-4">Connect with local talent in Dire Dawa.</p>
+        
+        <form asp-action="Create">
+            <div class="row">
+                <div class="col-md-8 mb-4">
+                    <label asp-for="Title" class="form-label fw-bold text-muted small text-uppercase">Job or Training Title</label>
+                    <input asp-for="Title" class="form-control" style="padding: 12px; border-radius: 8px;" placeholder="e.g. Senior Civil Engineer" required />
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="p-3 border rounded-3 bg-light mt-4" style="padding-top: 10px !important;">
+                        <div class="form-check form-switch m-0 mt-1">
+                            <input class="form-check-input mt-1" type="checkbox" asp-for="IsTrainingOpportunity" style="width: 2.5em; height: 1.2em; cursor: pointer;">
+                            <label class="form-check-label fw-bold ms-2" asp-for="IsTrainingOpportunity" style="cursor: pointer; font-size: 0.9rem;">
+                                Is Training?
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <label asp-for="Company" class="form-label fw-bold text-muted small text-uppercase">Company Name</label>
+                    <input asp-for="Company" class="form-control" style="padding: 12px; border-radius: 8px;" required />
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label asp-for="Location" class="form-label fw-bold text-muted small text-uppercase">Location / Kebele</label>
+                    <input asp-for="Location" class="form-control" style="padding: 12px; border-radius: 8px;" required />
+                </div>
+            </div>
+
+            <div class="mb-5">
+                <label asp-for="Description" class="form-label fw-bold text-muted small text-uppercase">Job Description & Requirements</label>
+                <textarea asp-for="Description" class="form-control" rows="5" style="padding: 12px; border-radius: 8px;" required></textarea>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <a asp-action="Index" class="text-muted text-decoration-none fw-bold">← Cancel</a>
+                <button type="submit" class="btn btn-primary px-5 py-2 fw-bold" style="border-radius: 8px; font-size: 1.1rem;">Post Listing</button>
+            </div>
+        </form>
+    </div>
+</div>

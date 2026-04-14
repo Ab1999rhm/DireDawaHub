@@ -1,0 +1,106 @@
+@model DireDawaHub.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Hub Authenication";
+}
+
+<style>
+    body {
+        background-color: #f3f4f6;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .login-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 80vh;
+    }
+
+    .login-card {
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        width: 100%;
+        max-width: 450px;
+    }
+
+    .login-brand {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .login-brand h2 {
+        font-weight: 700;
+        color: #1f2937;
+        margin: 0;
+    }
+
+    .login-brand p {
+        color: #6b7280;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        padding: 12px 15px;
+        border: 1px solid #d1d5db;
+        transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    .btn-primary {
+        background-color: #2563eb;
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: 600;
+        width: 100%;
+        transition: background-color 0.2s;
+    }
+
+    .btn-primary:hover {
+        background-color: #1d4ed8;
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-brand">
+            <h2>Dire Dawa Hub</h2>
+            <p>Community Resource Management</p>
+        </div>
+
+        <form asp-controller="Account" asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label text-muted fw-bold">Email Address</label>
+                <input asp-for="Email" class="form-control" placeholder="admin@diredawa.gov.et" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Password" class="form-label text-muted fw-bold">Password</label>
+                <input asp-for="Password" class="form-control" placeholder="••••••••" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-4 form-check">
+                <input class="form-check-input" asp-for="RememberMe" />
+                <label class="form-check-label text-muted" asp-for="RememberMe"></label>
+            </div>
+
+            <button type="submit" class="btn btn-primary text-white mb-3">Sign In</button>
+            <div class="text-center mt-2">
+                <a asp-action="Register" class="text-decoration-none small text-muted">Don't have an account? <strong class="text-primary">Register as a Contributor here</strong></a>
+            </div>
+        </form>
+    </div>
+</div>

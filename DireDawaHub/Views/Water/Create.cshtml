@@ -1,0 +1,54 @@
+@model DireDawaHub.Models.WaterSchedule
+@{
+    ViewData["Title"] = "Create Water Schedule";
+}
+
+<div class="card shadow-sm border-0" style="border-radius: 12px; max-width: 650px; margin: 0 auto; margin-top: 20px;">
+    <div class="card-body p-5">
+        <h3 class="mb-4 fw-bold" style="color: #111827;">Add Water Schedule</h3>
+        <p class="text-muted mb-4">Post a new water distribution notice for the Dire Dawa community.</p>
+        
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            
+            <div class="mb-4">
+                <label asp-for="Location" class="form-label fw-bold text-muted small text-uppercase">Pump Location / Kebele</label>
+                <input asp-for="Location" class="form-control" style="padding: 12px; border-radius: 8px;" placeholder="e.g. Kebele 02 Main Pump" required />
+                <span asp-validation-for="Location" class="text-danger small"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <label asp-for="StartTime" class="form-label fw-bold text-muted small text-uppercase">Start Time</label>
+                    <input asp-for="StartTime" class="form-control" type="datetime-local" style="padding: 12px; border-radius: 8px;" required />
+                    <span asp-validation-for="StartTime" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label asp-for="EndTime" class="form-label fw-bold text-muted small text-uppercase">Estimated End Time</label>
+                    <input asp-for="EndTime" class="form-control" type="datetime-local" style="padding: 12px; border-radius: 8px;" required />
+                    <span asp-validation-for="EndTime" class="text-danger small"></span>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Status" class="form-label fw-bold text-muted small text-uppercase">Current Status</label>
+                <select asp-for="Status" class="form-select" style="padding: 12px; border-radius: 8px;">
+                    <option value="Scheduled">Scheduled</option>
+                    <option value="Active">Active (Water is flowing)</option>
+                    <option value="Delayed">Delayed</option>
+                    <option value="Maintenance">Maintenance</option>
+                </select>
+            </div>
+
+            <div class="mb-5">
+                <label asp-for="Notes" class="form-label fw-bold text-muted small text-uppercase">Additional Information</label>
+                <textarea asp-for="Notes" class="form-control" rows="3" style="padding: 12px; border-radius: 8px;" placeholder="Any warnings or details... (e.g., Output pressure is expected to be low)"></textarea>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <a asp-action="Index" class="text-muted text-decoration-none fw-bold">← Cancel and return</a>
+                <button type="submit" class="btn btn-primary px-5 py-2 fw-bold" style="border-radius: 8px; font-size: 1.1rem;">Post Schedule</button>
+            </div>
+        </form>
+    </div>
+</div>

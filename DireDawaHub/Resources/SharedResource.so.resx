@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="AppTitle" xml:space="preserve"><value>Xarunta Khayraadka Diri Dhaba</value></data>
+  <data name="SubTitle" xml:space="preserve"><value>Sabuuradda wargelinta dhijitaalka ah ee tooska ah ee adeegyada muhiimka ah ee magaalada, helitaanka caafimaadka, iyo qiimaha suuqa beeraha.</value></data>
+  <data name="SearchPlaceholder" xml:space="preserve"><value>Halkan ku qor si aad u shaandhayso rugaha caafimaadka, jadwalka biyaha, ama shaqooyinka...</value></data>
+  <data name="WaterHeader" xml:space="preserve"><value>Qaybinta Biyaha ee Tooska ah</value></data>
+  <data name="HealthHeader" xml:space="preserve"><value>Tusmada Rugta Caafimaadka</value></data>
+  <data name="AgHeader" xml:space="preserve"><value>Qiimaha Suuqa</value></data>
+  <data name="JobsHeader" xml:space="preserve"><value>Guddiga Shaqada</value></data>
+  <data name="LiveFeed" xml:space="preserve"><value>Wararka Magaalada</value></data>
+</root>

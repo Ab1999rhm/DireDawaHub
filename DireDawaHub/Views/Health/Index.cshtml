@@ -1,0 +1,58 @@
+@model IEnumerable<DireDawaHub.Models.ClinicRecord>
+@{
+    ViewData["Title"] = "Health Directory";
+}
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>🏥 Health & Clinic Directory</h2>
+        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Contributor")))
+        {
+            <a asp-action="Create" class="btn btn-primary fw-bold px-4" style="border-radius: 8px; transition: 0.2s;">+ Update Clinic Status</a>
+        }
+    </div>
+
+<div class="row">
+    @foreach (var item in Model) {
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm border-0" style="border-radius: 12px; transition: transform 0.2s;">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h4 class="fw-bold mb-0 text-dark">@item.ClinicName</h4>
+                        @if(item.HasEssentialMedicines){
+                            <span class="badge bg-success rounded-pill px-3 py-2 shadow-sm">Medicines Stocked</span>
+                        } else {
+                            <span class="badge bg-danger rounded-pill px-3 py-2 shadow-sm">Low Stock</span>
+                        }
+                    </div>
+                    
+                    <div class="mb-3">
+                        <small class="text-muted text-uppercase fw-bold">Doctors on Duty</small>
+                        <p class="mb-0 fs-5 mt-1">👨‍⚕️ @item.AvailableDoctors</p>
+                    </div>
+
+                    <div class="p-3 bg-light rounded-3 d-flex align-items-center gap-3">
+                        <div style="font-size: 1.5rem;">📞</div>
+                        <div>
+                            <small class="text-muted d-block fw-bold text-uppercase">Emergency Contact</small>
+                            <span class="fw-bold fs-5 text-primary">@item.EmergencyContact</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-white border-top text-muted small p-4 d-flex justify-content-between align-items-center">
+                    <span>Last updated: @item.LastUpdated.ToString("g")</span>
+                    <div>
+                        <button class="btn btn-sm btn-outline-secondary px-3">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if(!Model.Any()) {
+        <div class="col-12 text-center text-muted mt-5 py-5 bg-white rounded-3 shadow-sm">
+            <div style="font-size: 3rem; margin-bottom: 20px;">🏥</div>
+            <h4>No clinic data available.</h4>
+            <p>Clinic staff can use the contributor portal to remotely update their statuses.</p>
+        </div>
+    }
+</div>
