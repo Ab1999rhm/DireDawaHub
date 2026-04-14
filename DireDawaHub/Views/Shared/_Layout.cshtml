@@ -54,13 +54,130 @@
         }
         
         .sidebar-header { 
-            padding: 24px 20px; 
-            font-size: 1.25rem; 
-            font-weight: 800; 
+            padding: 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 0.5px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            letter-spacing: -0.02em;
-            background: rgba(15, 23, 42, 0.2);
-            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-collapse-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-collapse-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .sidebar.collapsed {
+            width: 60px;
+            min-width: 60px;
+        }
+
+        .sidebar.collapsed .sidebar-header span,
+        .sidebar.collapsed .sidebar-nav .nav-item a,
+        .sidebar.collapsed .sidebar-nav .sidebar-header,
+        .sidebar.collapsed .sidebar-bottom .user-name,
+        .sidebar.collapsed .sidebar-bottom .btn span {
+            display: none;
+        }
+
+        .sidebar.collapsed .sidebar-header {
+            padding: 20px 10px;
+            justify-content: center;
+        }
+
+        .sidebar.collapsed .sidebar-collapse-btn {
+            width: 28px;
+            height: 28px;
+        }
+
+        .sidebar.collapsed .sidebar-collapse-btn i {
+            transform: rotate(180deg);
+        }
+
+        .sidebar.collapsed .sidebar-nav .nav-item {
+            text-align: center;
+        }
+
+        .sidebar.collapsed .sidebar-nav .nav-item a::before {
+            font-size: 1.5rem;
+            display: block;
+        }
+
+        .sidebar.collapsed .sidebar-nav .nav-item a[href*="Admin"]::before { content: "🛡️"; }
+        .sidebar.collapsed .sidebar-nav .nav-item a[href*="ManageUsers"]::before { content: "👥"; }
+        .sidebar.collapsed .sidebar-nav .nav-item a[href*="Catalog"]::before { content: "📁"; }
+        .sidebar.collapsed .sidebar-nav .nav-item a[href*="AuditLogs"]::before { content: "📜"; }
+        .sidebar.collapsed .sidebar-nav .nav-item a[href*="Contributor"]::before { content: "👩‍💻"; }
+        .sidebar.collapsed .sidebar-nav .nav-item a[href*="Water"]::before { content: "💧"; }
+        .sidebar.collapsed .sidebar-nav .nav-item a[href*="Health"]::before { content: "🏥"; }
+        .sidebar.collapsed .sidebar-nav .nav-item a[href*="Jobs"]::before { content: "💼"; }
+        .sidebar.collapsed .sidebar-nav .nav-item a[href*="Agriculture"]::before { content: "🌾"; }
+        .sidebar.collapsed .sidebar-nav .nav-item a[href="/"]::before,
+        .sidebar.collapsed .sidebar-nav .nav-item a[href*="Home"]::before { content: "📰"; }
+
+        .sidebar.collapsed .sidebar-bottom {
+            padding: 10px;
+        }
+
+        .sidebar.collapsed .sidebar-bottom .user-info {
+            justify-content: center;
+        }
+
+        .sidebar.collapsed .sidebar-bottom .btn {
+            padding: 8px;
+        }
+
+        .sidebar.collapsed + .main-content {
+            margin-left: 60px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            padding: 15px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 14px;
+        }
+
+        .user-name {
+            font-size: 0.875rem;
+            color: #e2e8f0;
+            font-weight: 500;
         }
 
         .sidebar {
@@ -204,6 +321,275 @@
             background: rgba(255, 255, 255, 0.2);
             border-radius: 3px;
         }
+
+        /* ============================================
+           TOAST NOTIFICATION STYLES
+           ============================================ */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+        }
+
+        .toast {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: toastSlideIn 0.3s ease;
+            max-width: 100%;
+        }
+
+        .toast.toast-success { border-left: 4px solid #10b981; }
+        .toast.toast-error { border-left: 4px solid #ef4444; }
+        .toast.toast-warning { border-left: 4px solid #f59e0b; }
+        .toast.toast-info { border-left: 4px solid #3b82f6; }
+
+        .toast-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .toast-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .toast-title {
+            font-weight: 600;
+            color: #f8fafc;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .toast-message {
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            padding: 4px;
+            font-size: 16px;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .toast-close:hover {
+            color: #f8fafc;
+        }
+
+        .toast-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 0 0 0 12px;
+            animation: toastProgress 5s linear forwards;
+        }
+
+        @@keyframes toastSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @@keyframes toastProgress {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+
+        .toast-exit {
+            animation: toastSlideOut 0.3s ease forwards;
+        }
+
+        @@keyframes toastSlideOut {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+        }
+
+        /* Breadcrumb Navigation */
+        .breadcrumb-nav {
+            background: rgba(15, 23, 42, 0.5);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 24px;
+            font-size: 14px;
+        }
+
+        .breadcrumb-item a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb-item a:hover {
+            color: #60a5fa;
+        }
+
+        .breadcrumb-item.active {
+            color: #f8fafc;
+        }
+
+        .breadcrumb-divider {
+            color: #64748b;
+            margin: 0 8px;
+        }
+
+        /* Mobile Responsive Tables */
+        @@media (max-width: 768px) {
+            .table-responsive {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .admin-table-container {
+                margin: 0 -1rem;
+                border-radius: 0;
+            }
+            
+            .search-filter-bar form .row {
+                gap: 0.5rem;
+            }
+            
+            .search-filter-bar .col-md-5,
+            .search-filter-bar .col-md-3,
+            .search-filter-bar .col-md-2 {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+            
+            .pagination-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .pagination {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* Loading Skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 4px;
+        }
+
+        @@keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Empty State Styles */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #94a3b8;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state h4 {
+            color: #f8fafc;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            margin-bottom: 1.5rem;
+        }
+
+        .empty-state .btn {
+            margin: 0.25rem;
+        }
+
+        /* Hover Cards */
+        .hover-card {
+            position: absolute;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            min-width: 250px;
+            display: none;
+        }
+
+        .hover-card.show {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+
+        @@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Filter Chips */
+        .filter-chips {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .filter-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .filter-chip:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #f8fafc;
+        }
+
+        .filter-chip.active {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+            color: #60a5fa;
+        }
     </style>
 </head>
 <body>
@@ -213,16 +599,36 @@
         // MANAGER PLATFORM: Only for Verified Contributors & Admins
         // -------------------------------------------------------------
         <div class="wrapper">
-            <aside class="sidebar">
-                <div class="sidebar-header">Dire Dawa Hub ✨</div>
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <span>Dire Dawa Hub ✨</span>
+                    <button class="sidebar-collapse-btn" onclick="toggleSidebar()" title="Collapse/Expand Sidebar">
+                        <i class="bi bi-chevron-left" id="collapseIcon"></i>
+                    </button>
+                </div>
                 <div class="sidebar-nav">
                     <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link custom-nav @(Context.Request.Path == "/" || Context.Request.Path == "/Home/Index" ? "active" : "")" 
-                               asp-area="" asp-controller="Home" asp-action="Index">📰 View Public Site</a>
-                        </li>
-                        <li><hr class="dropdown-divider opacity-25 mx-3 my-2" style="border-color: white;" /></li>
-                        
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="sidebar-header" style="font-size: 0.8rem; padding: 10px 20px; color: #94a3b8; border: none; letter-spacing: 1px;">ADMINISTRATOR</li>
+                            <li class="nav-item">
+                                <a class="nav-link custom-nav fw-bold @(Context.Request.Path.StartsWithSegments("/Admin") && !Context.Request.Path.StartsWithSegments("/Admin/ManageUsers") && !Context.Request.Path.StartsWithSegments("/Admin/AuditLogs") && !Context.Request.Path.StartsWithSegments("/Admin/Catalog") ? "active" : "")" 
+                                   asp-area="" asp-controller="Admin" asp-action="Index" style="color: #93c5fd;">�️ System Analytics</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Admin/ManageUsers") ? "active" : "")" 
+                                   asp-area="" asp-controller="Admin" asp-action="ManageUsers">� Identity Registry</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Admin/Catalog") ? "active" : "")" 
+                                   asp-area="" asp-controller="Admin" asp-action="Catalog">📁 System Catalog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Admin/AuditLogs") ? "active" : "")" 
+                                   asp-area="" asp-controller="Admin" asp-action="AuditLogs">� Audit Logs</a>
+                            </li>
+                        }
+
                         @if (User.IsInRole("Contributor")) 
                         {
                             <li class="sidebar-header" style="font-size: 0.8rem; padding: 10px 20px; color: #94a3b8; border: none; letter-spacing: 1px;">DATA WORKSPACE</li>
@@ -240,7 +646,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Jobs") ? "active" : "")" 
-                                   asp-area="" asp-controller="Jobs" asp-action="Index">💼 Job Board</a>
+                                   asp-area="" asp-controller="Jobs" asp-action="Index">� Job Board</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Agriculture") ? "active" : "")" 
@@ -248,30 +654,27 @@
                             </li>
                         }
                         
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <li class="sidebar-header" style="font-size: 0.8rem; padding: 10px 20px; color: #94a3b8; border: none; letter-spacing: 1px;">ADMINISTRATOR</li>
-                            <li class="nav-item">
-                                <a class="nav-link custom-nav fw-bold @(Context.Request.Path.StartsWithSegments("/Admin") && !Context.Request.Path.StartsWithSegments("/Admin/ManageUsers") && !Context.Request.Path.StartsWithSegments("/Admin/AuditLogs") ? "active" : "")" 
-                                   asp-area="" asp-controller="Admin" asp-action="Index" style="color: #93c5fd;">🛡️ System Analytics</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Admin/ManageUsers") ? "active" : "")" 
-                                   asp-area="" asp-controller="Admin" asp-action="ManageUsers">👥 Identity Registry</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Admin/AuditLogs") ? "active" : "")" 
-                                   asp-area="" asp-controller="Admin" asp-action="AuditLogs">📜 Audit Logs</a>
-                            </li>
-                        }
+                        <li><hr class="dropdown-divider opacity-25 mx-3 my-2" style="border-color: white;" /></li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link custom-nav @(Context.Request.Path == "/" || Context.Request.Path == "/Home/Index" ? "active" : "")" 
+                               asp-area="" asp-controller="Home" asp-action="Index">� View Public Site</a>
+                        </li>
                     </ul>
                 </div>
-            </aside>
-            <main class="main-content">
-                <div class="topbar">
-                    <span class="me-3 fw-bold text-muted">@User.Identity.Name</span>
-                    <a class="btn btn-outline-danger btn-sm fw-bold px-3 py-2" style="border-radius: 6px;" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                
+                <!-- Bottom Section: User Account & Logout -->
+                <div class="sidebar-bottom">
+                    <div class="user-info">
+                        <div class="user-avatar">@User.Identity?.Name?.Substring(0, 1).ToUpper()</div>
+                        <span class="user-name">@User.Identity?.Name</span>
+                    </div>
+                    <a class="btn btn-outline-danger btn-sm fw-bold px-3 py-2 w-100" style="border-radius: 6px;" asp-area="" asp-controller="Account" asp-action="Logout">
+                        <i class="bi bi-box-arrow-right me-1"></i> Logout
+                    </a>
                 </div>
+            </aside>
+            <main class="main-content" id="mainContent">
                 <div class="content-area">@RenderBody()</div>
             </main>
         </div>
@@ -331,6 +734,9 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+    
     <div id="signalr-notifications" class="notification-container"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
     <script>
@@ -368,6 +774,93 @@
 
         connection.start().catch(function(err) {
             console.error("SignalR: " + err.toString());
+        });
+
+        // Sidebar Toggle Function
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            const collapseIcon = document.getElementById('collapseIcon');
+            
+            sidebar.classList.toggle('collapsed');
+            
+            // Store preference in localStorage
+            const isCollapsed = sidebar.classList.contains('collapsed');
+            localStorage.setItem('sidebarCollapsed', isCollapsed);
+        }
+
+        // Restore sidebar state on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+            const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+            
+            if (isCollapsed && sidebar) {
+                sidebar.classList.add('collapsed');
+            }
+        });
+
+        // Toast Notification Functions
+        function showToast(title, message, type = 'info', duration = 5000) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            
+            const icons = {
+                success: '✅',
+                error: '❌',
+                warning: '⚠️',
+                info: 'ℹ️'
+            };
+            
+            toast.innerHTML = `
+                <div class="toast-icon">${icons[type]}</div>
+                <div class="toast-content">
+                    <div class="toast-title">${title}</div>
+                    <div class="toast-message">${message}</div>
+                </div>
+                <button class="toast-close" onclick="this.parentElement.remove()">×</button>
+                <div class="toast-progress"></div>
+            `;
+            
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('toast-exit');
+                setTimeout(() => toast.remove(), 300);
+            }, duration);
+        }
+
+        // Show TempData messages as toasts
+        @if (TempData["Success"] != null)
+        {
+            <text>showToast('Success', '@TempData["Success"]', 'success');</text>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <text>showToast('Error', '@TempData["Error"]', 'error');</text>
+        }
+        @if (TempData["Warning"] != null)
+        {
+            <text>showToast('Warning', '@TempData["Warning"]', 'warning');</text>
+        }
+
+        // Keyboard Shortcuts
+        document.addEventListener('keydown', function(e) {
+            // / key to focus search
+            if (e.key === '/' && !e.ctrlKey && !e.altKey && !e.metaKey) {
+                const searchInput = document.querySelector('input[name="searchTerm"]');
+                if (searchInput && document.activeElement !== searchInput) {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+            }
+            
+            // Escape to clear selection
+            if (e.key === 'Escape') {
+                const checkboxes = document.querySelectorAll('.user-select-checkbox:checked');
+                checkboxes.forEach(cb => cb.checked = false);
+                updateBulkActions();
+            }
         });
     </script>
     @await RenderSectionAsync("Scripts", required: false)

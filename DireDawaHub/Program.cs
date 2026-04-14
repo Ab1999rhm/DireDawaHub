@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DireDawaHub.Data;
 using DireDawaHub.Services;
+using DireDawaHub.Middleware;
+using Microsoft.AspNetCore.Localization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,15 @@ builder.Services.AddLocalization(options => options.ResourcesPath = "Resources")
 builder.Services.AddSingleton<DireDawaHub.Services.SystemStateService>();
 builder.Services.AddHostedService<DireDawaHub.Services.AgricultureDataFetcherService>();
 
+// Register Content Scheduler Service
+builder.Services.AddHostedService<DireDawaHub.Services.ContentSchedulerService>();
+
+// Register Email Service
+builder.Services.AddScoped<DireDawaHub.Services.EmailService>();
+
+// Register Version Tracking Service
+builder.Services.AddScoped<DireDawaHub.Services.VersionTrackingService>();
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? "Data Source=diredawa.db";
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
@@ -27,6 +38,10 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     options.Password.RequireDigit = false;
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
+    
+    // Two-Factor Authentication Settings
+    options.SignIn.RequireConfirmedEmail = false;
+    options.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
     options.Password.RequireLowercase = false;
 })
     .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -56,6 +71,9 @@ app.UseRequestLocalization(localizationOptions);
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Admin IP Whitelisting Middleware (restricts admin routes to Ethiopian IPs/VPN)
+app.UseAdminIpWhitelist();
 
 app.MapStaticAssets();
 
