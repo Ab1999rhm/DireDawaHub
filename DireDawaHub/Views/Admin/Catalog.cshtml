@@ -34,11 +34,77 @@
     .nav-tabs { border-bottom: 1px solid var(--glass-border); }
     .nav-link { color: #94a3b8; border: none !important; }
     .nav-link.active { background: transparent !important; color: var(--admin-primary) !important; border-bottom: 2px solid var(--admin-primary) !important; }
+
+    /* Pagination Styles */
+    .pagination-container {
+        background: rgba(15, 23, 42, 0.5);
+        border-top: 1px solid var(--glass-border);
+        padding: 1rem 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .pagination {
+        margin: 0;
+        gap: 0.25rem;
+    }
+
+    .pagination .page-link {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #94a3b8;
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .pagination .page-link:hover {
+        background: rgba(59, 130, 246, 0.2);
+        border-color: rgba(59, 130, 246, 0.3);
+        color: #60a5fa;
+    }
+
+    .pagination .page-item.active .page-link {
+        background: rgba(59, 130, 246, 0.3);
+        border-color: #3b82f6;
+        color: #ffffff;
+    }
+
+    .pagination .page-item.disabled .page-link {
+        background: rgba(255, 255, 255, 0.02);
+        border-color: rgba(255, 255, 255, 0.05);
+        color: #475569;
+        cursor: not-allowed;
+    }
+
+    .results-info {
+        color: #94a3b8;
+        font-size: 0.875rem;
+    }
 </style>
+
+<!-- Breadcrumb Navigation -->
+<nav class="breadcrumb-nav">
+    <span class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></span>
+    <span class="breadcrumb-divider">/</span>
+    <span class="breadcrumb-item"><a href="@Url.Action("Index", "Admin")">Admin</a></span>
+    <span class="breadcrumb-divider">/</span>
+    <span class="breadcrumb-item active">System Catalog</span>
+</nav>
 
 <div class="container-fluid px-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="fw-bold"><i class="bi bi-folder2-open me-2"></i> System Catalog Management</h2>
+        <div class="d-flex gap-2">
+            <a href="@Url.Action("ExportJobsToCsv")" class="btn btn-outline-success btn-sm">
+                <i class="bi bi-filetype-csv me-1"></i> Export Jobs
+            </a>
+            <a href="@Url.Action("ExportWaterSchedulesToCsv")" class="btn btn-outline-info btn-sm">
+                <i class="bi bi-filetype-csv me-1"></i> Export Water
+            </a>
+        </div>
     </div>
 
     <ul class="nav nav-tabs mb-4" id="catalogTabs" role="tablist">
@@ -105,6 +171,62 @@
                         }
                     </tbody>
                 </table>
+                
+                @if (!Model.Jobs.Any())
+                {
+                    <div class="empty-state">
+                        <div class="empty-state-icon">💼</div>
+                        <h4>No Job Postings</h4>
+                        <p>No job postings are currently in the system.</p>
+                        <a href="@Url.Action("Index", "Jobs")" class="btn btn-outline-primary">
+                            <i class="bi bi-eye me-1"></i> View Public Job Board
+                        </a>
+                    </div>
+                }
+                
+                <!-- Jobs Pagination -->
+                @if (ViewBag.JobsTotalPages > 1)
+                {
+                    <div class="pagination-container">
+                        <div class="results-info">Page @ViewBag.JobsCurrentPage of @ViewBag.JobsTotalPages (@ViewBag.JobsTotal total)</div>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                <li class="page-item @(ViewBag.JobsCurrentPage == 1 ? "disabled" : "")">
+                                    <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = 1, waterPage = ViewBag.WaterCurrentPage, clinicsPage = ViewBag.ClinicsCurrentPage, pageSize = ViewBag.PageSize })#jobs">
+                                        <i class="bi bi-chevron-double-left"></i>
+                                    </a>
+                                </li>
+                                <li class="page-item @(ViewBag.JobsCurrentPage == 1 ? "disabled" : "")">
+                                    <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = ViewBag.JobsCurrentPage - 1, waterPage = ViewBag.WaterCurrentPage, clinicsPage = ViewBag.ClinicsCurrentPage, pageSize = ViewBag.PageSize })#jobs">
+                                        <i class="bi bi-chevron-left"></i>
+                                    </a>
+                                </li>
+                                @for (int i = Math.Max(1, ViewBag.JobsCurrentPage - 2); i <= Math.Min(ViewBag.JobsTotalPages, ViewBag.JobsCurrentPage + 2); i++)
+                                {
+                                    <li class="page-item @(i == ViewBag.JobsCurrentPage ? "active" : "")">
+                                        <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = i, waterPage = ViewBag.WaterCurrentPage, clinicsPage = ViewBag.ClinicsCurrentPage, pageSize = ViewBag.PageSize })#jobs">@i</a>
+                                    </li>
+                                }
+                                <li class="page-item @(ViewBag.JobsCurrentPage == ViewBag.JobsTotalPages ? "disabled" : "")">
+                                    <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = ViewBag.JobsCurrentPage + 1, waterPage = ViewBag.WaterCurrentPage, clinicsPage = ViewBag.ClinicsCurrentPage, pageSize = ViewBag.PageSize })#jobs">
+                                        <i class="bi bi-chevron-right"></i>
+                                    </a>
+                                </li>
+                                <li class="page-item @(ViewBag.JobsCurrentPage == ViewBag.JobsTotalPages ? "disabled" : "")">
+                                    <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = ViewBag.JobsTotalPages, waterPage = ViewBag.WaterCurrentPage, clinicsPage = ViewBag.ClinicsCurrentPage, pageSize = ViewBag.PageSize })#jobs">
+                                        <i class="bi bi-chevron-double-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                }
+                else
+                {
+                    <div class="pagination-container">
+                        <div class="results-info">Showing @Model.Jobs.Count of @ViewBag.JobsTotal jobs</div>
+                    </div>
+                }
             </div>
         </div>
 
@@ -136,6 +258,62 @@
                         }
                     </tbody>
                 </table>
+                
+                @if (!Model.Water.Any())
+                {
+                    <div class="empty-state">
+                        <div class="empty-state-icon">💧</div>
+                        <h4>No Water Schedules</h4>
+                        <p>No water distribution schedules are currently recorded.</p>
+                        <a href="@Url.Action("Index", "Water")" class="btn btn-outline-info">
+                            <i class="bi bi-eye me-1"></i> View Public Water Page
+                        </a>
+                    </div>
+                }
+                
+                <!-- Water Pagination -->
+                @if (ViewBag.WaterTotalPages > 1)
+                {
+                    <div class="pagination-container">
+                        <div class="results-info">Page @ViewBag.WaterCurrentPage of @ViewBag.WaterTotalPages (@ViewBag.WaterTotal total)</div>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                <li class="page-item @(ViewBag.WaterCurrentPage == 1 ? "disabled" : "")">
+                                    <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = ViewBag.JobsCurrentPage, waterPage = 1, clinicsPage = ViewBag.ClinicsCurrentPage, pageSize = ViewBag.PageSize })#water">
+                                        <i class="bi bi-chevron-double-left"></i>
+                                    </a>
+                                </li>
+                                <li class="page-item @(ViewBag.WaterCurrentPage == 1 ? "disabled" : "")">
+                                    <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = ViewBag.JobsCurrentPage, waterPage = ViewBag.WaterCurrentPage - 1, clinicsPage = ViewBag.ClinicsCurrentPage, pageSize = ViewBag.PageSize })#water">
+                                        <i class="bi bi-chevron-left"></i>
+                                    </a>
+                                </li>
+                                @for (int i = Math.Max(1, ViewBag.WaterCurrentPage - 2); i <= Math.Min(ViewBag.WaterTotalPages, ViewBag.WaterCurrentPage + 2); i++)
+                                {
+                                    <li class="page-item @(i == ViewBag.WaterCurrentPage ? "active" : "")">
+                                        <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = ViewBag.JobsCurrentPage, waterPage = i, clinicsPage = ViewBag.ClinicsCurrentPage, pageSize = ViewBag.PageSize })#water">@i</a>
+                                    </li>
+                                }
+                                <li class="page-item @(ViewBag.WaterCurrentPage == ViewBag.WaterTotalPages ? "disabled" : "")">
+                                    <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = ViewBag.JobsCurrentPage, waterPage = ViewBag.WaterCurrentPage + 1, clinicsPage = ViewBag.ClinicsCurrentPage, pageSize = ViewBag.PageSize })#water">
+                                        <i class="bi bi-chevron-right"></i>
+                                    </a>
+                                </li>
+                                <li class="page-item @(ViewBag.WaterCurrentPage == ViewBag.WaterTotalPages ? "disabled" : "")">
+                                    <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = ViewBag.JobsCurrentPage, waterPage = ViewBag.WaterTotalPages, clinicsPage = ViewBag.ClinicsCurrentPage, pageSize = ViewBag.PageSize })#water">
+                                        <i class="bi bi-chevron-double-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                }
+                else
+                {
+                    <div class="pagination-container">
+                        <div class="results-info">Showing @Model.Water.Count of @ViewBag.WaterTotal water records</div>
+                    </div>
+                }
             </div>
         </div>
 
@@ -167,6 +345,62 @@
                         }
                     </tbody>
                 </table>
+                
+                @if (!Model.Clinics.Any())
+                {
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🏥</div>
+                        <h4>No Clinics Recorded</h4>
+                        <p>No healthcare facilities are currently in the system.</p>
+                        <a href="@Url.Action("Index", "Health")" class="btn btn-outline-success">
+                            <i class="bi bi-eye me-1"></i> View Public Health Directory
+                        </a>
+                    </div>
+                }
+                
+                <!-- Clinics Pagination -->
+                @if (ViewBag.ClinicsTotalPages > 1)
+                {
+                    <div class="pagination-container">
+                        <div class="results-info">Page @ViewBag.ClinicsCurrentPage of @ViewBag.ClinicsTotalPages (@ViewBag.ClinicsTotal total)</div>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                <li class="page-item @(ViewBag.ClinicsCurrentPage == 1 ? "disabled" : "")">
+                                    <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = ViewBag.JobsCurrentPage, waterPage = ViewBag.WaterCurrentPage, clinicsPage = 1, pageSize = ViewBag.PageSize })#clinics">
+                                        <i class="bi bi-chevron-double-left"></i>
+                                    </a>
+                                </li>
+                                <li class="page-item @(ViewBag.ClinicsCurrentPage == 1 ? "disabled" : "")">
+                                    <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = ViewBag.JobsCurrentPage, waterPage = ViewBag.WaterCurrentPage, clinicsPage = ViewBag.ClinicsCurrentPage - 1, pageSize = ViewBag.PageSize })#clinics">
+                                        <i class="bi bi-chevron-left"></i>
+                                    </a>
+                                </li>
+                                @for (int i = Math.Max(1, ViewBag.ClinicsCurrentPage - 2); i <= Math.Min(ViewBag.ClinicsTotalPages, ViewBag.ClinicsCurrentPage + 2); i++)
+                                {
+                                    <li class="page-item @(i == ViewBag.ClinicsCurrentPage ? "active" : "")">
+                                        <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = ViewBag.JobsCurrentPage, waterPage = ViewBag.WaterCurrentPage, clinicsPage = i, pageSize = ViewBag.PageSize })#clinics">@i</a>
+                                    </li>
+                                }
+                                <li class="page-item @(ViewBag.ClinicsCurrentPage == ViewBag.ClinicsTotalPages ? "disabled" : "")">
+                                    <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = ViewBag.JobsCurrentPage, waterPage = ViewBag.WaterCurrentPage, clinicsPage = ViewBag.ClinicsCurrentPage + 1, pageSize = ViewBag.PageSize })#clinics">
+                                        <i class="bi bi-chevron-right"></i>
+                                    </a>
+                                </li>
+                                <li class="page-item @(ViewBag.ClinicsCurrentPage == ViewBag.ClinicsTotalPages ? "disabled" : "")">
+                                    <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = ViewBag.JobsCurrentPage, waterPage = ViewBag.WaterCurrentPage, clinicsPage = ViewBag.ClinicsTotalPages, pageSize = ViewBag.PageSize })#clinics">
+                                        <i class="bi bi-chevron-double-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                }
+                else
+                {
+                    <div class="pagination-container">
+                        <div class="results-info">Showing @Model.Clinics.Count of @ViewBag.ClinicsTotal clinics</div>
+                    </div>
+                }
             </div>
         </div>
     </div>

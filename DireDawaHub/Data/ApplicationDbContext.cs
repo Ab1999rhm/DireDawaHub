@@ -19,4 +19,5 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     public DbSet<WorkIdVerification> WorkIdVerifications { get; set; }
     public DbSet<SecurityAuditLog> SecurityAuditLogs { get; set; }
     public DbSet<IdDocumentImage> IdDocumentImages { get; set; }
+    public DbSet<ContentVersion> ContentVersions { get; set; }
 }
