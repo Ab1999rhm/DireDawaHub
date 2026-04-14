@@ -11,13 +11,13 @@ public class AgricultureDataFetcherService : BackgroundService
 {
     private readonly ILogger<AgricultureDataFetcherService> _logger;
     private readonly IServiceProvider _serviceProvider;
-    private readonly HttpClient _httpClient;
+    private readonly DireDawaHub.Services.SystemStateService _systemState;
 
-    public AgricultureDataFetcherService(ILogger<AgricultureDataFetcherService> logger, IServiceProvider serviceProvider)
+    public AgricultureDataFetcherService(ILogger<AgricultureDataFetcherService> logger, IServiceProvider serviceProvider, DireDawaHub.Services.SystemStateService systemState)
     {
         _logger = logger;
         _serviceProvider = serviceProvider;
-        _httpClient = new HttpClient();
+        _systemState = systemState;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -29,7 +29,12 @@ public class AgricultureDataFetcherService : BackgroundService
         {
             _logger.LogInformation("Fetching live agriculture data from external REST API at: {time}", DateTimeOffset.Now);
             
+            _systemState.LastAgricultureFetch = DateTime.Now;
+            _systemState.ServiceStatus = "Running";
+            
             await FetchAndStoreDataAsync();
+            
+            _systemState.ServiceStatus = "Operational";
 
             // Pause the background worker for exactly 3 hours before requesting again
             await Task.Delay(TimeSpan.FromHours(3), stoppingToken);

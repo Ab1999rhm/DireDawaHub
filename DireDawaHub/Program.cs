@@ -1,6 +1,7 @@
-using DireDawaHub.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using DireDawaHub.Data;
+using DireDawaHub.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddSignalR();
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
 // Register the Automated Data Fetcher Background Service
+builder.Services.AddSingleton<DireDawaHub.Services.SystemStateService>();
 builder.Services.AddHostedService<DireDawaHub.Services.AgricultureDataFetcherService>();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? "Data Source=diredawa.db";

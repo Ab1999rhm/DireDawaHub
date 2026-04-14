@@ -16,4 +16,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     public DbSet<ClinicRecord> ClinicRecords { get; set; }
     public DbSet<JobPosting> JobPostings { get; set; }
     public DbSet<AgricultureMarket> AgricultureMarkets { get; set; }
+    public DbSet<WorkIdVerification> WorkIdVerifications { get; set; }
+    public DbSet<SecurityAuditLog> SecurityAuditLogs { get; set; }
+    public DbSet<IdDocumentImage> IdDocumentImages { get; set; }
 }

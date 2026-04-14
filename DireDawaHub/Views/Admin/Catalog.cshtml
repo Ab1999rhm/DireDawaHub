@@ -1,0 +1,173 @@
+@model DireDawaHub.ViewModels.CatalogViewModel
+@{
+    ViewData["Title"] = "System Catalog Manager";
+}
+
+<style>
+    :root {
+        --admin-primary: #3b82f6;
+        --glass-bg: rgba(15, 23, 42, 0.8);
+        --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    body {
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.97) 0%, rgba(30, 64, 175, 0.95) 100%),
+                    url('/images/smart_banner.png');
+        background-size: cover;
+        background-attachment: fixed;
+        color: #f8fafc;
+    }
+
+    .catalog-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(15px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        margin-bottom: 2rem;
+        overflow: hidden;
+    }
+
+    .table { color: #cbd5e1; }
+    .table thead th { background: rgba(255, 255, 255, 0.05); color: #94a3b8; }
+    .table tbody td { border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+    
+    .nav-tabs { border-bottom: 1px solid var(--glass-border); }
+    .nav-link { color: #94a3b8; border: none !important; }
+    .nav-link.active { background: transparent !important; color: var(--admin-primary) !important; border-bottom: 2px solid var(--admin-primary) !important; }
+</style>
+
+<div class="container-fluid px-4 py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold"><i class="bi bi-folder2-open me-2"></i> System Catalog Management</h2>
+    </div>
+
+    <ul class="nav nav-tabs mb-4" id="catalogTabs" role="tablist">
+        <li class="nav-item">
+            <button class="nav-link active fw-bold" id="jobs-tab" data-bs-toggle="tab" data-bs-target="#jobs" type="button">💼 Jobs (@Model.Jobs.Count)</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link fw-bold" id="water-tab" data-bs-toggle="tab" data-bs-target="#water" type="button">💧 Water (@Model.Water.Count)</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link fw-bold" id="clinics-tab" data-bs-toggle="tab" data-bs-target="#clinics" type="button">🏥 Clinics (@Model.Clinics.Count)</button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="catalogContent">
+        <!-- JOBS TAB -->
+        <div class="tab-pane fade show active" id="jobs">
+            <div class="catalog-card">
+                <table class="table hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th class="ps-4">Title / Company</th>
+                            <th>Location</th>
+                            <th>Date</th>
+                            <th class="text-end pe-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var job in Model.Jobs) {
+                            <tr>
+                                <td class="ps-4">
+                                    <div class="fw-bold text-white">@job.Title</div>
+                                    <div class="small text-muted">@job.Company</div>
+                                    @if (!job.IsApproved) {
+                                        <span class="badge bg-warning bg-opacity-25 text-warning small mt-1">Pending Approval</span>
+                                    } else {
+                                        <span class="badge bg-success bg-opacity-25 text-success small mt-1">Live on Site</span>
+                                    }
+                                </td>
+                                <td>@job.Location</td>
+                                <td>
+                                    <form asp-action="UpdateJobComment" method="post" class="mt-1">
+                                        <input type="hidden" name="id" value="@job.Id" />
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" name="comment" class="form-control bg-dark border-secondary text-white" 
+                                                   value="@job.AdminComment" placeholder="Private feedback..." />
+                                            <button class="btn btn-outline-secondary" type="submit">Save</button>
+                                        </div>
+                                    </form>
+                                </td>
+                                <td class="text-end pe-4">
+                                    @if (!job.IsApproved) {
+                                        <form asp-action="ApproveJob" method="post" class="d-inline">
+                                            <input type="hidden" name="id" value="@job.Id" />
+                                            <button class="btn btn-sm btn-success fw-bold me-1">APPROVE</button>
+                                        </form>
+                                    }
+                                    <form asp-action="DeleteJob" method="post" class="d-inline">
+                                        <input type="hidden" name="id" value="@job.Id" />
+                                        <button class="btn btn-sm btn-outline-danger">Purge</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- WATER TAB -->
+        <div class="tab-pane fade" id="water">
+            <div class="catalog-card">
+                <table class="table hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th class="ps-4">Neighborhood</th>
+                            <th>Status</th>
+                            <th>Update Time</th>
+                            <th class="text-end pe-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var w in Model.Water) {
+                            <tr>
+                                <td class="ps-4 fw-bold text-white">@w.Location</td>
+                                <td><span class="badge @(w.Status == "Active" ? "bg-success" : "bg-danger")">@w.Status</span></td>
+                                <td class="small text-muted">@w.StartTime.ToString("HH:mm")</td>
+                                <td class="text-end pe-4">
+                                    <form asp-action="DeleteWater" method="post" class="d-inline">
+                                        <input type="hidden" name="id" value="@w.Id" />
+                                        <button class="btn btn-sm btn-outline-danger">Remove</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- CLINICS TAB -->
+        <div class="tab-pane fade" id="clinics">
+            <div class="catalog-card">
+                <table class="table hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th class="ps-4">Clinic Name</th>
+                            <th>Doctors</th>
+                            <th>Medicine Status</th>
+                            <th class="text-end pe-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var c in Model.Clinics) {
+                            <tr>
+                                <td class="ps-4 fw-bold text-white">@c.ClinicName</td>
+                                <td>@c.AvailableDoctors</td>
+                                <td><span class="badge @(c.HasEssentialMedicines ? "bg-success" : "bg-warning")">@(c.HasEssentialMedicines ? "STOCK OK" : "LOW STOCK")</span></td>
+                                <td class="text-end pe-4">
+                                    <form asp-action="DeleteClinic" method="post" class="d-inline">
+                                        <input type="hidden" name="id" value="@c.Id" />
+                                        <button class="btn btn-sm btn-outline-danger">De-list</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

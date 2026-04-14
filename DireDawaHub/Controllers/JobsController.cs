@@ -19,9 +19,18 @@ public class JobsController : Controller
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Authorize(Roles = "Admin, Contributor")]
-    public async Task<IActionResult> Create([Bind("Id,Title,Company,Location,Description,PostedDate,IsTrainingOpportunity")] JobPosting jobPosting)
+    public async Task<IActionResult> Create([Bind("Id,Title,Company,Location,Description,IsTrainingOpportunity")] JobPosting jobPosting)
     {
-        if (ModelState.IsValid) { jobPosting.PostedDate = DateTime.Now; _context.Add(jobPosting); await _context.SaveChangesAsync(); return RedirectToAction(nameof(Index)); }
+        if (ModelState.IsValid) 
+        { 
+            jobPosting.PostedDate = DateTime.Now; 
+            jobPosting.IsApproved = User.IsInRole("Admin"); // Admins are auto-approved
+            jobPosting.ContributorId = User.Identity?.Name;
+            
+            _context.Add(jobPosting); 
+            await _context.SaveChangesAsync(); 
+            return RedirectToAction(nameof(Index)); 
+        }
         return View(jobPosting);
     }
 }

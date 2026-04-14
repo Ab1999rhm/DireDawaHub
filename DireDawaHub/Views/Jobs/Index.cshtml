@@ -31,9 +31,26 @@
                         </p>
                         <p class="text-secondary mt-3 mb-0" style="max-width: 700px;">@item.Description</p>
                     </div>
-                    <div class="text-end" style="min-width: 180px;">
-                        <span class="d-block text-muted small mb-3">Posted @item.PostedDate.ToString("MMM dd, yyyy")</span>
-                        <button class="btn btn-primary fw-bold px-4" style="border-radius: 8px;">Apply Now</button>
+                    <div class="text-end" style="min-width: 210px;">
+                        <span class="d-block text-muted small mb-1">Posted @item.PostedDate.ToString("MMM dd, yyyy")</span>
+                        
+                        @if (!item.IsApproved) {
+                            <div class="badge bg-warning text-dark mb-2 d-inline-block">Pending Admin Approval</div>
+                        } else {
+                            <div class="badge bg-success mb-2 d-inline-block">✅ Verified Post</div>
+                        }
+
+                        @if (User.Identity.Name == item.ContributorId || User.IsInRole("Admin")) {
+                            @if (!string.IsNullOrEmpty(item.AdminComment)) {
+                                <div class="mt-2 p-2 rounded small text-start border bg-light text-primary">
+                                    <strong>Admin Feedback:</strong> @item.AdminComment
+                                </div>
+                            }
+                        }
+
+                        <div class="mt-3">
+                            <button class="btn btn-primary fw-bold px-4 w-100" style="border-radius: 8px;">Apply Now</button>
+                        </div>
                     </div>
                 </div>
             </div>

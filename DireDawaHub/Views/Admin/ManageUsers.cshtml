@@ -1,73 +1,157 @@
 @model List<DireDawaHub.ViewModels.AdminUserViewModel>
 @{
-    ViewData["Title"] = "Identity & Role Manager";
+    ViewData["Title"] = "Identity Registry";
 }
 
-<div class="mb-4 d-flex justify-content-between align-items-center">
-    <div>
-        <h2 class="fw-bold mb-1" style="color: #111827;">System Directory</h2>
-        <p class="text-muted mb-0">Verify Work IDs and promote registered users to Contributors.</p>
-    </div>
-</div>
+<style>
+    :root {
+        --admin-primary: #3b82f6;
+        --admin-dark: #0f172a;
+        --glass-bg: rgba(15, 23, 42, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.1);
+    }
 
-<div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-    <div class="table-responsive">
-        <table class="table table-hover align-middle mb-0">
-            <thead class="table-light">
-                <tr>
-                    <th class="ps-4 py-3 text-uppercase text-muted" style="font-size: 0.75rem; letter-spacing: 1px;">Email / User</th>
-                    <th class="py-3 text-uppercase text-muted" style="font-size: 0.75rem; letter-spacing: 1px;">Work ID</th>
-                    <th class="py-3 text-uppercase text-muted" style="font-size: 0.75rem; letter-spacing: 1px;">Current Role</th>
-                    <th class="pe-4 py-3 text-uppercase text-muted text-end" style="font-size: 0.75rem; letter-spacing: 1px;">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var user in Model)
-                {
+    body {
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.97) 0%, rgba(30, 64, 175, 0.95) 100%),
+                    url('/images/smart_banner.png');
+        background-size: cover;
+        background-attachment: fixed;
+        color: #f8fafc;
+    }
+
+    .registry-header h2, .registry-header p {
+        color: #ffffff !important;
+    }
+
+    .registry-header {
+        background: var(--glass-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        animation: fadeInDown 0.6s ease;
+    }
+
+    .admin-table-container {
+        background: var(--glass-bg);
+        backdrop-filter: blur(15px);
+        border-radius: 16px;
+        border: 1px solid var(--glass-border);
+        overflow: hidden;
+        animation: fadeInUp 0.8s ease;
+    }
+
+    .table { color: #cbd5e1; }
+    .table thead th {
+        background: rgba(255, 255, 255, 0.05);
+        color: #94a3b8;
+        padding: 1rem 1.5rem;
+        border: none;
+    }
+    .table tbody td {
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .badge-admin { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .badge-contributor { background: rgba(59, 130, 246, 0.2); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .badge-pending { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
+
+    @@keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+
+<div class="container-fluid px-4 py-3">
+    <div class="registry-header">
+        <h2 class="fw-bold mb-1"><i class="bi bi-person-badge me-2"></i> Identity & Role Manager</h2>
+        <p class="text-muted mb-0">Verify municipal work IDs and authorize contributor credentials for the community platform.</p>
+    </div>
+
+    <div class="admin-table-container">
+        <div class="table-responsive">
+            <table class="table hover align-middle mb-0">
+                <thead>
                     <tr>
-                        <td class="ps-4">
-                            <div class="fw-bold text-dark">@user.Email</div>
-                            <div class="small text-muted font-monospace">@user.Id.Substring(0, 8)...</div>
-                        </td>
-                        <td>
-                            @if(user.WorkId != "N/A") {
-                                <span class="badge bg-secondary text-dark bg-opacity-25 border border-secondary px-2 py-1"><i class="bi bi-briefcase me-1"></i> @user.WorkId</span>
-                            } else {
-                                <span class="text-muted small italic">Not provided</span>
-                            }
-                        </td>
-                        <td>
-                            @if (user.Roles.Contains("Admin"))
-                            {
-                                <span class="badge bg-danger">Administrator</span>
-                            }
-                            else if (user.Roles.Contains("Contributor"))
-                            {
-                                <span class="badge bg-primary">Verified Contributor</span>
-                            }
-                            else
-                            {
-                                <span class="badge bg-warning text-dark border border-warning">Pending Review</span>
-                            }
-                        </td>
-                        <td class="pe-4 text-end">
-                            @if (!user.Roles.Contains("Admin") && !user.Roles.Contains("Contributor"))
-                            {
-                                <form asp-action="Promote" method="post" class="d-inline">
-                                    <input type="hidden" name="userId" value="@user.Id" />
-                                    <button type="submit" class="btn btn-sm btn-success fw-bold text-white shadow-sm" style="border-radius: 6px;">
-                                        <i class="bi bi-shield-check"></i> Approve Contributor
-                                    </button>
-                                </form>
-                            }
-                            else if (user.Roles.Contains("Contributor"))
-                            {
-                                <span class="text-muted small"><i class="bi bi-check-circle-fill text-success"></i> Approved</span>
-                            }
-                        </td>
+                        <th class="ps-4">Email / Identity ID</th>
+                        <th>Work Verification ID</th>
+                        <th>Auth Status</th>
+                        <th class="text-end pe-4">Permissions</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td class="ps-4">
+                                <div class="fw-bold text-white">@user.Email</div>
+                                <div class="small text-muted font-monospace">UUID: @user.Id.Substring(0, 8)...</div>
+                            </td>
+                            <td>
+                                @if(user.WorkId != "N/A") {
+                                    <span class="badge bg-secondary text-white bg-opacity-25 border border-secondary px-3 py-2">
+                                        <i class="bi bi-shield-check me-2"></i> @user.WorkId
+                                    </span>
+                                } else {
+                                    <span class="text-muted small italic">General Public</span>
+                                }
+                            </td>
+                            <td>
+                                @if (user.Roles.Contains("Admin"))
+                                {
+                                    <span class="badge badge-admin px-3 py-2">System Administrator</span>
+                                }
+                                else if (user.Roles.Contains("Contributor"))
+                                {
+                                    <span class="badge badge-contributor px-3 py-2">Verified Contributor</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-pending px-3 py-2">Pending Authorization</span>
+                                }
+                            </td>
+                            <td class="text-end pe-4">
+                                <a asp-action="UserDetails" asp-route-id="@user.Id" class="btn btn-sm btn-outline-light me-1" style="border-radius: 8px;" title="Verify ID">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                
+                                @if (!user.Roles.Contains("Admin"))
+                                {
+                                    @if (user.Roles.Contains("Contributor"))
+                                    {
+                                        <form asp-action="Demote" method="post" class="d-inline">
+                                            <input type="hidden" name="userId" value="@user.Id" />
+                                            <button type="submit" class="btn btn-sm btn-outline-warning me-1" style="border-radius: 8px;" onclick="return confirm('Restrict access for this contributor?');">
+                                                <i class="bi bi-slash-circle"></i> Deactivate
+                                            </button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <form asp-action="Promote" method="post" class="d-inline">
+                                            <input type="hidden" name="userId" value="@user.Id" />
+                                            <button type="submit" class="btn btn-sm btn-primary fw-bold me-1" style="border-radius: 8px;">
+                                                <i class="bi bi-patch-check"></i> Activate
+                                            </button>
+                                        </form>
+                                    }
+
+                                    <form asp-action="DeleteUser" method="post" class="d-inline">
+                                        <input type="hidden" name="userId" value="@user.Id" />
+                                        <button type="submit" class="btn btn-sm btn-danger" style="border-radius: 8px;" onclick="return confirm('WARNING: Purge this user account permanently?');">
+                                            <i class="bi bi-trash3"></i>
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary opacity-50 px-3">PROTECTED</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

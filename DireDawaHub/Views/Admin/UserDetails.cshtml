@@ -1,0 +1,570 @@
+@using Microsoft.AspNetCore.Identity
+@model IdentityUser
+@{
+    ViewData["Title"] = "Personnel Verification";
+    var claims = (IEnumerable<System.Security.Claims.Claim>)ViewBag.Claims;
+    var workId = claims.FirstOrDefault(c => c.Type == "WorkId")?.Value ?? "UNAVAILABLE";
+    var userRoles = (IList<string>)ViewBag.Roles;
+    
+    // ID Verification Logic
+    var idVerification = ViewBag.IdVerification as DireDawaHub.Models.WorkIdVerification;
+    bool isIdVerified = idVerification?.IsVerified ?? false;
+    bool isEmailVerified = Model.EmailConfirmed;
+    bool isBackgroundCheckDone = idVerification?.BackgroundCheckCompleted ?? false;
+    bool canAuthorize = isIdVerified && isEmailVerified;
+}
+
+<style>
+    :root {
+        --admin-primary: #3b82f6;
+        --admin-success: #10b981;
+        --admin-warning: #f59e0b;
+        --admin-danger: #ef4444;
+        --glass-bg: rgba(15, 23, 42, 0.9);
+        --glass-border: rgba(255, 255, 255, 0.15);
+    }
+
+    body {
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(30, 64, 175, 0.9) 100%),
+                    url('/images/smart_banner.png');
+        background-size: cover;
+        background-attachment: fixed;
+        color: #f8fafc;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .verification-container {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    .verification-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .verification-header h1 {
+        color: #ffffff;
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+    }
+
+    .verification-header p {
+        color: #94a3b8;
+        font-size: 1rem;
+    }
+
+    .verification-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .section-title {
+        color: #94a3b8;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 1rem;
+    }
+
+    .id-display {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px dashed rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        font-family: 'Fira Code', 'Consolas', monospace;
+        font-size: 0.875rem;
+    }
+
+    .id-display .label {
+        color: #64748b;
+        display: block;
+        margin-bottom: 0.25rem;
+    }
+
+    .id-display .value {
+        color: #e2e8f0;
+        font-weight: 600;
+    }
+
+    .id-display .uuid {
+        color: #3b82f6;
+        font-size: 0.75rem;
+    }
+
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .status-verified {
+        background: rgba(16, 185, 129, 0.15);
+        color: #10b981;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .status-pending {
+        background: rgba(245, 158, 11, 0.15);
+        color: #f59e0b;
+        border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .status-unverified {
+        background: rgba(239, 68, 68, 0.15);
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .verification-checklist {
+        background: rgba(15, 23, 42, 0.5);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        padding: 1.5rem;
+    }
+
+    .checklist-title {
+        color: #f8fafc;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .checklist-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .checklist-item:last-child {
+        border-bottom: none;
+    }
+
+    .checklist-label {
+        color: #cbd5e1;
+        font-size: 0.875rem;
+    }
+
+    .checklist-status {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    .status-yes { color: #10b981; }
+    .status-no { color: #ef4444; }
+    .status-pending-text { color: #f59e0b; }
+
+    .verification-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .btn-verify {
+        flex: 1;
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        border: none;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-verify:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-verify:disabled {
+        background: rgba(100, 116, 139, 0.5);
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+
+    .btn-back {
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: transparent;
+        color: #cbd5e1;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    .btn-back:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: #ffffff;
+    }
+
+    .id-verification-form {
+        background: rgba(59, 130, 246, 0.05);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-label {
+        display: block;
+        color: #94a3b8;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+        width: 100%;
+        background: rgba(15, 23, 42, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        color: #f8fafc;
+        font-size: 0.875rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .btn-verify-id {
+        background: #10b981;
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-verify-id:hover {
+        background: #059669;
+    }
+
+    .alert-box {
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        border-radius: 12px;
+        padding: 1rem;
+        margin-top: 1rem;
+        color: #fca5a5;
+        font-size: 0.875rem;
+    }
+
+    .info-box {
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        border-radius: 12px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        color: #93c5fd;
+        font-size: 0.875rem;
+    }
+</style>
+
+<div class="verification-container">
+    <div class="verification-header">
+        <h1>🛡️ Personnel Verification</h1>
+        <p>Reviewing system credentials for <strong style="color: #60a5fa;">@Model.Email</strong></p>
+    </div>
+
+    @if (!canAuthorize)
+    {
+        <div class="alert-box">
+            <strong>⚠️ Authorization Blocked:</strong> This user cannot be authorized as a contributor until all verification checks are completed. Please verify the Work ID against the municipal database.
+        </div>
+    }
+
+    <div class="verification-card">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="section-title">🔐 System Identity</div>
+                <div class="id-display">
+                    <span class="label">UUID</span>
+                    <span class="value uuid">@Model.Id</span>
+                    <hr style="border-color: rgba(255,255,255,0.1); margin: 1rem 0;">
+                    <span class="label">Username</span>
+                    <span class="value">@Model.UserName</span>
+                    <hr style="border-color: rgba(255,255,255,0.1); margin: 1rem 0;">
+                    <span class="label">Email Confirmed</span>
+                    <span class="value @(isEmailVerified ? "status-yes" : "status-no")">@(isEmailVerified ? "✓ YES" : "✗ NO")</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="section-title">🏛️ Municipal Work ID</div>
+                <div class="id-display">
+                    <span class="label">ID Number</span>
+                    <span class="value" style="color: @(workId != "UNAVAILABLE" ? "#10b981" : "#ef4444");">@workId</span>
+                    <hr style="border-color: rgba(255,255,255,0.1); margin: 1rem 0;">
+                    <span class="label">Verification Status</span>
+                    @if (isIdVerified)
+                    {
+                        <span class="status-badge status-verified">✓ Verified</span>
+                    }
+                    else if (workId != "UNAVAILABLE")
+                    {
+                        <span class="status-badge status-pending">⏳ Pending</span>
+                    }
+                    else
+                    {
+                        <span class="status-badge status-unverified">✗ Unavailable</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (workId != "UNAVAILABLE" && !isIdVerified)
+    {
+        <div class="verification-card">
+            <div class="section-title">🔍 ID Verification Panel</div>
+            <p style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 1rem;">
+                Verify this Work ID against the official Dire Dawa Municipality employee database.
+            </p>
+            <form asp-action="VerifyWorkId" method="post" class="id-verification-form">
+                <input type="hidden" name="userId" value="@Model.Id" />
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">Employee Name</label>
+                            <input type="text" name="employeeName" class="form-input" placeholder="Full name on record" required />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">Department</label>
+                            <select name="department" class="form-input" required>
+                                <option value="">Select Department</option>
+                                <option value="Water">Water & Sewerage</option>
+                                <option value="Health">Health Services</option>
+                                <option value="Agriculture">Agriculture</option>
+                                <option value="Employment">Employment Office</option>
+                                <option value="Admin">City Administration</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">&nbsp;</label>
+                            <button type="submit" class="btn-verify-id w-100">
+                                <i class="bi bi-shield-check"></i> Verify ID
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    }
+
+    <!-- ID Document Photo Verification Section -->
+    @if (ViewBag.HasUploadedDocuments)
+    {
+        var latestDoc = ViewBag.LatestDocument as DireDawaHub.Models.IdDocumentImage;
+        <div class="verification-card">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="section-title mb-0">📸 Uploaded ID Documents</div>
+                <span class="status-badge @(latestDoc.IsVisuallyVerified ? "status-verified" : "status-pending")">
+                    @(latestDoc.IsVisuallyVerified ? "✓ Visually Verified" : "⏳ Pending Visual Check")
+                </span>
+            </div>
+            
+            <div class="row g-4">
+                <!-- ID Document Photo -->
+                <div class="col-md-6">
+                    <div class="section-title" style="font-size: 0.7rem;">ID DOCUMENT</div>
+                    <div class="position-relative">
+                        <img src="@latestDoc.FilePath" alt="ID Document" 
+                             class="img-fluid rounded" 
+                             style="max-height: 300px; width: 100%; object-fit: contain; border: 1px solid rgba(255,255,255,0.1);" />
+                        <div class="position-absolute top-0 end-0 m-2">
+                            <a href="@latestDoc.FilePath" target="_blank" class="btn btn-sm btn-dark" style="opacity: 0.9;">
+                                <i class="bi bi-arrows-fullscreen"></i> View Full
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-2 small text-muted">
+                        <span>📄 @latestDoc.FileName</span> • 
+                        <span>📅 @latestDoc.UploadedAt.ToString("MMM dd, yyyy HH:mm")</span>
+                    </div>
+                </div>
+
+                <!-- Selfie with ID -->
+                @if (!string.IsNullOrEmpty(latestDoc.SelfieFilePath))
+                {
+                    <div class="col-md-6">
+                        <div class="section-title" style="font-size: 0.7rem;">🤳 SELFIE WITH ID (Optional)</div>
+                        <div class="position-relative">
+                            <img src="@latestDoc.SelfieFilePath" alt="Selfie with ID" 
+                                 class="img-fluid rounded" 
+                                 style="max-height: 300px; width: 100%; object-fit: contain; border: 1px solid rgba(255,255,255,0.1);" />
+                            <div class="position-absolute top-0 end-0 m-2">
+                                <a href="@latestDoc.SelfieFilePath" target="_blank" class="btn btn-sm btn-dark" style="opacity: 0.9;">
+                                    <i class="bi bi-arrows-fullscreen"></i> View Full
+                                </a>
+                            </div>
+                        </div>
+                        <div class="mt-2 small text-success">
+                            <i class="bi bi-check-circle"></i> Selfie uploaded for face verification
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-6">
+                        <div class="section-title" style="font-size: 0.7rem;">🤳 SELFIE WITH ID (Optional)</div>
+                        <div class="d-flex align-items-center justify-content-center rounded" 
+                             style="height: 200px; border: 2px dashed rgba(255,255,255,0.1); color: #64748b;">
+                            <div class="text-center">
+                                <i class="bi bi-person-x fs-1"></i>
+                                <p class="small mt-2 mb-0">No selfie provided</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Visual Verification Action -->
+            @if (!latestDoc.IsVisuallyVerified)
+            {
+                <div class="mt-4 p-3 rounded" style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2);">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="mb-1 text-light">Visual Verification Required</h6>
+                            <p class="small text-muted mb-0">
+                                Review the ID photo to confirm it matches the user's information.
+                            </p>
+                        </div>
+                        <form asp-action="VisualVerifyDocument" method="post" class="d-flex gap-2">
+                            <input type="hidden" name="documentId" value="@latestDoc.Id" />
+                            <input type="text" name="notes" class="form-input" placeholder="Verification notes (optional)" style="width: 200px;" />
+                            <button type="submit" class="btn-verify-id">
+                                <i class="bi bi-eye"></i> Mark as Verified
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="mt-4 p-3 rounded" style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2);">
+                    <div class="d-flex align-items-center gap-2 text-success">
+                        <i class="bi bi-check-circle-fill fs-5"></i>
+                        <div>
+                            <strong>Visually Verified</strong>
+                            <p class="small mb-0 text-muted">
+                                by @latestDoc.VerifiedBy on @latestDoc.VerifiedAt?.ToString("MMM dd, yyyy HH:mm")
+                                @if (!string.IsNullOrEmpty(latestDoc.VisualVerificationNotes))
+                                {
+                                    <br /><span class="text-info">Notes: @latestDoc.VisualVerificationNotes</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="verification-card">
+            <div class="section-title">📸 ID Documents</div>
+            <div class="alert-box">
+                <strong>⚠️ No ID Documents Uploaded</strong>
+                <p class="mb-0 mt-1">This user has not uploaded any ID documents yet. They should upload their ID during registration or from their profile.</p>
+            </div>
+        </div>
+    }
+
+    <div class="verification-card">
+        <div class="verification-checklist">
+            <div class="checklist-title">
+                <i class="bi bi-clipboard-check"></i>
+                Security Verification Checklist
+            </div>
+            
+            <div class="checklist-item">
+                <span class="checklist-label">Work ID matches Municipality Database</span>
+                <span class="checklist-status @(isIdVerified ? "status-yes" : "status-no")">
+                    @(isIdVerified ? "✓ VERIFIED" : "✗ NOT VERIFIED")
+                </span>
+            </div>
+            
+            <div class="checklist-item">
+                <span class="checklist-label">Email domain is verified (@Model.Email?.Split('@').LastOrDefault())</span>
+                <span class="checklist-status @(isEmailVerified ? "status-yes" : "status-no")">
+                    @(isEmailVerified ? "✓ VERIFIED" : "✗ NOT VERIFIED")
+                </span>
+            </div>
+            
+            <div class="checklist-item">
+                <span class="checklist-label">Background check completed</span>
+                <span class="checklist-status @(isBackgroundCheckDone ? "status-yes" : "status-pending-text")">
+                    @(isBackgroundCheckDone ? "✓ COMPLETED" : "⏳ PENDING")
+                </span>
+            </div>
+
+            <div class="checklist-item">
+                <span class="checklist-label">Current Role Assignment</span>
+                <span class="checklist-status" style="color: #60a5fa;">
+                    @(userRoles.Contains("Contributor") ? "✓ CONTRIBUTOR" : userRoles.Contains("Admin") ? "🛡️ ADMIN" : "👤 PENDING")
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="verification-actions">
+        <form asp-action="Promote" method="post" class="flex-grow-1">
+            <input type="hidden" name="userId" value="@Model.Id" />
+            <button type="submit" class="btn-verify" @(canAuthorize ? "" : "disabled")>
+                @if (userRoles.Contains("Contributor"))
+                {
+                    <span>✓ AUTHORIZED AS CONTRIBUTOR</span>
+                }
+                else
+                {
+                    <span><i class="bi bi-patch-check"></i> AUTHORIZE AS CONTRIBUTOR</span>
+                }
+            </button>
+        </form>
+        <a asp-action="ManageUsers" class="btn-back">
+            <i class="bi bi-arrow-left"></i> Back to Registry
+        </a>
+    </div>
+</div>
