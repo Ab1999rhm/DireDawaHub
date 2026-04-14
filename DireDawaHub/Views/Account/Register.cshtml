@@ -1,5 +1,5 @@
 @model DireDawaHub.ViewModels.RegisterViewModel
-
+@using DireDawaHub.Models
 @{
     ViewData["Title"] = "Register as Contributor";
 }
@@ -14,47 +14,148 @@
     .form-control:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); }
     .btn-primary { background-color: #2563eb; border: none; padding: 12px; border-radius: 8px; font-weight: 600; width: 100%; transition: background-color 0.2s; }
     .btn-primary:hover { background-color: #1d4ed8; }
+    
+    /* Photo Upload Styles */
+    .upload-section {
+        border: 2px dashed #d1d5db;
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    .upload-section:hover {
+        border-color: #3b82f6;
+        background: rgba(59, 130, 246, 0.05);
+    }
+    .upload-section i {
+        font-size: 2rem;
+        color: #9ca3af;
+        margin-bottom: 0.5rem;
+    }
+    .upload-preview {
+        max-width: 100%;
+        max-height: 200px;
+        border-radius: 8px;
+        margin-top: 1rem;
+        display: none;
+    }
+    .document-requirements {
+        background: #f0f9ff;
+        border-left: 4px solid #3b82f6;
+        padding: 1rem;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 1.5rem;
+    }
+    .document-requirements ul {
+        margin: 0;
+        padding-left: 1.5rem;
+        font-size: 0.875rem;
+        color: #4b5563;
+    }
 </style>
 
 <div class="login-container">
     <div class="login-card">
         <div class="login-brand">
-            <h2>Contributor Registration</h2>
-            <p>Enter your details and official Work ID for verification.</p>
+            <h2>🛡️ Contributor Registration</h2>
+            <p>Upload your ID document for secure verification by administrators.</p>
         </div>
 
-        <form asp-controller="Account" asp-action="Register" method="post">
+        <div class="document-requirements">
+            <strong style="color: #1e40af;">📋 Document Requirements:</strong>
+            <ul class="mt-2">
+                <li>Upload a clear photo of your <strong>Work ID card</strong> or <strong>Government ID</strong></li>
+                <li>All text on the ID must be clearly visible</li>
+                <li>File size: Max 5MB (JPG, PNG, PDF accepted)</li>
+                <li>Optional: Include a selfie holding the ID for faster verification</li>
+            </ul>
+        </div>
+
+        <form asp-controller="Account" asp-action="Register" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
             
             <div class="mb-3">
-                <label asp-for="Email" class="form-label text-muted fw-bold">Official Email Address</label>
+                <label asp-for="Email" class="form-label text-muted fw-bold">📧 Official Email Address</label>
                 <input asp-for="Email" class="form-control" placeholder="name@gov.et" />
                 <span asp-validation-for="Email" class="text-danger small"></span>
             </div>
 
             <div class="mb-3">
-                <label asp-for="WorkId" class="form-label text-muted fw-bold">Verification Work ID</label>
+                <label asp-for="WorkId" class="form-label text-muted fw-bold">🆔 Work ID Number</label>
                 <input asp-for="WorkId" class="form-control" placeholder="e.g. DD-WBS-3829" />
                 <span asp-validation-for="WorkId" class="text-danger small"></span>
             </div>
 
             <div class="mb-3">
-                <label asp-for="Password" class="form-label text-muted fw-bold">Password</label>
+                <label asp-for="DocumentType" class="form-label text-muted fw-bold">📄 Document Type</label>
+                <select asp-for="DocumentType" class="form-control">
+                    <option value="WorkId">Municipal Employee Work ID</option>
+                    <option value="GovernmentId">National Government ID</option>
+                    <option value="MunicipalEmployeeCard">Municipal Employee Card</option>
+                    <option value="Passport">Passport</option>
+                    <option value="DriverLicense">Driver's License</option>
+                </select>
+            </div>
+
+            <!-- ID Document Upload -->
+            <div class="mb-4">
+                <label asp-for="IdDocumentPhoto" class="form-label text-muted fw-bold">📸 ID Document Photo <span class="text-danger">*</span></label>
+                <div class="upload-section" onclick="document.getElementById('idPhotoInput').click()">
+                    <i class="bi bi-cloud-upload"></i>
+                    <p class="mb-1 text-muted">Click to upload ID document</p>
+                    <p class="small text-muted">or drag and drop here</p>
+                    <input asp-for="IdDocumentPhoto" type="file" id="idPhotoInput" class="d-none" accept="image/*,.pdf" onchange="previewImage(this, 'idPreview')" />
+                    <img id="idPreview" class="upload-preview" />
+                </div>
+                <span asp-validation-for="IdDocumentPhoto" class="text-danger small"></span>
+            </div>
+
+            <!-- Selfie Upload (Optional) -->
+            <div class="mb-4">
+                <label asp-for="SelfieWithId" class="form-label text-muted fw-bold">🤳 Selfie with ID <span class="text-muted">(Optional)</span></label>
+                <div class="upload-section" onclick="document.getElementById('selfieInput').click()">
+                    <i class="bi bi-person-square"></i>
+                    <p class="mb-1 text-muted">Click to upload selfie with ID</p>
+                    <p class="small text-muted">Shows your face clearly holding the ID</p>
+                    <input asp-for="SelfieWithId" type="file" id="selfieInput" class="d-none" accept="image/*" onchange="previewImage(this, 'selfiePreview')" />
+                    <img id="selfiePreview" class="upload-preview" />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label text-muted fw-bold">🔒 Password</label>
                 <input asp-for="Password" class="form-control" placeholder="••••••••" />
                 <span asp-validation-for="Password" class="text-danger small"></span>
             </div>
 
             <div class="mb-4">
-                <label asp-for="ConfirmPassword" class="form-label text-muted fw-bold">Confirm Password</label>
+                <label asp-for="ConfirmPassword" class="form-label text-muted fw-bold">🔒 Confirm Password</label>
                 <input asp-for="ConfirmPassword" class="form-control" placeholder="••••••••" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
             </div>
 
-            <button type="submit" class="btn btn-primary text-white mb-3">Submit Registration</button>
+            <button type="submit" class="btn btn-primary text-white mb-3">
+                <i class="bi bi-shield-check me-2"></i>Submit for Verification
+            </button>
             
             <div class="text-center">
-                <a asp-action="Login" class="text-decoration-none small fw-bold">Go back to Login</a>
+                <a asp-action="Login" class="text-decoration-none small fw-bold">← Go back to Login</a>
             </div>
         </form>
     </div>
 </div>
+
+<script>
+    function previewImage(input, previewId) {
+        const preview = document.getElementById(previewId);
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

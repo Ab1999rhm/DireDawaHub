@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
+using DireDawaHub.Models;
 
 namespace DireDawaHub.ViewModels;
 
@@ -20,4 +22,14 @@ public class RegisterViewModel
     [Display(Name = "Confirm password")]
     [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
     public string ConfirmPassword { get; set; }
+
+    [Display(Name = "ID Document Photo")]
+    [Required(ErrorMessage = "Please upload your ID document for verification")]
+    public IFormFile IdDocumentPhoto { get; set; }
+
+    [Display(Name = "Selfie with ID (optional)")]
+    public IFormFile? SelfieWithId { get; set; }
+
+    [Display(Name = "Document Type")]
+    public IdDocumentType DocumentType { get; set; } = IdDocumentType.WorkId;
 }

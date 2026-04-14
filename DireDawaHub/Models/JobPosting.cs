@@ -11,4 +11,9 @@ public class JobPosting
     public string Description { get; set; } = string.Empty;
     public DateTime PostedDate { get; set; } = DateTime.Now;
     public bool IsTrainingOpportunity { get; set; }
+    
+    // Moderation Features
+    public bool IsApproved { get; set; } = false; // Default to pending
+    public string? AdminComment { get; set; }
+    public string? ContributorId { get; set; } // Owner of the post
 }
