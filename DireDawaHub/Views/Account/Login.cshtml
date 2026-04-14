@@ -1,106 +1,161 @@
 @model DireDawaHub.ViewModels.LoginViewModel
 
 @{
-    ViewData["Title"] = "Hub Authenication";
+    ViewData["Title"] = "Hub Authentication";
 }
 
 <style>
     body {
-        background-color: #f3f4f6;
+        margin: 0;
+        padding: 0;
         font-family: 'Inter', sans-serif;
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)),
+                    url('/images/dd-city.jpg') no-repeat center center/cover;
+        height: 100vh;
     }
 
     .login-container {
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 80vh;
+        min-height: 100vh;
     }
 
     .login-card {
-        background: #ffffff;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
         padding: 40px;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        border-radius: 16px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         width: 100%;
-        max-width: 450px;
+        max-width: 420px;
+        color: #fff;
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @@keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     .login-brand {
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
+    }
+
+    .login-brand img {
+        width: 70px;
+        margin-bottom: 10px;
     }
 
     .login-brand h2 {
         font-weight: 700;
-        color: #1f2937;
         margin: 0;
     }
 
     .login-brand p {
-        color: #6b7280;
         font-size: 14px;
-        margin-top: 5px;
+        opacity: 0.8;
     }
 
     .form-control {
-        border-radius: 8px;
-        padding: 12px 15px;
-        border: 1px solid #d1d5db;
-        transition: border-color 0.2s;
+        border-radius: 10px;
+        padding: 12px;
+        border: none;
+        margin-top: 5px;
     }
 
     .form-control:focus {
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4);
     }
 
     .btn-primary {
-        background-color: #2563eb;
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
         border: none;
         padding: 12px;
-        border-radius: 8px;
+        border-radius: 10px;
         font-weight: 600;
         width: 100%;
-        transition: background-color 0.2s;
+        transition: 0.3s;
     }
 
     .btn-primary:hover {
-        background-color: #1d4ed8;
+        transform: scale(1.03);
+        background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    }
+
+    .form-check-label {
+        font-size: 14px;
+    }
+
+    .toggle-password {
+        position: absolute;
+        right: 15px;
+        top: 38px;
+        cursor: pointer;
+        color: #555;
+    }
+
+    .input-group {
+        position: relative;
+    }
+
+    a {
+        color: #93c5fd;
+    }
+
+    a:hover {
+        color: #dbeafe;
     }
 </style>
 
 <div class="login-container">
     <div class="login-card">
+
         <div class="login-brand">
+            <!-- Logo Image -->
+            <img src="/images/logo.png" alt="Logo" />
             <h2>Dire Dawa Hub</h2>
             <p>Community Resource Management</p>
         </div>
 
         <form asp-controller="Account" asp-action="Login" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-            
+
             <div class="mb-3">
-                <label asp-for="Email" class="form-label text-muted fw-bold">Email Address</label>
+                <label asp-for="Email" class="form-label fw-bold">Email Address</label>
                 <input asp-for="Email" class="form-control" placeholder="admin@diredawa.gov.et" />
                 <span asp-validation-for="Email" class="text-danger small"></span>
             </div>
 
-            <div class="mb-4">
-                <label asp-for="Password" class="form-label text-muted fw-bold">Password</label>
-                <input asp-for="Password" class="form-control" placeholder="••••••••" />
+            <div class="mb-3 input-group">
+                <label asp-for="Password" class="form-label fw-bold">Password</label>
+                <input asp-for="Password" type="password" id="password" class="form-control" placeholder="••••••••" />
+                <span class="toggle-password" onclick="togglePassword()">👁️</span>
                 <span asp-validation-for="Password" class="text-danger small"></span>
             </div>
 
-            <div class="mb-4 form-check">
+            <div class="mb-3 form-check">
                 <input class="form-check-input" asp-for="RememberMe" />
-                <label class="form-check-label text-muted" asp-for="RememberMe"></label>
+                <label class="form-check-label" asp-for="RememberMe"></label>
             </div>
 
             <button type="submit" class="btn btn-primary text-white mb-3">Sign In</button>
+
             <div class="text-center mt-2">
-                <a asp-action="Register" class="text-decoration-none small text-muted">Don't have an account? <strong class="text-primary">Register as a Contributor here</strong></a>
+                <a asp-action="Register">
+                    Don't have an account?
+                    <strong>Register as a Contributor</strong>
+                </a>
             </div>
         </form>
     </div>
 </div>
+
+<script>
+    function togglePassword() {
+        const password = document.getElementById("password");
+        password.type = password.type === "password" ? "text" : "password";
+    }
+</script>
