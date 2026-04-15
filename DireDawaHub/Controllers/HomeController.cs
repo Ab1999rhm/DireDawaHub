@@ -30,7 +30,50 @@ public class HomeController : Controller
             .Take(8).ToListAsync();
         model.AgMarkets = await _context.AgricultureMarkets.OrderByDescending(a => a.RecordedDate).Take(6).ToListAsync();
 
+        // Fetch active emergency broadcasts that user hasn't acknowledged
+        var currentUserId = User.Identity?.IsAuthenticated == true ? User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value : null;
+        
+        var broadcasts = await _context.EmergencyBroadcasts
+            .Where(b => b.IsActive && (b.ExpiresAt == null || b.ExpiresAt > DateTime.Now))
+            .Where(b => !b.Acknowledgments.Any(a => a.UserId == currentUserId))
+            .OrderByDescending(b => b.SentAt)
+            .Take(5)
+            .ToListAsync();
+
+        model.ActiveEmergencyBroadcasts = broadcasts.Where(b => !Request.Cookies.ContainsKey($"AckBroadcast_{b.Id}")).ToList();
+
         return View(model);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AcknowledgeBroadcast(int broadcastId)
+    {
+        Response.Cookies.Append($"AckBroadcast_{broadcastId}", "true", new CookieOptions { Expires = DateTimeOffset.Now.AddDays(30) });
+
+        if (User.Identity?.IsAuthenticated == true)
+        {
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (!string.IsNullOrEmpty(userId))
+            {
+                var existingAck = await _context.UserBroadcastAcknowledgments
+                    .FirstOrDefaultAsync(a => a.BroadcastId == broadcastId && a.UserId == userId);
+
+                if (existingAck == null)
+                {
+                    var acknowledgment = new UserBroadcastAcknowledgment
+                    {
+                        BroadcastId = broadcastId,
+                        UserId = userId,
+                        AcknowledgedAt = DateTime.Now
+                    };
+
+                    _context.UserBroadcastAcknowledgments.Add(acknowledgment);
+                    await _context.SaveChangesAsync();
+                }
+            }
+        }
+
+        return Ok(new { success = true });
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

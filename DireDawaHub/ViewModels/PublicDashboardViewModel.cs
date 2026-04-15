@@ -9,4 +9,5 @@ public class PublicDashboardViewModel
     public IEnumerable<ClinicRecord> Clinics { get; set; } = new List<ClinicRecord>();
     public IEnumerable<JobPosting> Jobs { get; set; } = new List<JobPosting>();
     public IEnumerable<AgricultureMarket> AgMarkets { get; set; } = new List<AgricultureMarket>();
+    public IEnumerable<EmergencyBroadcast> ActiveEmergencyBroadcasts { get; set; } = new List<EmergencyBroadcast>();
 }

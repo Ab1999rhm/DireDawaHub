@@ -20,4 +20,6 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     public DbSet<SecurityAuditLog> SecurityAuditLogs { get; set; }
     public DbSet<IdDocumentImage> IdDocumentImages { get; set; }
     public DbSet<ContentVersion> ContentVersions { get; set; }
+    public DbSet<EmergencyBroadcast> EmergencyBroadcasts { get; set; }
+    public DbSet<UserBroadcastAcknowledgment> UserBroadcastAcknowledgments { get; set; }
 }

@@ -1,6 +1,8 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<DireDawaHub.SharedResource> localizer
 @model IEnumerable<DireDawaHub.Models.SecurityAuditLog>
 @{
-    ViewData["Title"] = "Security Audit Logs";
+    ViewData["Title"] = @localizer["Audit Logs"];
 }
 
 <style>
@@ -243,31 +245,31 @@
 <div class="audit-container">
     <div class="audit-header">
         <div>
-            <h1>📜 Security Audit Logs</h1>
-            <p>Complete record of all administrative actions and system events</p>
+            <h1>📜 @localizer["Security Audit Logs"]</h1>
+            <p>@localizer["Complete record of all administrative actions and system events"]</p>
         </div>
         <div class="text-end">
             <a href="@Url.Action("ExportAuditLogsToCsv")" class="btn btn-outline-success">
-                <i class="bi bi-filetype-csv me-1"></i> Export CSV
+                <i class="bi bi-filetype-csv me-1"></i> @localizer["Export CSV"]
             </a>
         </div>
     </div>
     <div class="stats-row">
         <div class="stat-card">
             <div class="stat-value">@Model.Count()</div>
-            <div class="stat-label">Total Events</div>
+            <div class="stat-label">@localizer["Total Events"]</div>
         </div>
         <div class="stat-card">
             <div class="stat-value" style="color: #60a5fa;">@Model.Count(l => l.Severity == AuditSeverity.Info)</div>
-            <div class="stat-label">Info Events</div>
+            <div class="stat-label">@localizer["Info Events"]</div>
         </div>
         <div class="stat-card">
             <div class="stat-value" style="color: #fbbf24;">@Model.Count(l => l.Severity == AuditSeverity.Warning)</div>
-            <div class="stat-label">Warnings</div>
+            <div class="stat-label">@localizer["Warnings"]</div>
         </div>
         <div class="stat-card">
             <div class="stat-value" style="color: #f87171;">@Model.Count(l => l.Severity == AuditSeverity.Critical)</div>
-            <div class="stat-label">Critical</div>
+            <div class="stat-label">@localizer["Critical"]</div>
         </div>
     </div>
 
@@ -278,12 +280,12 @@
                 <table class="audit-table">
                     <thead>
                         <tr>
-                            <th>Timestamp</th>
-                            <th>Action</th>
-                            <th>Description</th>
-                            <th>Performed By</th>
-                            <th>Target</th>
-                            <th>Severity</th>
+                            <th>@localizer["Timestamp"]</th>
+                            <th>@localizer["Action"]</th>
+                            <th>@localizer["Description"]</th>
+                            <th>@localizer["Performed By"]</th>
+                            <th>@localizer["Target"]</th>
+                            <th>@localizer["Severity"]</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -309,7 +311,7 @@
                                         <span class="badge bg-dark bg-opacity-50 px-3 py-2">
                                             @(group.Key == "Today" ? "📅" : group.Key == "Yesterday" ? "📆" : group.Key == "This Week" ? "📊" : group.Key == "This Month" ? "📈" : "📁") 
                                             @group.Key
-                                            <span class="ms-2 text-muted">(@group.Count() events)</span>
+                                            <span class="ms-2 text-muted">(@group.Count() @localizer["events"])</span>
                                         </span>
                                     </td>
                                 </tr>
@@ -370,8 +372,8 @@
             {
                 <div class="pagination-container">
                     <div class="results-info">
-                        Showing @(((ViewBag.CurrentPage - 1) * ViewBag.PageSize) + 1) - @(Math.Min(ViewBag.CurrentPage * ViewBag.PageSize, ViewBag.TotalLogs)) 
-                        of @ViewBag.TotalLogs events
+                        @localizer["Showing"] @(((ViewBag.CurrentPage - 1) * ViewBag.PageSize) + 1) - @(Math.Min(ViewBag.CurrentPage * ViewBag.PageSize, ViewBag.TotalLogs)) 
+                        @localizer["of"] @ViewBag.TotalLogs @localizer["events"]
                     </div>
                     <nav aria-label="Page navigation">
                         <ul class="pagination">
@@ -432,14 +434,13 @@
         else
         {
             <div class="empty-state">
-                <div class="empty-state-icon">📭</div>
-                <h4>No Audit Logs Yet</h4>
-                <p>Administrative actions haven't been logged yet. Perform actions like user approvals, content moderation, or system changes to see them logged here.</p>
+                <h4 class="empty-state-icon">�</h4>
+                <p>@localizer["No audit logs available. Actions will be logged here."]</p>
                 <a href="@Url.Action("ManageUsers")" class="btn btn-outline-primary">
-                    <i class="bi bi-people me-1"></i> Manage Users
+                    <i class="bi bi-people me-1"></i> @localizer["Manage Users"]
                 </a>
                 <a href="@Url.Action("Catalog")" class="btn btn-outline-info">
-                    <i class="bi bi-folder me-1"></i> View Catalog
+                    <i class="bi bi-folder me-1"></i> @localizer["View Catalog"]
                 </a>
             </div>
         }

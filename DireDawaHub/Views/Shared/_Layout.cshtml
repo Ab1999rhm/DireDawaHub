@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<DireDawaHub.SharedResource> localizer
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,15 +92,38 @@
         }
 
         .sidebar.collapsed .sidebar-header span,
-        .sidebar.collapsed .sidebar-nav .nav-item a,
         .sidebar.collapsed .sidebar-nav .sidebar-header,
         .sidebar.collapsed .sidebar-bottom .user-name,
         .sidebar.collapsed .sidebar-bottom .btn span {
             display: none;
         }
 
+        .sidebar.collapsed .sidebar-nav .nav-item a {
+            font-size: 0 !important;
+            justify-content: center;
+            padding: 14px 0 !important;
+        }
+
         .sidebar.collapsed .sidebar-header {
             padding: 20px 10px;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .sidebar.collapsed .sidebar-lang-dropdown {
+            margin: 0 !important;
+        }
+
+        .sidebar.collapsed .sidebar-lang-dropdown .btn span,
+        .sidebar.collapsed .sidebar-lang-dropdown .btn::after {
+            display: none;
+        }
+
+        .sidebar.collapsed .sidebar-lang-dropdown .btn {
+            padding: 8px;
+            width: 38px;
+            height: 38px;
             justify-content: center;
         }
 
@@ -130,7 +155,7 @@
         .sidebar.collapsed .sidebar-nav .nav-item a[href*="Jobs"]::before { content: "💼"; }
         .sidebar.collapsed .sidebar-nav .nav-item a[href*="Agriculture"]::before { content: "🌾"; }
         .sidebar.collapsed .sidebar-nav .nav-item a[href="/"]::before,
-        .sidebar.collapsed .sidebar-nav .nav-item a[href*="Home"]::before { content: "📰"; }
+        .sidebar.collapsed .sidebar-nav .nav-item a[href*="Home"]::before { content: "🌍"; }
 
         .sidebar.collapsed .sidebar-bottom {
             padding: 10px;
@@ -138,6 +163,15 @@
 
         .sidebar.collapsed .sidebar-bottom .user-info {
             justify-content: center;
+        }
+
+        .sidebar.collapsed .sidebar-lang-options {
+            display: none !important;
+        }
+
+        .sidebar.collapsed .sidebar-lang-icon {
+            margin-right: 0 !important;
+            font-size: 1.2rem;
         }
 
         .sidebar.collapsed .sidebar-bottom .btn {
@@ -600,41 +634,65 @@
         // -------------------------------------------------------------
         <div class="wrapper">
             <aside class="sidebar" id="sidebar">
-                <div class="sidebar-header">
-                    <span>Dire Dawa Hub ✨</span>
+                <div class="sidebar-header d-flex align-items-center justify-content-between p-3">
+                    <span class="fw-bold">Dire Dawa Hub ✨</span>
                     <button class="sidebar-collapse-btn" onclick="toggleSidebar()" title="Collapse/Expand Sidebar">
                         <i class="bi bi-chevron-left" id="collapseIcon"></i>
                     </button>
                 </div>
+                
+                <!-- NEW TOP LEVEL LANGUAGE DROPDOWN -->
+                <div class="sidebar-lang-dropdown px-3 mb-2">
+                    <form asp-controller="Language" asp-action="SetLanguage" method="post" id="sidebarLangForm">
+                        <input type="hidden" id="sidebarCulture" name="culture" value="" />
+                        <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                        <div class="dropdown">
+                            <button class="btn btn-outline-light btn-sm dropdown-toggle w-100 d-flex align-items-center justify-content-between border-0 bg-white bg-opacity-10" 
+                                    type="button" id="sidebarLangDrop" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 8px;">
+                                <div class="d-flex align-items-center">
+                                    <span class="me-2">🌐</span>
+                                    <span>@localizer["Language"]</span>
+                                </div>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark shadow border-0" aria-labelledby="sidebarLangDrop" style="background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px);">
+                                <li><a class="dropdown-item small" href="javascript:void(0)" onclick="document.getElementById('sidebarCulture').value='en'; document.getElementById('sidebarLangForm').submit();">English</a></li>
+                                <li><a class="dropdown-item small" href="javascript:void(0)" onclick="document.getElementById('sidebarCulture').value='am'; document.getElementById('sidebarLangForm').submit();">አማርኛ</a></li>
+                                <li><a class="dropdown-item small" href="javascript:void(0)" onclick="document.getElementById('sidebarCulture').value='om'; document.getElementById('sidebarLangForm').submit();">Afaan Oromoo</a></li>
+                                <li><a class="dropdown-item small" href="javascript:void(0)" onclick="document.getElementById('sidebarCulture').value='so'; document.getElementById('sidebarLangForm').submit();">Af Somali</a></li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+
                 <div class="sidebar-nav">
                     <ul class="nav flex-column">
                         @if (User.IsInRole("Admin"))
                         {
-                            <li class="sidebar-header" style="font-size: 0.8rem; padding: 10px 20px; color: #94a3b8; border: none; letter-spacing: 1px;">ADMINISTRATOR</li>
+                            <li class="sidebar-header" style="font-size: 0.8rem; padding: 10px 20px; color: #94a3b8; border: none; letter-spacing: 1px;">@localizer["ADMINISTRATOR"]</li>
                             <li class="nav-item">
                                 <a class="nav-link custom-nav fw-bold @(Context.Request.Path.StartsWithSegments("/Admin") && !Context.Request.Path.StartsWithSegments("/Admin/ManageUsers") && !Context.Request.Path.StartsWithSegments("/Admin/AuditLogs") && !Context.Request.Path.StartsWithSegments("/Admin/Catalog") ? "active" : "")" 
-                                   asp-area="" asp-controller="Admin" asp-action="Index" style="color: #93c5fd;">�️ System Analytics</a>
+                                   asp-area="" asp-controller="Admin" asp-action="Index" style="color: #93c5fd;">🛡️ @localizer["System Analytics"]</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Admin/ManageUsers") ? "active" : "")" 
-                                   asp-area="" asp-controller="Admin" asp-action="ManageUsers">� Identity Registry</a>
+                                   asp-area="" asp-controller="Admin" asp-action="ManageUsers">👥 @localizer["Identity Registry"]</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Admin/Catalog") ? "active" : "")" 
-                                   asp-area="" asp-controller="Admin" asp-action="Catalog">📁 System Catalog</a>
+                                   asp-area="" asp-controller="Admin" asp-action="Catalog">📁 @localizer["System Catalog"]</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Admin/AuditLogs") ? "active" : "")" 
-                                   asp-area="" asp-controller="Admin" asp-action="AuditLogs">� Audit Logs</a>
+                                   asp-area="" asp-controller="Admin" asp-action="AuditLogs">📜 @localizer["Audit Logs"]</a>
                             </li>
                         }
 
                         @if (User.IsInRole("Contributor")) 
                         {
-                            <li class="sidebar-header" style="font-size: 0.8rem; padding: 10px 20px; color: #94a3b8; border: none; letter-spacing: 1px;">DATA WORKSPACE</li>
+                            <li class="sidebar-header" style="font-size: 0.8rem; padding: 10px 20px; color: #94a3b8; border: none; letter-spacing: 1px;">@localizer["DATA WORKSPACE"]</li>
                             <li class="nav-item">
                                 <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Contributor") ? "active" : "")" 
-                                   asp-area="" asp-controller="Contributor" asp-action="Index">👩‍💻 My Dashboard</a>
+                                   asp-area="" asp-controller="Contributor" asp-action="Index">👩‍💻 @localizer["My Dashboard"]</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Water") ? "active" : "")" 
@@ -646,7 +704,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Jobs") ? "active" : "")" 
-                                   asp-area="" asp-controller="Jobs" asp-action="Index">� Job Board</a>
+                                   asp-area="" asp-controller="Jobs" asp-action="Index">💼 Job Board</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Agriculture") ? "active" : "")" 
@@ -658,7 +716,7 @@
                         
                         <li class="nav-item">
                             <a class="nav-link custom-nav @(Context.Request.Path == "/" || Context.Request.Path == "/Home/Index" ? "active" : "")" 
-                               asp-area="" asp-controller="Home" asp-action="Index">� View Public Site</a>
+                               asp-area="" asp-controller="Home" asp-action="Index">🌍 @localizer["View Public Site"]</a>
                         </li>
                     </ul>
                 </div>
@@ -669,8 +727,9 @@
                         <div class="user-avatar">@User.Identity?.Name?.Substring(0, 1).ToUpper()</div>
                         <span class="user-name">@User.Identity?.Name</span>
                     </div>
+                    
                     <a class="btn btn-outline-danger btn-sm fw-bold px-3 py-2 w-100" style="border-radius: 6px;" asp-area="" asp-controller="Account" asp-action="Logout">
-                        <i class="bi bi-box-arrow-right me-1"></i> Logout
+                        <i class="bi bi-box-arrow-right"></i> <span>Logout</span>
                     </a>
                 </div>
             </aside>

@@ -1,6 +1,8 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<DireDawaHub.SharedResource> localizer
 @model DireDawaHub.ViewModels.CatalogViewModel
 @{
-    ViewData["Title"] = "System Catalog Manager";
+    ViewData["Title"] = @localizer["System Catalog"];
 }
 
 <style>
@@ -91,31 +93,43 @@
     <span class="breadcrumb-divider">/</span>
     <span class="breadcrumb-item"><a href="@Url.Action("Index", "Admin")">Admin</a></span>
     <span class="breadcrumb-divider">/</span>
-    <span class="breadcrumb-item active">System Catalog</span>
+    <span class="breadcrumb-item active">@localizer["System Catalog"]</span>
 </nav>
 
 <div class="container-fluid px-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold"><i class="bi bi-folder2-open me-2"></i> System Catalog Management</h2>
-        <div class="d-flex gap-2">
-            <a href="@Url.Action("ExportJobsToCsv")" class="btn btn-outline-success btn-sm">
-                <i class="bi bi-filetype-csv me-1"></i> Export Jobs
-            </a>
-            <a href="@Url.Action("ExportWaterSchedulesToCsv")" class="btn btn-outline-info btn-sm">
-                <i class="bi bi-filetype-csv me-1"></i> Export Water
-            </a>
+        <h2 class="fw-bold"><i class="bi bi-folder2-open me-2"></i> @localizer["System Catalog Management"]</h2>
+        <div class="dropdown">
+            <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-download me-1"></i> @localizer["Export Data"]
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="exportDropdown">
+                <li><h6 class="dropdown-header">@localizer["Catalog Data"]</h6></li>
+                <li><a class="dropdown-item" href="@Url.Action("ExportJobsToCsv")"><i class="bi bi-briefcase me-2"></i>@localizer["All Jobs"]</a></li>
+                <li><a class="dropdown-item" href="@Url.Action("ExportWaterSchedulesToCsv")"><i class="bi bi-droplet me-2"></i>@localizer["Water Schedules"]</a></li>
+                <li><a class="dropdown-item" href="@Url.Action("ExportClinicsToCsv")"><i class="bi bi-hospital me-2"></i>@localizer["Clinic Records"]</a></li>
+                @if (Model.Jobs.Any())
+                {
+                    <li><hr class="dropdown-divider"></li>
+                    <li><h6 class="dropdown-header">@localizer["Export by Job Title"]</h6></li>
+                    @foreach (var jobTitle in Model.Jobs.Select(j => j.Title).Distinct().Take(10))
+                    {
+                        <li><a class="dropdown-item" href="@Url.Action("ExportJobsByTitle", new { title = jobTitle })"><i class="bi bi-filter me-2"></i>@jobTitle</a></li>
+                    }
+                }
+            </ul>
         </div>
     </div>
 
     <ul class="nav nav-tabs mb-4" id="catalogTabs" role="tablist">
         <li class="nav-item">
-            <button class="nav-link active fw-bold" id="jobs-tab" data-bs-toggle="tab" data-bs-target="#jobs" type="button">💼 Jobs (@Model.Jobs.Count)</button>
+            <button class="nav-link active fw-bold" id="jobs-tab" data-bs-toggle="tab" data-bs-target="#jobs" type="button">💼 @localizer["Jobs"] (@Model.Jobs.Count)</button>
         </li>
         <li class="nav-item">
-            <button class="nav-link fw-bold" id="water-tab" data-bs-toggle="tab" data-bs-target="#water" type="button">💧 Water (@Model.Water.Count)</button>
+            <button class="nav-link fw-bold" id="water-tab" data-bs-toggle="tab" data-bs-target="#water" type="button">💧 @localizer["Water"] (@Model.Water.Count)</button>
         </li>
         <li class="nav-item">
-            <button class="nav-link fw-bold" id="clinics-tab" data-bs-toggle="tab" data-bs-target="#clinics" type="button">🏥 Clinics (@Model.Clinics.Count)</button>
+            <button class="nav-link fw-bold" id="clinics-tab" data-bs-toggle="tab" data-bs-target="#clinics" type="button">🏥 @localizer["Clinics"] (@Model.Clinics.Count)</button>
         </li>
     </ul>
 
@@ -126,9 +140,9 @@
                 <table class="table hover align-middle mb-0">
                     <thead>
                         <tr>
-                            <th class="ps-4">Title / Company</th>
-                            <th>Location</th>
-                            <th>Date</th>
+                            <th class="ps-4">@localizer["Title / Company"]</th>
+                            <th>@localizer["Location"]</th>
+                            <th>@localizer["Date"]</th>
                             <th class="text-end pe-4">Actions</th>
                         </tr>
                     </thead>
@@ -139,9 +153,9 @@
                                     <div class="fw-bold text-white">@job.Title</div>
                                     <div class="small text-muted">@job.Company</div>
                                     @if (!job.IsApproved) {
-                                        <span class="badge bg-warning bg-opacity-25 text-warning small mt-1">Pending Approval</span>
+                                        <span class="badge bg-warning bg-opacity-25 text-warning small mt-1">@localizer["Pending Approval"]</span>
                                     } else {
-                                        <span class="badge bg-success bg-opacity-25 text-success small mt-1">Live on Site</span>
+                                        <span class="badge bg-success bg-opacity-25 text-success small mt-1">@localizer["Live on Site"]</span>
                                     }
                                 </td>
                                 <td>@job.Location</td>
@@ -150,8 +164,8 @@
                                         <input type="hidden" name="id" value="@job.Id" />
                                         <div class="input-group input-group-sm">
                                             <input type="text" name="comment" class="form-control bg-dark border-secondary text-white" 
-                                                   value="@job.AdminComment" placeholder="Private feedback..." />
-                                            <button class="btn btn-outline-secondary" type="submit">Save</button>
+                                                   value="@job.AdminComment" placeholder="@localizer["Private feedback..."]" />
+                                            <button class="btn btn-outline-secondary" type="submit">@localizer["Save"]</button>
                                         </div>
                                     </form>
                                 </td>
@@ -159,12 +173,12 @@
                                     @if (!job.IsApproved) {
                                         <form asp-action="ApproveJob" method="post" class="d-inline">
                                             <input type="hidden" name="id" value="@job.Id" />
-                                            <button class="btn btn-sm btn-success fw-bold me-1">APPROVE</button>
+                                            <button class="btn btn-sm btn-success fw-bold me-1">@localizer["APPROVE"]</button>
                                         </form>
                                     }
                                     <form asp-action="DeleteJob" method="post" class="d-inline">
                                         <input type="hidden" name="id" value="@job.Id" />
-                                        <button class="btn btn-sm btn-outline-danger">Purge</button>
+                                        <button class="btn btn-sm btn-outline-danger">@localizer["Purge"]</button>
                                     </form>
                                 </td>
                             </tr>
@@ -176,10 +190,10 @@
                 {
                     <div class="empty-state">
                         <div class="empty-state-icon">💼</div>
-                        <h4>No Job Postings</h4>
-                        <p>No job postings are currently in the system.</p>
+                        <h4>@localizer["No Job Postings"]</h4>
+                        <p>@localizer["No job postings are currently in the system."]</p>
                         <a href="@Url.Action("Index", "Jobs")" class="btn btn-outline-primary">
-                            <i class="bi bi-eye me-1"></i> View Public Job Board
+                            <i class="bi bi-eye me-1"></i> @localizer["View Public Job Board"]
                         </a>
                     </div>
                 }
@@ -188,7 +202,7 @@
                 @if (ViewBag.JobsTotalPages > 1)
                 {
                     <div class="pagination-container">
-                        <div class="results-info">Page @ViewBag.JobsCurrentPage of @ViewBag.JobsTotalPages (@ViewBag.JobsTotal total)</div>
+                        <div class="results-info">@localizer["Page"] @ViewBag.JobsCurrentPage @localizer["of"] @ViewBag.JobsTotalPages (@ViewBag.JobsTotal @localizer["total"])</div>
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
                                 <li class="page-item @(ViewBag.JobsCurrentPage == 1 ? "disabled" : "")">
@@ -224,7 +238,7 @@
                 else
                 {
                     <div class="pagination-container">
-                        <div class="results-info">Showing @Model.Jobs.Count of @ViewBag.JobsTotal jobs</div>
+                        <div class="results-info">@localizer["Showing"] @Model.Jobs.Count @localizer["of"] @ViewBag.JobsTotal @localizer["jobs"]</div>
                     </div>
                 }
             </div>
@@ -236,10 +250,10 @@
                 <table class="table hover align-middle mb-0">
                     <thead>
                         <tr>
-                            <th class="ps-4">Neighborhood</th>
-                            <th>Status</th>
-                            <th>Update Time</th>
-                            <th class="text-end pe-4">Actions</th>
+                            <th class="ps-4">@localizer["Neighborhood"]</th>
+                            <th>@localizer["Status"]</th>
+                            <th>@localizer["Update Time"]</th>
+                            <th class="text-end pe-4">@localizer["Actions"]</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -251,7 +265,7 @@
                                 <td class="text-end pe-4">
                                     <form asp-action="DeleteWater" method="post" class="d-inline">
                                         <input type="hidden" name="id" value="@w.Id" />
-                                        <button class="btn btn-sm btn-outline-danger">Remove</button>
+                                        <button class="btn btn-sm btn-outline-danger">@localizer["Remove"]</button>
                                     </form>
                                 </td>
                             </tr>
@@ -263,10 +277,10 @@
                 {
                     <div class="empty-state">
                         <div class="empty-state-icon">💧</div>
-                        <h4>No Water Schedules</h4>
-                        <p>No water distribution schedules are currently recorded.</p>
+                        <h4>@localizer["No Water Schedules"]</h4>
+                        <p>@localizer["No water distribution schedules are currently recorded."]</p>
                         <a href="@Url.Action("Index", "Water")" class="btn btn-outline-info">
-                            <i class="bi bi-eye me-1"></i> View Public Water Page
+                            <i class="bi bi-eye me-1"></i> @localizer["View Public Water Page"]
                         </a>
                     </div>
                 }
@@ -275,7 +289,7 @@
                 @if (ViewBag.WaterTotalPages > 1)
                 {
                     <div class="pagination-container">
-                        <div class="results-info">Page @ViewBag.WaterCurrentPage of @ViewBag.WaterTotalPages (@ViewBag.WaterTotal total)</div>
+                        <div class="results-info">@localizer["Page"] @ViewBag.WaterCurrentPage @localizer["of"] @ViewBag.WaterTotalPages (@ViewBag.WaterTotal @localizer["total"])</div>
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
                                 <li class="page-item @(ViewBag.WaterCurrentPage == 1 ? "disabled" : "")">
@@ -311,7 +325,7 @@
                 else
                 {
                     <div class="pagination-container">
-                        <div class="results-info">Showing @Model.Water.Count of @ViewBag.WaterTotal water records</div>
+                        <div class="results-info">@localizer["Showing"] @Model.Water.Count @localizer["of"] @ViewBag.WaterTotal @localizer["water"]</div>
                     </div>
                 }
             </div>
@@ -323,10 +337,10 @@
                 <table class="table hover align-middle mb-0">
                     <thead>
                         <tr>
-                            <th class="ps-4">Clinic Name</th>
-                            <th>Doctors</th>
-                            <th>Medicine Status</th>
-                            <th class="text-end pe-4">Actions</th>
+                            <th class="ps-4">@localizer["Clinic Name"]</th>
+                            <th>@localizer["Doctors"]</th>
+                            <th>@localizer["Medicine Status"]</th>
+                            <th class="text-end pe-4">@localizer["Actions"]</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -334,11 +348,11 @@
                             <tr>
                                 <td class="ps-4 fw-bold text-white">@c.ClinicName</td>
                                 <td>@c.AvailableDoctors</td>
-                                <td><span class="badge @(c.HasEssentialMedicines ? "bg-success" : "bg-warning")">@(c.HasEssentialMedicines ? "STOCK OK" : "LOW STOCK")</span></td>
+                                <td><span class="badge @(c.HasEssentialMedicines ? "bg-success" : "bg-warning")">@(c.HasEssentialMedicines ? @localizer["STOCK OK"] : @localizer["LOW STOCK"])</span></td>
                                 <td class="text-end pe-4">
                                     <form asp-action="DeleteClinic" method="post" class="d-inline">
                                         <input type="hidden" name="id" value="@c.Id" />
-                                        <button class="btn btn-sm btn-outline-danger">De-list</button>
+                                        <button class="btn btn-sm btn-outline-danger">@localizer["De-list"]</button>
                                     </form>
                                 </td>
                             </tr>
@@ -350,10 +364,10 @@
                 {
                     <div class="empty-state">
                         <div class="empty-state-icon">🏥</div>
-                        <h4>No Clinics Recorded</h4>
-                        <p>No healthcare facilities are currently in the system.</p>
+                        <h4>@localizer["No Clinics Recorded"]</h4>
+                        <p>@localizer["No healthcare facilities are currently in the system."]</p>
                         <a href="@Url.Action("Index", "Health")" class="btn btn-outline-success">
-                            <i class="bi bi-eye me-1"></i> View Public Health Directory
+                            <i class="bi bi-eye me-1"></i> @localizer["View Public Health Directory"]
                         </a>
                     </div>
                 }
@@ -362,7 +376,7 @@
                 @if (ViewBag.ClinicsTotalPages > 1)
                 {
                     <div class="pagination-container">
-                        <div class="results-info">Page @ViewBag.ClinicsCurrentPage of @ViewBag.ClinicsTotalPages (@ViewBag.ClinicsTotal total)</div>
+                        <div class="results-info">@localizer["Page"] @ViewBag.ClinicsCurrentPage @localizer["of"] @ViewBag.ClinicsTotalPages (@ViewBag.ClinicsTotal @localizer["total"])</div>
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
                                 <li class="page-item @(ViewBag.ClinicsCurrentPage == 1 ? "disabled" : "")">
@@ -398,7 +412,7 @@
                 else
                 {
                     <div class="pagination-container">
-                        <div class="results-info">Showing @Model.Clinics.Count of @ViewBag.ClinicsTotal clinics</div>
+                        <div class="results-info">@localizer["Showing"] @Model.Clinics.Count @localizer["of"] @ViewBag.ClinicsTotal @localizer["clinics"]</div>
                     </div>
                 }
             </div>

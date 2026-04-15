@@ -1,11 +1,227 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
   <data name="AppTitle" xml:space="preserve"><value>Giddugala Qabeenya Dire Dawa</value></data>
-  <data name="SubTitle" xml:space="preserve"><value>Gabatee beeksisa dijitaalaa yeroo dhugaa tajaajila magaalummaa, argama yaalaa, carraa hojii, fi gatii gabaa qonnaaf.</value></data>
+  <data name="SubTitle" xml:space="preserve"><value>Gabatee beeksisa dijitaalaa yeroo dhugaa tajaajila magaalummaa, dhimmoota fayyaa, carraa hojii, gatii gabaa fi qonnaaf.</value></data>
   <data name="SearchPlaceholder" xml:space="preserve"><value>Kilinikoota, sagantaa bishaanii, gatii midhaanii, ykn hojiiwwan barbaaduuf asitti barreessi...</value></data>
   <data name="WaterHeader" xml:space="preserve"><value>Raabsa Bishaanii Kallattii</value></data>
   <data name="HealthHeader" xml:space="preserve"><value>Galmee Kilinikaa</value></data>
   <data name="AgHeader" xml:space="preserve"><value>Gatii Gabaa</value></data>
   <data name="JobsHeader" xml:space="preserve"><value>Gabatee Hojii</value></data>
   <data name="LiveFeed" xml:space="preserve"><value>Oduu Magaalaa</value></data>
+  <data name="ADMINISTRATOR" xml:space="preserve"><value>BULCHITAA</value></data>
+  <data name="System Analytics" xml:space="preserve"><value>Xiinxala Sirnaa</value></data>
+  <data name="Identity Registry" xml:space="preserve"><value>Galmee Eenyummaa</value></data>
+  <data name="System Catalog" xml:space="preserve"><value>Kataaloogii Sirnaa</value></data>
+  <data name="Audit Logs" xml:space="preserve"><value>Galmee To’annoo</value></data>
+  <data name="View Public Site" xml:space="preserve"><value>Fuula Ummataa Ilaali</value></data>
+  <data name="HUB COMMAND CENTER" xml:space="preserve"><value>WIIRTUU AJAAJA HUB</value></data>
+  <data name="Global Synchronization &amp; System Governance" xml:space="preserve"><value>Qindoomina Addunyaa fi Bulchiinsa Sirnaa</value></data>
+  <data name="Export Logs" xml:space="preserve"><value>Galmeewwan Ergi</value></data>
+  <data name="Manage Access" xml:space="preserve"><value>Galma Gahiinsa Bulchi</value></data>
+  <data name="DATA WORKSPACE" xml:space="preserve"><value>BAKKA HOJII DAATAA</value></data>
+  <data name="My Dashboard" xml:space="preserve"><value>Daashboordii Koo</value></data>
+  <data name="PageTitle" xml:space="preserve"><value>Giddugala Qabeenya Dire Dawa</value></data>
+  <data name="ViewAll" xml:space="preserve"><value>Hunda Ilaali</value></data>
+  <data name="QuickWater" xml:space="preserve"><value>Dhiqannaa Bishaanii</value></data>
+  <data name="QuickHealth" xml:space="preserve"><value>Fayyaa</value></data>
+  <data name="QuickMarkets" xml:space="preserve"><value>Gabaa</value></data>
+  <data name="QuickJobs" xml:space="preserve"><value>Hojiidha</value></data>
+  <data name="StatusFlowing" xml:space="preserve"><value>Bishaan Jira</value></data>
+  <data name="StatusScheduled" xml:space="preserve"><value>Sagantaa Eerae</value></data>
+  <data name="StatusDelayed" xml:space="preserve"><value>Duubatti Deeme</value></data>
+  <data name="ServiceNotice" xml:space="preserve"><value>Beeksisaa Tajaajilaa</value></data>
+  <data name="StatWater" xml:space="preserve"><value>Sagantaa Bishaanii</value></data>
+  <data name="StatClinics" xml:space="preserve"><value>Kilinikoota Banaa</value></data>
+  <data name="StatMarkets" xml:space="preserve"><value>Gatii Gabaa</value></data>
+  <data name="StatJobs" xml:space="preserve"><value>Carraa Hojii</value></data>
+  <data name="DoctorsOnDuty" xml:space="preserve"><value>Hakimoota Tajaajila</value></data>
+  <data name="EmergencyLine" xml:space="preserve"><value>Linii Yaddoo</value></data>
+  <data name="MedicinesAvailable" xml:space="preserve"><value>Oogoonni Jiru</value></data>
+  <data name="MedicinesLow" xml:space="preserve"><value>Oogoonni Xaqqe</value></data>
+  <data name="Updated" xml:space="preserve"><value>Haaromfame</value></data>
+  <data name="PerKilogram" xml:space="preserve"><value>kiilogiraamii harki</value></data>
+  <data name="TrainingOpportunity" xml:space="preserve"><value>Carraa Barsiisaa</value></data>
+  <data name="FullTimePosition" xml:space="preserve"><value>Hojii Yeroo Guutuu</value></data>
+  <data name="NoWaterSchedules" xml:space="preserve"><value>Sagantaa raabsa bishaanii amma jiru hin jiru. Deebi'ii mirkaneeffannaa gati.</value></data>
+  <data name="NoClinics" xml:space="preserve"><value>Odeeffannoo kilinikii amma hin jiru.</value></data>
+  <data name="NoMarketData" xml:space="preserve"><value>Daataa gabaa qonnaa hin jiru. Gatii haaraa dhiyooti maxxanfam.</value></data>
+  <data name="NoJobs" xml:space="preserve"><value>Carraa hojii amma hin jiru. Carraa haaraa gati.</value></data>
+  <data name="Total Users" xml:space="preserve"><value>Bal'ina Fayyadamaawaa</value></data>
+  <data name="Contributors" xml:space="preserve"><value>Garaa Galfatoota</value></data>
+  <data name="Water Records" xml:space="preserve"><value>Galmeewwan Bishaanii</value></data>
+  <data name="Active Schedules" xml:space="preserve"><value>Sagantaa Hoji Hojjettoota</value></data>
+  <data name="Job Postings" xml:space="preserve"><value>Maxxanfannoo Hojii</value></data>
+  <data name="Active" xml:space="preserve"><value>Hoji Hojjettoota</value></data>
+  <data name="Pending" xml:space="preserve"><value>Eeggataa</value></data>
+  <data name="Healthcare" xml:space="preserve"><value>Fayyaa</value></data>
+  <data name="Active Clinics" xml:space="preserve"><value>Kilinikoota Hoji Hojjettoota</value></data>
+  <data name="System Health" xml:space="preserve"><value>Fayyaa Sirnaa</value></data>
+  <data name="AGRI-FETCHER SERVICE" xml:space="preserve"><value>TAJAAJILA QONNAA</value></data>
+  <data name="DATABASE LATENCY" xml:space="preserve"><value>DEEMSA DAATAA</value></data>
+  <data name="Last Sync" xml:space="preserve"><value>Synkkii Dhumaa</value></data>
+  <data name="Security Overview" xml:space="preserve"><value>Ilaalcha Nageenya</value></data>
+  <data name="Verified Contributors" xml:space="preserve"><value>Garaa Galfatoota Mirkaneeffaman</value></data>
+  <data name="Pending Approval" xml:space="preserve"><value>Mirkanneessa Eeggataa</value></data>
+  <data name="Manage Identity Registry" xml:space="preserve"><value>Galmaa Eenyummaa Bulchi</value></data>
+  <data name="Emergency Broadcast" xml:space="preserve"><value>Maxxanfannaa Yaddoo</value></data>
+  <data name="Enter emergency message..." xml:space="preserve"><value>Ergaa yaddoo galchi...</value></data>
+  <data name="Trigger Global Alert" xml:space="preserve"><value>Ragaa Gaafaalee Kaasi</value></data>
+  <data name="Open System Catalog (CRUD)" xml:space="preserve"><value>Kataaloogii Sirnaa Bani (CRUD)</value></data>
+  <data name="View Full Audit Logs" xml:space="preserve"><value>Galmeewwan To'annoo Guutuu Ilaali</value></data>
+  <data name="Security Audit Trail" xml:space="preserve"><value>Daandii To'annoo Nageenya</value></data>
+  <data name="Recent Events" xml:space="preserve"><value>Idilewwan Dhaabbataa</value></data>
+  <data name="Live" xml:space="preserve"><value>Jiru</value></data>
+  <data name="Time" xml:space="preserve"><value>Yeroo</value></data>
+  <data name="Description" xml:space="preserve"><value>Ibsa</value></data>
+  <data name="Performed By" xml:space="preserve"><value>Hojjetamee</value></data>
+  <data name="Severity" xml:space="preserve"><value>Cimmaa</value></data>
+  <data name="Info" xml:space="preserve"><value>Odeeffannoo</value></data>
+  <data name="Warning" xml:space="preserve"><value>Akeekkachiisaa</value></data>
+  <data name="Critical" xml:space="preserve"><value>Barbaachisaa</value></data>
+  <data name="No audit logs available. Actions will be logged here." xml:space="preserve"><value>Galmeewwan to'annoo hin jiru. Tarkaanfileen asitti galmaa'u.</value></data>
+  <data name="Recent Content Submissions" xml:space="preserve"><value>Dhiibbaa Qabiyyee Dhaabbataa</value></data>
+  <data name="View All in Catalog" xml:space="preserve"><value>Hunda Kataaloogiitti Ilaali</value></data>
+  <data name="Recent Job Postings" xml:space="preserve"><value>Maxxanfannoo Hojii Dhaabbataa</value></data>
+  <data name="Recent Water Updates" xml:space="preserve"><value>Haaromfannoo Bishaanii Dhaabbataa</value></data>
+  <data name="Identity &amp; Role Manager" xml:space="preserve"><value>Bulchaa Eenyummaa &amp; Gahee</value></data>
+  <data name="Verify municipal work IDs and authorize contributor credentials for the community platform." xml:space="preserve"><value>IDwwan hojii magaalaa mirkaneessi fayyadamaa mootummaa garaa galfataa mirkaneessi.</value></data>
+  <data name="Export CSV" xml:space="preserve"><value>CSV Ergi</value></data>
+  <data name="Search" xml:space="preserve"><value>Barbaadi</value></data>
+  <data name="Search by email or username..." xml:space="preserve"><value>Imeelii ykn maqaa fayyadamaa barbaadi...</value></data>
+  <data name="Quick Filters" xml:space="preserve"><value>Masaka Dhaabbataa</value></data>
+  <data name="All Users" xml:space="preserve"><value>Fayyadamtoota Hunda</value></data>
+  <data name="Admins" xml:space="preserve"><value>Bulchitoota</value></data>
+  <data name="Per Page" xml:space="preserve"><value>Fuulaa Tokkoo</value></data>
+  <data name="Apply" xml:space="preserve"><value>Itti Baasi</value></data>
+  <data name="Clear Filters" xml:space="preserve"><value>Masakota Qulqulli</value></data>
+  <data name="Select All" xml:space="preserve"><value>Hunda Filadhu</value></data>
+  <data name="selected" xml:space="preserve"><value>filame</value></data>
+  <data name="Activate Selected" xml:space="preserve"><value>Filatame Hoji Hojjechisi</value></data>
+  <data name="Deactivate Selected" xml:space="preserve"><value>Filatame Dhaabisi</value></data>
+  <data name="Delete Selected" xml:space="preserve"><value>Filatame Balleessi</value></data>
+  <data name="Email / Identity ID" xml:space="preserve"><value>Imeelii / ID Eenyummaa</value></data>
+  <data name="Work Verification ID" xml:space="preserve"><value>ID Mirkaneessaa Hojii</value></data>
+  <data name="Auth Status" xml:space="preserve"><value>Haala Mirkaneessaa</value></data>
+  <data name="Permissions" xml:space="preserve"><value>Eeyyama</value></data>
+  <data name="General Public" xml:space="preserve"><value>Ummata Waliigala</value></data>
+  <data name="System Administrator" xml:space="preserve"><value>Bulchaa Sirnaa</value></data>
+  <data name="Verified Contributor" xml:space="preserve"><value>Garaa Galfataa Mirkaneeffame</value></data>
+  <data name="Pending Authorization" xml:space="preserve"><value>Eeyyama Eeggataa</value></data>
+  <data name="Verify ID" xml:space="preserve"><value>ID Mirkaneessi</value></data>
+  <data name="Restrict access for this contributor?" xml:space="preserve"><value>Seenuu garaa galfataa kanaa dhaabuu?</value></data>
+  <data name="Deactivate" xml:space="preserve"><value>Dhaabisi</value></data>
+  <data name="Activate" xml:space="preserve"><value>Hoji Hojjechisi</value></data>
+  <data name="Showing" xml:space="preserve"><value>Agarsisaa</value></data>
+  <data name="of" xml:space="preserve"><value>kan</value></data>
+  <data name="users" xml:space="preserve"><value>fayyadamaawaa</value></data>
+  <data name="System Catalog Management" xml:space="preserve"><value>To'annoo Kataaloogii Sirnaa</value></data>
+  <data name="Export Data" xml:space="preserve"><value>Daataa Ergi</value></data>
+  <data name="Catalog Data" xml:space="preserve"><value>Daataa Kataaloogii</value></data>
+  <data name="All Jobs" xml:space="preserve"><value>Hojiiwwan Hunda</value></data>
+  <data name="Water Schedules" xml:space="preserve"><value>Sagantaa Bishaanii</value></data>
+  <data name="Clinic Records" xml:space="preserve"><value>Galmeewwan Kilinikaa</value></data>
+  <data name="Export by Job Title" xml:space="preserve"><value>Maqaa Hojii Ergi</value></data>
+  <data name="Jobs" xml:space="preserve"><value>Hojiiwwan</value></data>
+  <data name="Water" xml:space="preserve"><value>Bishaan</value></data>
+  <data name="Clinics" xml:space="preserve"><value>Kilinikoota</value></data>
+  <data name="Title / Company" xml:space="preserve"><value>Maqaa / Kampanii</value></data>
+  <data name="Location" xml:space="preserve"><value>Iddoo</value></data>
+  <data name="Date" xml:space="preserve"><value>Guyyaa</value></data>
+  <data name="Actions" xml:space="preserve"><value>Tarkaanfilee</value></data>
+  <data name="Live on Site" xml:space="preserve"><value>Asitti Hoji Hojjettoota</value></data>
+  <data name="Private feedback..." xml:space="preserve"><value>Garagaltoo dhuunfaa...</value></data>
+  <data name="Save" xml:space="preserve"><value>Ol Ka'aa</value></data>
+  <data name="APPROVE" xml:space="preserve"><value>MIRKANEESSI</value></data>
+  <data name="Purge" xml:space="preserve"><value>Qulqulli</value></data>
+  <data name="No Job Postings" xml:space="preserve"><value>Maxxanfannoo Hojii Hin Jiru</value></data>
+  <data name="No job postings are currently in the system." xml:space="preserve"><value>Maxxanfannoo hojii amma sirna keessa hin jiru.</value></data>
+  <data name="View Public Job Board" xml:space="preserve"><value>Bilbila Hojii Ummataa Ilaali</value></data>
+  <data name="Page" xml:space="preserve"><value>Fuula</value></data>
+  <data name="total" xml:space="preserve"><value>waliigala</value></data>
+  <data name="jobs" xml:space="preserve"><value>hojiiwwan</value></data>
+  <data name="Neighborhood" xml:space="preserve"><value>Kutaan Magaalaa</value></data>
+  <data name="Status" xml:space="preserve"><value>Haala</value></data>
+  <data name="Update Time" xml:space="preserve"><value>Yeroo Haaromsaa</value></data>
+  <data name="Remove" xml:space="preserve"><value>Haqi</value></data>
+  <data name="No Water Schedules" xml:space="preserve"><value>Sagantaa Bishaanii Hin Jiru</value></data>
+  <data name="No water distribution schedules are currently recorded." xml:space="preserve"><value>Sagantaa raabsa bishaanii amma hin galmoofne.</value></data>
+  <data name="View Public Water Page" xml:space="preserve"><value>Fuula Bishaanii Ummataa Ilaali</value></data>
+  <data name="Clinic Name" xml:space="preserve"><value>Maqaa Kilinikaa</value></data>
+  <data name="Doctors" xml:space="preserve"><value>Hakimoota</value></data>
+  <data name="Medicine Status" xml:space="preserve"><value>Haala Oogoonnii</value></data>
+  <data name="STOCK OK" xml:space="preserve"><value>QABEENYA GAARI</value></data>
+  <data name="LOW STOCK" xml:space="preserve"><value>QABEENYA DADHABAA</value></data>
+  <data name="De-list" xml:space="preserve"><value>Haqi</value></data>
+  <data name="No Clinics Recorded" xml:space="preserve"><value>Kilinikoota Galmoofne Hin Jiru</value></data>
+  <data name="No healthcare facilities are currently in the system." xml:space="preserve"><value>Mana fayyaa amma sirna keessa hin jiru.</value></data>
+  <data name="View Public Health Directory" xml:space="preserve"><value>Tamsaasa Fayyaa Ummataa Ilaali</value></data>
+  <data name="water" xml:space="preserve"><value>bishaanii</value></data>
+  <data name="clinics" xml:space="preserve"><value>kilinikoota</value></data>
+  <data name="Complete record of all administrative actions and system events" xml:space="preserve"><value>Galmeewwan hojii bulchiinsaa fi taateewwan sirnaa hunda</value></data>
+  <data name="Total Events" xml:space="preserve"><value>Idileewwan Waliigala</value></data>
+  <data name="Info Events" xml:space="preserve"><value>Idileewwan Odeeffannoo</value></data>
+  <data name="Warnings" xml:space="preserve"><value>Akeekkachiisaawwan</value></data>
+  <data name="Timestamp" xml:space="preserve"><value>Yeroo Maxxanfame</value></data>
+  <data name="Target" xml:space="preserve"><value>Target</value></data>
+  <data name="events" xml:space="preserve"><value>idileewwan</value></data>
+  <data name="Manage Users" xml:space="preserve"><value>Fayyadamtoota Bulchi</value></data>
+  <data name="View Catalog" xml:space="preserve"><value>Kataaloogii Ilaali</value></data>
+  <data name="User Details" xml:space="preserve"><value>Ibsa Fayyadamaa</value></data>
+  <data name="Personnel Verification" xml:space="preserve"><value>Mirkaneessaa Hojjettootaa</value></data>
+  <data name="Reviewing system credentials for" xml:space="preserve"><value>Ragaa sirnaa ilaalchaa kan</value></data>
+  <data name="Authorization Blocked:" xml:space="preserve"><value>Eeyyama Dhaabame:</value></data>
+  <data name="This user cannot be authorized as a contributor until all verification checks are completed. Please verify the Work ID against the municipal database." xml:space="preserve"><value>Fayyadamaan kun garaa galfataa hin ta'u yoom mirkaneessaa hundi guutuu hinqabne. ID Hojii mirkaneessi.</value></data>
+  <data name="System Identity" xml:space="preserve"><value>Eenyummaa Sirnaa</value></data>
+  <data name="UUID" xml:space="preserve"><value>UUID</value></data>
+  <data name="Username" xml:space="preserve"><value>Maqaa Fayyadamaa</value></data>
+  <data name="Email Confirmed" xml:space="preserve"><value>Imeelii Mirkaneessame</value></data>
+  <data name="ID Number" xml:space="preserve"><value>Lakkoofsa ID</value></data>
+  <data name="Verification Status" xml:space="preserve"><value>Haala Mirkaneessaa</value></data>
+  <data name="Verified" xml:space="preserve"><value>Mirkaneeffame</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>Hin Jiru</value></data>
+  <data name="ID Verification Panel" xml:space="preserve"><value>Paanaal Mirkaneessaa ID</value></data>
+  <data name="Verify this Work ID against the official Dire Dawa Municipality employee database." xml:space="preserve"><value>ID Hojii kana galma mana hojii Magaalaa Dire Dawa waliin mirkaneessi.</value></data>
+  <data name="Employee Name" xml:space="preserve"><value>Maqaa Hojjetaa</value></data>
+  <data name="Full name on record" xml:space="preserve"><value>Maqaa guutuu galmee irratti</value></data>
+  <data name="Department" xml:space="preserve"><value>Kutaa</value></data>
+  <data name="Select Department" xml:space="preserve"><value>Kutaa Filadhu</value></data>
+  <data name="Water &amp; Sewerage" xml:space="preserve"><value>Bishaanii &amp; Siraawwan</value></data>
+  <data name="Health Services" xml:space="preserve"><value>Tajaajilaa Fayyaa</value></data>
+  <data name="Agriculture" xml:space="preserve"><value>Qonnaa</value></data>
+  <data name="Employment Office" xml:space="preserve"><value>Waajjira Hojii</value></data>
+  <data name="City Administration" xml:space="preserve"><value>Bulchiinsa Magaalaa</value></data>
+  <data name="Uploaded ID Documents" xml:space="preserve"><value>Galmeewwan ID Olkaa'an</value></data>
+  <data name="✓ Visually Verified" xml:space="preserve"><value>✓ Ilaalchaan Mirkaneessame</value></data>
+  <data name="⏳ Pending Visual Check" xml:space="preserve"><value>⏳ Sakatta'inaa Ilaalchaa Eeggataa</value></data>
+  <data name="ID DOCUMENT" xml:space="preserve"><value>DOGUMMEE ID</value></data>
+  <data name="View Full" xml:space="preserve"><value>Guutuu Ilaali</value></data>
+  <data name="SELFIE WITH ID (Optional)" xml:space="preserve"><value>SELFIYII WALIIN ID (Filannoo)</value></data>
+  <data name="No selfie provided" xml:space="preserve"><value>Selifiyii hin kennamine</value></data>
+  <data name="Visual Verification Required" xml:space="preserve"><value>Mirkaneessaa Ilaalchaa Barbaachisa</value></data>
+  <data name="Review the ID photo to confirm it matches the user's information." xml:space="preserve"><value>Suuraa ID ilaali odeeffannoo fayyadamaa waliin wal-gitani mirkaneessuuf.</value></data>
+  <data name="Verification notes (optional)" xml:space="preserve"><value>Yaadannoo mirkaneessaa (filannoo)</value></data>
+  <data name="Mark as Verified" xml:space="preserve"><value>Akkuma Mirkaneeffameetti Ka'aa</value></data>
+  <data name="Visually Verified" xml:space="preserve"><value>Ilaalchaan Mirkaneessame</value></data>
+  <data name="Notes:" xml:space="preserve"><value>Yaadannoo:</value></data>
+  <data name="ID Documents" xml:space="preserve"><value>Galmeewwan ID</value></data>
+  <data name="No ID Documents Uploaded" xml:space="preserve"><value>Galmeewwan ID Olkaa'an Hin Jiru</value></data>
+  <data name="This user has not uploaded any ID documents yet. They should upload their ID during registration or from their profile." xml:space="preserve"><value>Fayyadamaan kun galmeewwan ID olkaa'e hin qabu. Galmee keessatti ykn profaayila isaanii irraa olkaa'u qabu.</value></data>
+  <data name="Security Verification Checklist" xml:space="preserve"><value>Tarjama Mirkaneessaa Nageenya</value></data>
+  <data name="Work ID matches Municipality Database" xml:space="preserve"><value>ID Hojii Galmaa Mana Hojii Magaalaa Wal-Fiti</value></data>
+  <data name="✓ VERIFIED" xml:space="preserve"><value>✓ MIRKANEEFFAME</value></data>
+  <data name="✗ NOT VERIFIED" xml:space="preserve"><value>✗ HIN MIRKANEEFFAMNE</value></data>
+  <data name="Email domain is verified" xml:space="preserve"><value>Imeelin mirkaneessame</value></data>
+  <data name="Background check completed" xml:space="preserve"><value>Sakatta'inaa duubaa xumurame</value></data>
+  <data name="✓ COMPLETED" xml:space="preserve"><value>✓ XUMURAME</value></data>
+  <data name="⏳ PENDING" xml:space="preserve"><value>⏳ EEGGATAA</value></data>
+  <data name="Current Role Assignment" xml:space="preserve"><value>Kenna Gahee Ammaa</value></data>
+  <data name="✓ CONTRIBUTOR" xml:space="preserve"><value>✓ GUMAACHAA</value></data>
+  <data name="🛡️ ADMIN" xml:space="preserve"><value>🛡️ BULCHAA</value></data>
+  <data name="👤 PENDING" xml:space="preserve"><value>👤 EEGGATAA</value></data>
+  <data name="✓ AUTHORIZED AS CONTRIBUTOR" xml:space="preserve"><value>✓ EYYAMAMA GARAA GALFATAA</value></data>
+  <data name="AUTHORIZE AS CONTRIBUTOR" xml:space="preserve"><value>EYYAMAMA GARAA GALFATAA</value></data>
+  <data name="Back to Registry" xml:space="preserve"><value>Galmatti Deebi'i</value></data>
+  <data name="I Acknowledge &amp;amp; Close" xml:space="preserve"><value>Nan hubadheera &amp; Cufi</value></data>
+  <data name="Sent by" xml:space="preserve"><value>Ergamee</value></data>
 </root>
+
