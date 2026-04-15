@@ -53,4 +53,188 @@
   <data name="NoClinics" xml:space="preserve"><value>No clinic information available at this time.</value></data>
   <data name="NoMarketData" xml:space="preserve"><value>No agricultural market data available. New pricing will be posted soon.</value></data>
   <data name="NoJobs" xml:space="preserve"><value>No job listings currently available. Check back for new opportunities.</value></data>
+  <data name="ADMINISTRATOR" xml:space="preserve"><value>ADMINISTRATOR</value></data>
+  <data name="System Analytics" xml:space="preserve"><value>System Analytics</value></data>
+  <data name="Identity Registry" xml:space="preserve"><value>Identity Registry</value></data>
+  <data name="System Catalog" xml:space="preserve"><value>System Catalog</value></data>
+  <data name="Audit Logs" xml:space="preserve"><value>Audit Logs</value></data>
+  <data name="View Public Site" xml:space="preserve"><value>View Public Site</value></data>
+  <data name="HUB COMMAND CENTER" xml:space="preserve"><value>HUB COMMAND CENTER</value></data>
+  <data name="Global Synchronization &amp; System Governance" xml:space="preserve"><value>Global Synchronization &amp; System Governance</value></data>
+  <data name="Export Logs" xml:space="preserve"><value>Export Logs</value></data>
+  <data name="Manage Access" xml:space="preserve"><value>Manage Access</value></data>
+  <data name="DATA WORKSPACE" xml:space="preserve"><value>DATA WORKSPACE</value></data>
+  <data name="My Dashboard" xml:space="preserve"><value>My Dashboard</value></data>
+  <data name="Total Users" xml:space="preserve"><value>Total Users</value></data>
+  <data name="Contributors" xml:space="preserve"><value>Contributors</value></data>
+  <data name="Water Records" xml:space="preserve"><value>Water Records</value></data>
+  <data name="Active Schedules" xml:space="preserve"><value>Active Schedules</value></data>
+  <data name="Job Postings" xml:space="preserve"><value>Job Postings</value></data>
+  <data name="Active" xml:space="preserve"><value>Active</value></data>
+  <data name="Pending" xml:space="preserve"><value>Pending</value></data>
+  <data name="Healthcare" xml:space="preserve"><value>Healthcare</value></data>
+  <data name="Active Clinics" xml:space="preserve"><value>Active Clinics</value></data>
+  <data name="System Health" xml:space="preserve"><value>System Health</value></data>
+  <data name="AGRI-FETCHER SERVICE" xml:space="preserve"><value>AGRI-FETCHER SERVICE</value></data>
+  <data name="DATABASE LATENCY" xml:space="preserve"><value>DATABASE LATENCY</value></data>
+  <data name="Last Sync" xml:space="preserve"><value>Last Sync</value></data>
+  <data name="Security Overview" xml:space="preserve"><value>Security Overview</value></data>
+  <data name="Verified Contributors" xml:space="preserve"><value>Verified Contributors</value></data>
+  <data name="Pending Approval" xml:space="preserve"><value>Pending Approval</value></data>
+  <data name="Manage Identity Registry" xml:space="preserve"><value>Manage Identity Registry</value></data>
+  <data name="Emergency Broadcast" xml:space="preserve"><value>Emergency Broadcast</value></data>
+  <data name="Enter emergency message..." xml:space="preserve"><value>Enter emergency message...</value></data>
+  <data name="Trigger Global Alert" xml:space="preserve"><value>Trigger Global Alert</value></data>
+  <data name="Open System Catalog (CRUD)" xml:space="preserve"><value>Open System Catalog (CRUD)</value></data>
+  <data name="View Full Audit Logs" xml:space="preserve"><value>View Full Audit Logs</value></data>
+  <data name="Security Audit Trail" xml:space="preserve"><value>Security Audit Trail</value></data>
+  <data name="Recent Events" xml:space="preserve"><value>Recent Events</value></data>
+  <data name="Live" xml:space="preserve"><value>Live</value></data>
+  <data name="Time" xml:space="preserve"><value>Time</value></data>
+  <data name="Description" xml:space="preserve"><value>Description</value></data>
+  <data name="Performed By" xml:space="preserve"><value>Performed By</value></data>
+  <data name="Severity" xml:space="preserve"><value>Severity</value></data>
+  <data name="Info" xml:space="preserve"><value>Info</value></data>
+  <data name="Warning" xml:space="preserve"><value>Warning</value></data>
+  <data name="Critical" xml:space="preserve"><value>Critical</value></data>
+  <data name="No audit logs available. Actions will be logged here." xml:space="preserve"><value>No audit logs available. Actions will be logged here.</value></data>
+  <data name="Recent Content Submissions" xml:space="preserve"><value>Recent Content Submissions</value></data>
+  <data name="View All in Catalog" xml:space="preserve"><value>View All in Catalog</value></data>
+  <data name="Recent Job Postings" xml:space="preserve"><value>Recent Job Postings</value></data>
+  <data name="Recent Water Updates" xml:space="preserve"><value>የቅርብ ጊዜ የውሃ ዝመናዎች</value></data>
+  <data name="Identity &amp; Role Manager" xml:space="preserve"><value>የማንነት እና ሚና ሞኔተር</value></data>
+  <data name="Verify municipal work IDs and authorize contributor credentials for the community platform." xml:space="preserve"><value>Verify municipal work IDs and authorize contributor credentials for the community platform.</value></data>
+  <data name="Export CSV" xml:space="preserve"><value>Export CSV</value></data>
+  <data name="Search" xml:space="preserve"><value>Search</value></data>
+  <data name="Search by email or username..." xml:space="preserve"><value>Search by email or username...</value></data>
+  <data name="Quick Filters" xml:space="preserve"><value>Quick Filters</value></data>
+  <data name="All Users" xml:space="preserve"><value>All Users</value></data>
+  <data name="Admins" xml:space="preserve"><value>Admins</value></data>
+  <data name="Per Page" xml:space="preserve"><value>Per Page</value></data>
+  <data name="Apply" xml:space="preserve"><value>Apply</value></data>
+  <data name="Clear Filters" xml:space="preserve"><value>Clear Filters</value></data>
+  <data name="Select All" xml:space="preserve"><value>Select All</value></data>
+  <data name="selected" xml:space="preserve"><value>selected</value></data>
+  <data name="Activate Selected" xml:space="preserve"><value>Activate Selected</value></data>
+  <data name="Deactivate Selected" xml:space="preserve"><value>Deactivate Selected</value></data>
+  <data name="Delete Selected" xml:space="preserve"><value>Delete Selected</value></data>
+  <data name="Email / Identity ID" xml:space="preserve"><value>Email / Identity ID</value></data>
+  <data name="Work Verification ID" xml:space="preserve"><value>Work Verification ID</value></data>
+  <data name="Auth Status" xml:space="preserve"><value>Auth Status</value></data>
+  <data name="Permissions" xml:space="preserve"><value>Permissions</value></data>
+  <data name="General Public" xml:space="preserve"><value>General Public</value></data>
+  <data name="System Administrator" xml:space="preserve"><value>System Administrator</value></data>
+  <data name="Verified Contributor" xml:space="preserve"><value>Verified Contributor</value></data>
+  <data name="Pending Authorization" xml:space="preserve"><value>Pending Authorization</value></data>
+  <data name="Verify ID" xml:space="preserve"><value>Verify ID</value></data>
+  <data name="Restrict access for this contributor?" xml:space="preserve"><value>Restrict access for this contributor?</value></data>
+  <data name="Deactivate" xml:space="preserve"><value>Deactivate</value></data>
+  <data name="Activate" xml:space="preserve"><value>Activate</value></data>
+  <data name="Showing" xml:space="preserve"><value>Showing</value></data>
+  <data name="of" xml:space="preserve"><value>of</value></data>
+  <data name="users" xml:space="preserve"><value>users</value></data>
+  <data name="System Catalog Management" xml:space="preserve"><value>System Catalog Management</value></data>
+  <data name="Export Data" xml:space="preserve"><value>Export Data</value></data>
+  <data name="Catalog Data" xml:space="preserve"><value>Catalog Data</value></data>
+  <data name="All Jobs" xml:space="preserve"><value>All Jobs</value></data>
+  <data name="Water Schedules" xml:space="preserve"><value>Water Schedules</value></data>
+  <data name="Clinic Records" xml:space="preserve"><value>Clinic Records</value></data>
+  <data name="Export by Job Title" xml:space="preserve"><value>Export by Job Title</value></data>
+  <data name="Jobs" xml:space="preserve"><value>Jobs</value></data>
+  <data name="Water" xml:space="preserve"><value>Water</value></data>
+  <data name="Clinics" xml:space="preserve"><value>Clinics</value></data>
+  <data name="Title / Company" xml:space="preserve"><value>Title / Company</value></data>
+  <data name="Location" xml:space="preserve"><value>Location</value></data>
+  <data name="Date" xml:space="preserve"><value>Date</value></data>
+  <data name="Actions" xml:space="preserve"><value>Actions</value></data>
+  <data name="Live on Site" xml:space="preserve"><value>Live on Site</value></data>
+  <data name="Private feedback..." xml:space="preserve"><value>Private feedback...</value></data>
+  <data name="Save" xml:space="preserve"><value>Save</value></data>
+  <data name="APPROVE" xml:space="preserve"><value>APPROVE</value></data>
+  <data name="Purge" xml:space="preserve"><value>Purge</value></data>
+  <data name="No Job Postings" xml:space="preserve"><value>No Job Postings</value></data>
+  <data name="No job postings are currently in the system." xml:space="preserve"><value>No job postings are currently in the system.</value></data>
+  <data name="View Public Job Board" xml:space="preserve"><value>View Public Job Board</value></data>
+  <data name="Page" xml:space="preserve"><value>Page</value></data>
+  <data name="total" xml:space="preserve"><value>total</value></data>
+  <data name="Neighborhood" xml:space="preserve"><value>Neighborhood</value></data>
+  <data name="Status" xml:space="preserve"><value>Status</value></data>
+  <data name="Update Time" xml:space="preserve"><value>Update Time</value></data>
+  <data name="Remove" xml:space="preserve"><value>Remove</value></data>
+  <data name="No Water Schedules" xml:space="preserve"><value>No Water Schedules</value></data>
+  <data name="No water distribution schedules are currently recorded." xml:space="preserve"><value>No water distribution schedules are currently recorded.</value></data>
+  <data name="View Public Water Page" xml:space="preserve"><value>View Public Water Page</value></data>
+  <data name="Clinic Name" xml:space="preserve"><value>Clinic Name</value></data>
+  <data name="Doctors" xml:space="preserve"><value>Doctors</value></data>
+  <data name="Medicine Status" xml:space="preserve"><value>Medicine Status</value></data>
+  <data name="STOCK OK" xml:space="preserve"><value>STOCK OK</value></data>
+  <data name="LOW STOCK" xml:space="preserve"><value>LOW STOCK</value></data>
+  <data name="De-list" xml:space="preserve"><value>De-list</value></data>
+  <data name="No Clinics Recorded" xml:space="preserve"><value>No Clinics Recorded</value></data>
+  <data name="No healthcare facilities are currently in the system." xml:space="preserve"><value>No healthcare facilities are currently in the system.</value></data>
+  <data name="View Public Health Directory" xml:space="preserve"><value>View Public Health Directory</value></data>
+  <data name="Complete record of all administrative actions and system events" xml:space="preserve"><value>Complete record of all administrative actions and system events</value></data>
+  <data name="Total Events" xml:space="preserve"><value>Total Events</value></data>
+  <data name="Info Events" xml:space="preserve"><value>Info Events</value></data>
+  <data name="Warnings" xml:space="preserve"><value>Warnings</value></data>
+  <data name="Timestamp" xml:space="preserve"><value>Timestamp</value></data>
+  <data name="Target" xml:space="preserve"><value>Target</value></data>
+  <data name="events" xml:space="preserve"><value>events</value></data>
+  <data name="Manage Users" xml:space="preserve"><value>Manage Users</value></data>
+  <data name="View Catalog" xml:space="preserve"><value>View Catalog</value></data>
+  <data name="User Details" xml:space="preserve"><value>User Details</value></data>
+  <data name="Personnel Verification" xml:space="preserve"><value>Personnel Verification</value></data>
+  <data name="Reviewing system credentials for" xml:space="preserve"><value>Reviewing system credentials for</value></data>
+  <data name="Authorization Blocked:" xml:space="preserve"><value>Authorization Blocked:</value></data>
+  <data name="This user cannot be authorized as a contributor until all verification checks are completed. Please verify the Work ID against the municipal database." xml:space="preserve"><value>This user cannot be authorized as a contributor until all verification checks are completed. Please verify the Work ID against the municipal database.</value></data>
+  <data name="System Identity" xml:space="preserve"><value>System Identity</value></data>
+  <data name="UUID" xml:space="preserve"><value>UUID</value></data>
+  <data name="Username" xml:space="preserve"><value>Username</value></data>
+  <data name="Email Confirmed" xml:space="preserve"><value>Email Confirmed</value></data>
+  <data name="ID Number" xml:space="preserve"><value>ID Number</value></data>
+  <data name="Verification Status" xml:space="preserve"><value>Verification Status</value></data>
+  <data name="Verified" xml:space="preserve"><value>Verified</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>Unavailable</value></data>
+  <data name="ID Verification Panel" xml:space="preserve"><value>ID Verification Panel</value></data>
+  <data name="Verify this Work ID against the official Dire Dawa Municipality employee database." xml:space="preserve"><value>Verify this Work ID against the official Dire Dawa Municipality employee database.</value></data>
+  <data name="Employee Name" xml:space="preserve"><value>Employee Name</value></data>
+  <data name="Full name on record" xml:space="preserve"><value>Full name on record</value></data>
+  <data name="Department" xml:space="preserve"><value>Department</value></data>
+  <data name="Select Department" xml:space="preserve"><value>Select Department</value></data>
+  <data name="Water &amp; Sewerage" xml:space="preserve"><value>Water &amp; Sewerage</value></data>
+  <data name="Health Services" xml:space="preserve"><value>Health Services</value></data>
+  <data name="Agriculture" xml:space="preserve"><value>Agriculture</value></data>
+  <data name="Employment Office" xml:space="preserve"><value>Employment Office</value></data>
+  <data name="City Administration" xml:space="preserve"><value>City Administration</value></data>
+  <data name="Uploaded ID Documents" xml:space="preserve"><value>Uploaded ID Documents</value></data>
+  <data name="✓ Visually Verified" xml:space="preserve"><value>✓ Visually Verified</value></data>
+  <data name="⏳ Pending Visual Check" xml:space="preserve"><value>⏳ Pending Visual Check</value></data>
+  <data name="ID DOCUMENT" xml:space="preserve"><value>ID DOCUMENT</value></data>
+  <data name="View Full" xml:space="preserve"><value>View Full</value></data>
+  <data name="SELFIE WITH ID (Optional)" xml:space="preserve"><value>SELFIE WITH ID (Optional)</value></data>
+  <data name="No selfie provided" xml:space="preserve"><value>No selfie provided</value></data>
+  <data name="Visual Verification Required" xml:space="preserve"><value>Visual Verification Required</value></data>
+  <data name="Review the ID photo to confirm it matches the user's information." xml:space="preserve"><value>Review the ID photo to confirm it matches the user's information.</value></data>
+  <data name="Verification notes (optional)" xml:space="preserve"><value>Verification notes (optional)</value></data>
+  <data name="Mark as Verified" xml:space="preserve"><value>Mark as Verified</value></data>
+  <data name="Visually Verified" xml:space="preserve"><value>Visually Verified</value></data>
+  <data name="Notes:" xml:space="preserve"><value>Notes:</value></data>
+  <data name="ID Documents" xml:space="preserve"><value>ID Documents</value></data>
+  <data name="No ID Documents Uploaded" xml:space="preserve"><value>No ID Documents Uploaded</value></data>
+  <data name="This user has not uploaded any ID documents yet. They should upload their ID during registration or from their profile." xml:space="preserve"><value>This user has not uploaded any ID documents yet. They should upload their ID during registration or from their profile.</value></data>
+  <data name="Security Verification Checklist" xml:space="preserve"><value>Security Verification Checklist</value></data>
+  <data name="Work ID matches Municipality Database" xml:space="preserve"><value>Work ID matches Municipality Database</value></data>
+  <data name="✓ VERIFIED" xml:space="preserve"><value>✓ VERIFIED</value></data>
+  <data name="✗ NOT VERIFIED" xml:space="preserve"><value>✗ NOT VERIFIED</value></data>
+  <data name="Email domain is verified" xml:space="preserve"><value>Email domain is verified</value></data>
+  <data name="Background check completed" xml:space="preserve"><value>Background check completed</value></data>
+  <data name="✓ COMPLETED" xml:space="preserve"><value>✓ COMPLETED</value></data>
+  <data name="⏳ PENDING" xml:space="preserve"><value>⏳ PENDING</value></data>
+  <data name="Current Role Assignment" xml:space="preserve"><value>Current Role Assignment</value></data>
+  <data name="✓ CONTRIBUTOR" xml:space="preserve"><value>✓ CONTRIBUTOR</value></data>
+  <data name="🛡️ ADMIN" xml:space="preserve"><value>🛡️ ADMIN</value></data>
+  <data name="👤 PENDING" xml:space="preserve"><value>👤 PENDING</value></data>
+  <data name="✓ AUTHORIZED AS CONTRIBUTOR" xml:space="preserve"><value>✓ AUTHORIZED AS CONTRIBUTOR</value></data>
+  <data name="AUTHORIZE AS CONTRIBUTOR" xml:space="preserve"><value>AUTHORIZE AS CONTRIBUTOR</value></data>
+  <data name="Back to Registry" xml:space="preserve"><value>Back to Registry</value></data>
 </root>

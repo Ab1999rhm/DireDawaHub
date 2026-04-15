@@ -8,4 +8,191 @@
   <data name="AgHeader" xml:space="preserve"><value>የገበያ ዋጋዎች</value></data>
   <data name="JobsHeader" xml:space="preserve"><value>የስራ ማስታወቂያ ሰሌዳ</value></data>
   <data name="LiveFeed" xml:space="preserve"><value>ቀጥታ የከተማ መረጃ</value></data>
+  <data name="ADMINISTRATOR" xml:space="preserve"><value>አስተዳዳሪ</value></data>
+  <data name="System Analytics" xml:space="preserve"><value>የስርዓት ትንተና</value></data>
+  <data name="Identity Registry" xml:space="preserve"><value>የተጠቃሚዎች መዝገብ</value></data>
+  <data name="System Catalog" xml:space="preserve"><value>የመረጃ ካታሎግ</value></data>
+  <data name="Audit Logs" xml:space="preserve"><value>የክትትል መዝገቦች</value></data>
+  <data name="View Public Site" xml:space="preserve"><value>ወደ ህዝብ ገፅ ተመለስ</value></data>
+  <data name="HUB COMMAND CENTER" xml:space="preserve"><value>የመረጃ ማዕከል ዋና ክፍል</value></data>
+  <data name="Global Synchronization &amp; System Governance" xml:space="preserve"><value>አጠቃላይ የስርዓት ቁጥጥር እና አስተዳደር</value></data>
+  <data name="Export Logs" xml:space="preserve"><value>መዝገቦችን አውርድ</value></data>
+  <data name="Manage Access" xml:space="preserve"><value>ተደራሽነትን አስተካክል</value></data>
+  <data name="DATA WORKSPACE" xml:space="preserve"><value>የመረጃ የስራ ቦታ</value></data>
+  <data name="My Dashboard" xml:space="preserve"><value>የእኔ ገፅ</value></data>
+  <data name="Total Users" xml:space="preserve"><value>ጠቅላላ ተጠቃሚዎች</value></data>
+  <data name="Contributors" xml:space="preserve"><value>አበርካቾች</value></data>
+  <data name="Water Records" xml:space="preserve"><value>የውሃ መዝገቦች</value></data>
+  <data name="Active Schedules" xml:space="preserve"><value>ንቁ መርሃ ግብሮች</value></data>
+  <data name="Job Postings" xml:space="preserve"><value>የስራ ማስታወቂያዎች</value></data>
+  <data name="Active" xml:space="preserve"><value>ንቁ</value></data>
+  <data name="Pending" xml:space="preserve"><value>በመጠባበቅ ላይ</value></data>
+  <data name="Healthcare" xml:space="preserve"><value>ጤና ጥበቃ</value></data>
+  <data name="Active Clinics" xml:space="preserve"><value>ንቁ ክሊኒኮች</value></data>
+  <data name="System Health" xml:space="preserve"><value>የስርዓት ጤና</value></data>
+  <data name="AGRI-FETCHER SERVICE" xml:space="preserve"><value>የግብርና መረጃ አገልግሎት</value></data>
+  <data name="DATABASE LATENCY" xml:space="preserve"><value>የዳታቤዝ መዘግየት</value></data>
+  <data name="Last Sync" xml:space="preserve"><value>መጨረሻው ማመሳሰል</value></data>
+  <data name="Security Overview" xml:space="preserve"><value>የደህንነት አጠቃላይ እይታ</value></data>
+  <data name="Verified Contributors" xml:space="preserve"><value>የተረጋገጡ አበርካቾች</value></data>
+  <data name="Pending Approval" xml:space="preserve"><value>ማፅደቅ በመጠበቅ ላይ</value></data>
+  <data name="Manage Identity Registry" xml:space="preserve"><value>የተጠቃሚዎች መዝገብ አስተካክል</value></data>
+  <data name="Emergency Broadcast" xml:space="preserve"><value>አስቸኳይ ማስተላለፊያ</value></data>
+  <data name="Enter emergency message..." xml:space="preserve"><value>አስቸኳይ መልእክት ያስገቡ...</value></data>
+  <data name="Trigger Global Alert" xml:space="preserve"><value>አጠቃላይ ማስጠንቀቂያ ያስጀምሩ</value></data>
+  <data name="Open System Catalog (CRUD)" xml:space="preserve"><value>የመረጃ ካታሎግ ክፈት</value></data>
+  <data name="View Full Audit Logs" xml:space="preserve"><value>ሙሉ የክትትል መዝገቦችን ይመልከቱ</value></data>
+  <data name="Security Audit Trail" xml:space="preserve"><value>የደህንነት ክትትል መዝገብ</value></data>
+  <data name="Recent Events" xml:space="preserve"><value>የቅርብ ጊዜ ክስተቶች</value></data>
+  <data name="Live" xml:space="preserve"><value>በቀጥታ</value></data>
+  <data name="Time" xml:space="preserve"><value>ጊዜ</value></data>
+  <data name="Description" xml:space="preserve"><value>መግለጫ</value></data>
+  <data name="Performed By" xml:space="preserve"><value>የተደረገው በ</value></data>
+  <data name="Severity" xml:space="preserve"><value>አሳሳቢነት</value></data>
+  <data name="Info" xml:space="preserve"><value>መረጃ</value></data>
+  <data name="Warning" xml:space="preserve"><value>ማስጠንቀቂያ</value></data>
+  <data name="Critical" xml:space="preserve"><value>አስቸኳይ</value></data>
+  <data name="No audit logs available. Actions will be logged here." xml:space="preserve"><value>የክትትል መዝገቦች የሉም። እርምጃዎች እዚህ ይመዘገባሉ።</value></data>
+  <data name="Recent Content Submissions" xml:space="preserve"><value>የቅርብ ጊዜ የይዘት ማስገብያዎች</value></data>
+  <data name="View All in Catalog" xml:space="preserve"><value>ሁሉንም በካታሎግ ይመልከቱ</value></data>
+  <data name="Recent Job Postings" xml:space="preserve"><value>የቅርብ ጊዜ የስራ ማስታወቂያዎች</value></data>
+  <data name="Recent Water Updates" xml:space="preserve"><value>የቅርብ ጊዜ የውሃ ዝመናዎች</value></data>
+  <data name="Identity &amp; Role Manager" xml:space="preserve"><value>የማንነት እና ሚና ሞኔተር</value></data>
+  <data name="Verify municipal work IDs and authorize contributor credentials for the community platform." xml:space="preserve"><value>የከተማ መስሪያ ጊዜያዊ መታወቂያዎችን ያረጋግጡ እና ለማህበረሰቡ መድረክ አበርካቾችን ማረጋገጫ ይስጡ።</value></data>
+  <data name="Export CSV" xml:space="preserve"><value>CSV አውርድ</value></data>
+  <data name="Search" xml:space="preserve"><value>ፈልግ</value></data>
+  <data name="Search by email or username..." xml:space="preserve"><value>በኢሜይል ወይም በተጠቃሚ ስም ይፈልጉ...</value></data>
+  <data name="Quick Filters" xml:space="preserve"><value>በፍጥነት ያጣሩ</value></data>
+  <data name="All Users" xml:space="preserve"><value>ሁሉም ተጠቃሚዎች</value></data>
+  <data name="Admins" xml:space="preserve"><value>አስተዳዳሪዎች</value></data>
+  <data name="Per Page" xml:space="preserve"><value>በገፅ</value></data>
+  <data name="Apply" xml:space="preserve"><value>ተግብር</value></data>
+  <data name="Clear Filters" xml:space="preserve"><value>ማጣሪያዎችን አጥፋ</value></data>
+  <data name="Select All" xml:space="preserve"><value>ሁሉንም ምረጥ</value></data>
+  <data name="selected" xml:space="preserve"><value>ተመርጠዋል</value></data>
+  <data name="Activate Selected" xml:space="preserve"><value>የተመረጡትን አስጀምር</value></data>
+  <data name="Deactivate Selected" xml:space="preserve"><value>የተመረጡትን አቁም</value></data>
+  <data name="Delete Selected" xml:space="preserve"><value>የተመረጡትን ሰርዝ</value></data>
+  <data name="Email / Identity ID" xml:space="preserve"><value>ኢሜይል / የማንነት መታወቂያ</value></data>
+  <data name="Work Verification ID" xml:space="preserve"><value>የስራ ማረጋገጫ መታወቂያ</value></data>
+  <data name="Auth Status" xml:space="preserve"><value>የማረጋገጫ ሁኔታ</value></data>
+  <data name="Permissions" xml:space="preserve"><value>ፈቃዶች</value></data>
+  <data name="General Public" xml:space="preserve"><value>አጠቃላይ ህዝብ</value></data>
+  <data name="System Administrator" xml:space="preserve"><value>የስርዓት አስተዳዳሪ</value></data>
+  <data name="Verified Contributor" xml:space="preserve"><value>የተረጋገጠ አበርካች</value></data>
+  <data name="Pending Authorization" xml:space="preserve"><value>ማፅደቅ በመጠበቅ ላይ</value></data>
+  <data name="Verify ID" xml:space="preserve"><value>መታወቂያ አረጋግጥ</value></data>
+  <data name="Restrict access for this contributor?" xml:space="preserve"><value>ለዚህ አበርካች መሰናድ ይፈልጋሉ?</value></data>
+  <data name="Deactivate" xml:space="preserve"><value>አቁም</value></data>
+  <data name="Activate" xml:space="preserve"><value>አስጀምር</value></data>
+  <data name="Showing" xml:space="preserve"><value>አሳይ</value></data>
+  <data name="of" xml:space="preserve"><value>ከ</value></data>
+  <data name="users" xml:space="preserve"><value>ተጠቃሚዎች</value></data>
+  <data name="System Catalog Management" xml:space="preserve"><value>የመረጃ ካታሎግ አስተዳደር</value></data>
+  <data name="Export Data" xml:space="preserve"><value>ዳታ ወርድ</value></data>
+  <data name="Catalog Data" xml:space="preserve"><value>የካታሎግ ዳታ</value></data>
+  <data name="All Jobs" xml:space="preserve"><value>ሁሉም ስራዎች</value></data>
+  <data name="Water Schedules" xml:space="preserve"><value>የውሃ መርሃ ግብሮች</value></data>
+  <data name="Clinic Records" xml:space="preserve"><value>የክሊኒክ መዝገቦች</value></data>
+  <data name="Export by Job Title" xml:space="preserve"><value>በስራ ርዕስ ወርድ</value></data>
+  <data name="Jobs" xml:space="preserve"><value>ስራዎች</value></data>
+  <data name="Water" xml:space="preserve"><value>ውሃ</value></data>
+  <data name="Clinics" xml:space="preserve"><value>ክሊኒኮች</value></data>
+  <data name="Title / Company" xml:space="preserve"><value>ርዕስ / ኩባንያ</value></data>
+  <data name="Location" xml:space="preserve"><value>ቦታ</value></data>
+  <data name="Date" xml:space="preserve"><value>ቀን</value></data>
+  <data name="Actions" xml:space="preserve"><value>ድርጊቶች</value></data>
+  <data name="Live on Site" xml:space="preserve"><value>በድረ-ገፅ ላይ ንቁ</value></data>
+  <data name="Private feedback..." xml:space="preserve"><value>የግል አስተያየት...</value></data>
+  <data name="Save" xml:space="preserve"><value>አስቀምጥ</value></data>
+  <data name="APPROVE" xml:space="preserve"><value>ፍቀድ</value></data>
+  <data name="Purge" xml:space="preserve"><value>አጥፋ</value></data>
+  <data name="No Job Postings" xml:space="preserve"><value>ምንም የስራ ማስታወቂያዎች የሉም</value></data>
+  <data name="No job postings are currently in the system." xml:space="preserve"><value>አሁን በስርዓቱ ውስጥ የስራ ማስታወቂያዎች የሉም።</value></data>
+  <data name="View Public Job Board" xml:space="preserve"><value>የህዝብ የስራ ሰሌዳ ይመልከቱ</value></data>
+  <data name="Page" xml:space="preserve"><value>ገፅ</value></data>
+  <data name="total" xml:space="preserve"><value>ጠቅላላ</value></data>
+  <data name="jobs" xml:space="preserve"><value>ስራዎች</value></data>
+  <data name="Neighborhood" xml:space="preserve"><value>ጎረቤትነት</value></data>
+  <data name="Status" xml:space="preserve"><value>ሁኔታ</value></data>
+  <data name="Update Time" xml:space="preserve"><value>የዝመና ሰዓት</value></data>
+  <data name="Remove" xml:space="preserve"><value>አስወግድ</value></data>
+  <data name="No Water Schedules" xml:space="preserve"><value>ምንም የውሃ መርሃ ግብሮች የሉም</value></data>
+  <data name="No water distribution schedules are currently recorded." xml:space="preserve"><value>አሁን የውሃ ስርጭት መርሃ ግብሮች የሉም።</value></data>
+  <data name="View Public Water Page" xml:space="preserve"><value>የህዝብ የውሃ ገፅ ይመልከቱ</value></data>
+  <data name="Clinic Name" xml:space="preserve"><value>የክሊኒክ ስም</value></data>
+  <data name="Doctors" xml:space="preserve"><value>ሐኪሞች</value></data>
+  <data name="Medicine Status" xml:space="preserve"><value>የመድሃኒት ሁኔታ</value></data>
+  <data name="STOCK OK" xml:space="preserve"><value>አቅርቦት ደህና ነው</value></data>
+  <data name="LOW STOCK" xml:space="preserve"><value>አነስተኛ አቅርቦት</value></data>
+  <data name="De-list" xml:space="preserve"><value>አስወግድ</value></data>
+  <data name="No Clinics Recorded" xml:space="preserve"><value>ምንም ክሊኒኮች የሉም</value></data>
+  <data name="No healthcare facilities are currently in the system." xml:space="preserve"><value>አሁን በስርዓቱ ውስጥ የጤና እርዳታ ተቋማት የሉም።</value></data>
+  <data name="View Public Health Directory" xml:space="preserve"><value>የህዝብ የጤና ዳይሬክተሪ ይመልከቱ</value></data>
+  <data name="water" xml:space="preserve"><value>የውሃ መዝገቦች</value></data>
+  <data name="clinics" xml:space="preserve"><value>ክሊኒኮች</value></data>
+  <data name="Complete record of all administrative actions and system events" xml:space="preserve"><value>የሁሉም የአስተዳደር እርምጃዎች እና የስርዓት ክስተቶች ሙሉ መዝገብ</value></data>
+  <data name="Total Events" xml:space="preserve"><value>ጠቅላላ ክስተቶች</value></data>
+  <data name="Info Events" xml:space="preserve"><value>የመረጃ ክስተቶች</value></data>
+  <data name="Warnings" xml:space="preserve"><value>ማስጠንቀቂያዎች</value></data>
+  <data name="Timestamp" xml:space="preserve"><value>የጊዜ ማህተም</value></data>
+  <data name="Target" xml:space="preserve"><value>Target</value></data>
+  <data name="events" xml:space="preserve"><value>ክስተቶች</value></data>
+  <data name="Manage Users" xml:space="preserve"><value>ተጠቃሚዎችን አስተካክል</value></data>
+  <data name="View Catalog" xml:space="preserve"><value>ካታሎግ ይመልከቱ</value></data>
+  <data name="User Details" xml:space="preserve"><value>የተጠቃሚ ዝርዝሮች</value></data>
+  <data name="Personnel Verification" xml:space="preserve"><value>የሰራተኛ ማረጋገጫ</value></data>
+  <data name="Reviewing system credentials for" xml:space="preserve"><value>የስርዓት ማረጋገጫዎችን በማጤን ላይ ለ</value></data>
+  <data name="Authorization Blocked:" xml:space="preserve"><value>ማፅደቅ ታግዷል:</value></data>
+  <data name="This user cannot be authorized as a contributor until all verification checks are completed. Please verify the Work ID against the municipal database." xml:space="preserve"><value>ይህ ተጠቃሚ እስከ ሁሉም የማረጋገጫ ምርመራዎች እስኪጠናቀቁ ድረስ እንደ አበርካች መፍቀድ አይቻልም። እባክዎ የስራ መታወቂያውን ከከተማ መረጃ ጋር ያረጋግጡ።</value></data>
+  <data name="System Identity" xml:space="preserve"><value>የስርዓት ማንነት</value></data>
+  <data name="UUID" xml:space="preserve"><value>UUID</value></data>
+  <data name="Username" xml:space="preserve"><value>የተጠቃሚ ስም</value></data>
+  <data name="Email Confirmed" xml:space="preserve"><value>ኢሜይል ተረጋግጧል</value></data>
+  <data name="ID Number" xml:space="preserve"><value>የመታወቂያ ቁጥር</value></data>
+  <data name="Verification Status" xml:space="preserve"><value>የማረጋገጫ ሁኔታ</value></data>
+  <data name="Verified" xml:space="preserve"><value>ተረጋግጧል</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>የለም</value></data>
+  <data name="ID Verification Panel" xml:space="preserve"><value>የመታወቂያ ማረጋገጫ ፓነል</value></data>
+  <data name="Verify this Work ID against the official Dire Dawa Municipality employee database." xml:space="preserve"><value>ይህን የስራ መታወቂያ ከድሬዳዋ ከተማ መስሪያ ቤት ሰራተኞች መረጃ ጋር ያረጋግጡ።</value></data>
+  <data name="Employee Name" xml:space="preserve"><value>የሰራተኛ ስም</value></data>
+  <data name="Full name on record" xml:space="preserve"><value>በመረጃው ላይ ያለው ሙሉ ስም</value></data>
+  <data name="Department" xml:space="preserve"><value>መስሪያ ቤት</value></data>
+  <data name="Select Department" xml:space="preserve"><value>መስሪያ ቤት ይምረጡ</value></data>
+  <data name="Water &amp; Sewerage" xml:space="preserve"><value>ውሃ እና ሳኒቴሽን</value></data>
+  <data name="Health Services" xml:space="preserve"><value>ጤና አገልግሎቶች</value></data>
+  <data name="Agriculture" xml:space="preserve"><value>ግብርና</value></data>
+  <data name="Employment Office" xml:space="preserve"><value>የስራ ድርጅት</value></data>
+  <data name="City Administration" xml:space="preserve"><value>የከተማ አስተዳደር</value></data>
+  <data name="Uploaded ID Documents" xml:space="preserve"><value>የተጫኑ የመታወቂያ ሰነዶች</value></data>
+  <data name="✓ Visually Verified" xml:space="preserve"><value>✓ በዓይን ተረጋግጧል</value></data>
+  <data name="⏳ Pending Visual Check" xml:space="preserve"><value>⏳ የዓይን ምርመራ በመጠበቅ ላይ</value></data>
+  <data name="ID DOCUMENT" xml:space="preserve"><value>የመታወቂያ ሰነድ</value></data>
+  <data name="View Full" xml:space="preserve"><value>ሙሉውን ይመልከቱ</value></data>
+  <data name="SELFIE WITH ID (Optional)" xml:space="preserve"><value>በመታወቂያው ጋር ሴልፊ (አማራጭ)</value></data>
+  <data name="No selfie provided" xml:space="preserve"><value>ሴልፊ አልቀረበም</value></data>
+  <data name="Visual Verification Required" xml:space="preserve"><value>የዓይን ማረጋገጫ ያስፈልጋል</value></data>
+  <data name="Review the ID photo to confirm it matches the user's information." xml:space="preserve"><value>ከተጠቃሚው መረጃ ጋር እንደሚዛመድ ለማረጋገጥ የመታወቂያ ፎቶውን ይመልከቱ።</value></data>
+  <data name="Verification notes (optional)" xml:space="preserve"><value>የማረጋገጫ ማስታወሻዎች (አማራጭ)</value></data>
+  <data name="Mark as Verified" xml:space="preserve"><value>እንደተረጋገጠ ምልክት ያድርጉ</value></data>
+  <data name="Visually Verified" xml:space="preserve"><value>በዓይን ተረጋግጧል</value></data>
+  <data name="Notes:" xml:space="preserve"><value>ማስታወሻዎች:</value></data>
+  <data name="ID Documents" xml:space="preserve"><value>የመታወቂያ ሰነዶች</value></data>
+  <data name="No ID Documents Uploaded" xml:space="preserve"><value>ምንም የመታወቂያ ሰነዶች አልተጫኑም</value></data>
+  <data name="This user has not uploaded any ID documents yet. They should upload their ID during registration or from their profile." xml:space="preserve"><value>ይህ ተጠቃሚ እስካሁን ምንም የመታወቂያ ሰነዶች አልጫነም። በምዝገባ ወይም ከመገለጫቸው መታወቂያውን መጫን አለባቸው።</value></data>
+  <data name="Security Verification Checklist" xml:space="preserve"><value>የደህንነት ማረጋገጫ ዝርዝር</value></data>
+  <data name="Work ID matches Municipality Database" xml:space="preserve"><value>የስራ መታወቂያ ከከተማ መረጃ ጋር ይዛመዳል</value></data>
+  <data name="✓ VERIFIED" xml:space="preserve"><value>✓ ተረጋግጧል</value></data>
+  <data name="✗ NOT VERIFIED" xml:space="preserve"><value>✗ አልተረጋገጠም</value></data>
+  <data name="Email domain is verified" xml:space="preserve"><value>የኢሜይል ዶሜይን ተረጋግጧል</value></data>
+  <data name="Background check completed" xml:space="preserve"><value>የጀማሪ ምርመራ ተጠናቋል</value></data>
+  <data name="✓ COMPLETED" xml:space="preserve"><value>✓ ተጠናቋል</value></data>
+  <data name="⏳ PENDING" xml:space="preserve"><value>⏳ በመጠበቅ ላይ</value></data>
+  <data name="Current Role Assignment" xml:space="preserve"><value>የአሁኑ ሚና ምደባ</value></data>
+  <data name="✓ CONTRIBUTOR" xml:space="preserve"><value>✓ አበርካች</value></data>
+  <data name="🛡️ ADMIN" xml:space="preserve"><value>🛡️ አስተዳዳሪ</value></data>
+  <data name="👤 PENDING" xml:space="preserve"><value>👤 በመጠበቅ ላይ</value></data>
+  <data name="✓ AUTHORIZED AS CONTRIBUTOR" xml:space="preserve"><value>✓ እንደ አበርካች ፍቀድ</value></data>
+  <data name="AUTHORIZE AS CONTRIBUTOR" xml:space="preserve"><value>እንደ አበርካች ፍቀድ</value></data>
+  <data name="Back to Registry" xml:space="preserve"><value>ወደ መዝገብ ተመለስ</value></data>
 </root>

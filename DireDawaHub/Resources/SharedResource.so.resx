@@ -8,4 +8,217 @@
   <data name="AgHeader" xml:space="preserve"><value>Qiimaha Suuqa</value></data>
   <data name="JobsHeader" xml:space="preserve"><value>Guddiga Shaqada</value></data>
   <data name="LiveFeed" xml:space="preserve"><value>Wararka Magaalada</value></data>
+  <data name="ADMINISTRATOR" xml:space="preserve"><value>MAAMULA</value></data>
+  <data name="System Analytics" xml:space="preserve"><value>Falanqaynta Nidaamka</value></data>
+  <data name="Identity Registry" xml:space="preserve"><value>Diiwaanka Aqoonsiga</value></data>
+  <data name="System Catalog" xml:space="preserve"><value>Katalooga Nidaamka</value></data>
+  <data name="Audit Logs" xml:space="preserve"><value>Diiwaanka Hantidhawrka</value></data>
+  <data name="View Public Site" xml:space="preserve"><value>Fiiri Bogga Dadweynaha</value></data>
+  <data name="HUB COMMAND CENTER" xml:space="preserve"><value>XARUNTA AMARKA HUB</value></data>
+  <data name="Global Synchronization &amp; System Governance" xml:space="preserve"><value>Isku-xidhka Caalamiga ah &amp; Maamulka Nidaamka</value></data>
+  <data name="Export Logs" xml:space="preserve"><value>Soo Deji Diiwaanka</value></data>
+  <data name="Manage Access" xml:space="preserve"><value>Maamul Helitaanka</value></data>
+  <data name="DATA WORKSPACE" xml:space="preserve"><value>GOOBTA SHAQADA DAATA</value></data>
+  <data name="My Dashboard" xml:space="preserve"><value>Daashboordigayga</value></data>
+  <data name="PageTitle" xml:space="preserve"><value>Xarunta Khayraadka Diri Dhaba</value></data>
+  <data name="ViewAll" xml:space="preserve"><value>Daawo Dhamaan</value></data>
+  <data name="QuickWater" xml:space="preserve"><value>Biyo</value></data>
+  <data name="QuickHealth" xml:space="preserve"><value>Caafimaad</value></data>
+  <data name="QuickMarkets" xml:space="preserve"><value>Suqa</value></data>
+  <data name="QuickJobs" xml:space="preserve"><value>Shaqo</value></data>
+  <data name="StatusFlowing" xml:space="preserve"><value>Biyo Wata</value></data>
+  <data name="StatusScheduled" xml:space="preserve"><value>Jadwalka</value></data>
+  <data name="StatusDelayed" xml:space="preserve"><value>La Dhaawacay</value></data>
+  <data name="ServiceNotice" xml:space="preserve"><value>Ogeysiis Adeeg</value></data>
+  <data name="StatWater" xml:space="preserve"><value>Jadwalada Biyaha</value></data>
+  <data name="StatClinics" xml:space="preserve"><value>Isbitaallo Furan</value></data>
+  <data name="StatMarkets" xml:space="preserve"><value>Qiimaha Suuqa</value></data>
+  <data name="StatJobs" xml:space="preserve"><value>Xilal Furan</value></data>
+  <data name="DoctorsOnDuty" xml:space="preserve"><value>Dhakhtar Howl Wada</value></data>
+  <data name="EmergencyLine" xml:space="preserve"><value>Telefoonka Degdegga</value></data>
+  <data name="MedicinesAvailable" xml:space="preserve"><value>Dawooyinka Jira</value></data>
+  <data name="MedicinesLow" xml:space="preserve"><value>Dawo Yaraanaysa</value></data>
+  <data name="Updated" xml:space="preserve"><value>Cusbooneysiiyey</value></data>
+  <data name="PerKilogram" xml:space="preserve"><value>kiilo halki</value></data>
+  <data name="TrainingOpportunity" xml:space="preserve"><value>Fursad Tababar</value></data>
+  <data name="FullTimePosition" xml:space="preserve"><value>Xil Buuxda</value></data>
+  <data name="NoWaterSchedules" xml:space="preserve"><value>Ma jiraan jadwalada qaybinta biyaha hadda. Dib u soo laabo cusboonaysiin.</value></data>
+  <data name="NoClinics" xml:space="preserve"><value>Macluumaad isbitaal ah ma jiro hadda.</value></data>
+  <data name="NoMarketData" xml:space="preserve"><value>Ma jiro xog suuq beereed ah. Qiime cusub ayaa dhawaan la soo dhigi doonaa.</value></data>
+  <data name="NoJobs" xml:space="preserve"><value>Ma jiraan shaqooyin hadda. Dib u soo laabo fursado cusub.</value></data>
+  <data name="Total Users" xml:space="preserve"><value>Wadarta Isticmaalayaasha</value></data>
+  <data name="Contributors" xml:space="preserve"><value>Ka Qayb Galayaasha</value></data>
+  <data name="Water Records" xml:space="preserve"><value>Diiwaanada Biyaha</value></data>
+  <data name="Active Schedules" xml:space="preserve"><value>Jadwalka Hawl Wada</value></data>
+  <data name="Job Postings" xml:space="preserve"><value>Shaqaalaysiinta</value></data>
+  <data name="Active" xml:space="preserve"><value>Shaqa Wada</value></data>
+  <data name="Pending" xml:space="preserve"><value>La Sugayo</value></data>
+  <data name="Healthcare" xml:space="preserve"><value>Caafimaad</value></data>
+  <data name="Active Clinics" xml:space="preserve"><value>Isbitaallo Hawl Wada</value></data>
+  <data name="System Health" xml:space="preserve"><value>Caafimaadka Nidaamka</value></data>
+  <data name="AGRI-FETCHER SERVICE" xml:space="preserve"><value>ADEeg BEERAL</value></data>
+  <data name="DATABASE LATENCY" xml:space="preserve"><value>DEGDEGGAYN XOGTA</value></data>
+  <data name="Last Sync" xml:space="preserve"><value>Isdhexgalkii Ugu Dambeeyay</value></data>
+  <data name="Security Overview" xml:space="preserve"><value>Aragtida Amniga</value></data>
+  <data name="Verified Contributors" xml:space="preserve"><value>Ka Qayb Galayaasha La Xaqiijiyey</value></data>
+  <data name="Pending Approval" xml:space="preserve"><value>Oggolaansho La Sugayo</value></data>
+  <data name="Manage Identity Registry" xml:space="preserve"><value>Maamul Diiwaanka Aqoonsiga</value></data>
+  <data name="Emergency Broadcast" xml:space="preserve"><value>Gudbin Degdeg ah</value></data>
+  <data name="Enter emergency message..." xml:space="preserve"><value>Geli fariin degdeg ah...</value></data>
+  <data name="Trigger Global Alert" xml:space="preserve"><value>Dhig Digniin Caalami ah</value></data>
+  <data name="Open System Catalog (CRUD)" xml:space="preserve"><value>Fur Katalooga Nidaamka (CRUD)</value></data>
+  <data name="View Full Audit Logs" xml:space="preserve"><value>Daawo Diiwaanka Hantidhawrka oo Dhammaystiran</value></data>
+  <data name="Security Audit Trail" xml:space="preserve"><value>Raadka Hantidhawrka Amniga</value></data>
+  <data name="Recent Events" xml:space="preserve"><value>Dhacdooyinka Ugu Danbeeyay</value></data>
+  <data name="Live" xml:space="preserve"><value>Nool</value></data>
+  <data name="Time" xml:space="preserve"><value>Waqtiga</value></data>
+  <data name="Description" xml:space="preserve"><value>Sharaxaad</value></data>
+  <data name="Performed By" xml:space="preserve"><value>Wuxuu Sameeyay</value></data>
+  <data name="Severity" xml:space="preserve"><value>Darada</value></data>
+  <data name="Info" xml:space="preserve"><value>Macluumaad</value></data>
+  <data name="Warning" xml:space="preserve"><value>Digtoon</value></data>
+  <data name="Critical" xml:space="preserve"><value>Degdeg ah</value></data>
+  <data name="No audit logs available. Actions will be logged here." xml:space="preserve"><value>Ma jiraan diiwaan hantidhawr ah. Tallaabooyinka halkan ayaa loo diiwaan gelin doonaa.</value></data>
+  <data name="Recent Content Submissions" xml:space="preserve"><value>Gudbinno Ugu Danbeeyay</value></data>
+  <data name="View All in Catalog" xml:space="preserve"><value>Daawo Dhamaan Kataloogga</value></data>
+  <data name="Recent Job Postings" xml:space="preserve"><value>Shaqaalaysiinno Ugu Danbeeyay</value></data>
+  <data name="Recent Water Updates" xml:space="preserve"><value>Cusbooneysiinno Biyaha Ugu Danbeeyay</value></data>
+  <data name="Identity &amp; Role Manager" xml:space="preserve"><value>Maamulka Aqoonsiga &amp; Doorarka</value></data>
+  <data name="Verify municipal work IDs and authorize contributor credentials for the community platform." xml:space="preserve"><value>Hubi aqoons hawlaha magaalada oo oggolow shahaadaha ka qayb galayaasha loogu talagalay halka bulshada.</value></data>
+  <data name="Export CSV" xml:space="preserve"><value>Soo Deji CSV</value></data>
+  <data name="Search" xml:space="preserve"><value>Raadi</value></data>
+  <data name="Search by email or username..." xml:space="preserve"><value>Raadi iimayl ama magac isticmaale...</value></data>
+  <data name="Quick Filters" xml:space="preserve"><value>Shaandhaynta Degdegga ah</value></data>
+  <data name="All Users" xml:space="preserve"><value>Dhammaan Isticmaalayaasha</value></data>
+  <data name="Admins" xml:space="preserve"><value>Maamulayaasha</value></data>
+  <data name="Per Page" xml:space="preserve"><value>Bog Halki</value></data>
+  <data name="Apply" xml:space="preserve"><value>Codso</value></data>
+  <data name="Clear Filters" xml:space="preserve"><value>Nadiifi Shaandhaynta</value></data>
+  <data name="Select All" xml:space="preserve"><value>Dooro Dhamaan</value></data>
+  <data name="selected" xml:space="preserve"><value>dooran</value></data>
+  <data name="Activate Selected" xml:space="preserve"><value>Shididdo Dooran</value></data>
+  <data name="Deactivate Selected" xml:space="preserve"><value>Damiso Dooran</value></data>
+  <data name="Delete Selected" xml:space="preserve"><value>Tirtir Dooran</value></data>
+  <data name="Email / Identity ID" xml:space="preserve"><value>Iimayl / Aqoons ID</value></data>
+  <data name="Work Verification ID" xml:space="preserve"><value>ID Xaqiijinta Shaqada</value></data>
+  <data name="Auth Status" xml:space="preserve"><value>Xaaladda Awoodda</value></data>
+  <data name="Permissions" xml:space="preserve"><value>Fasaxa</value></data>
+  <data name="General Public" xml:space="preserve"><value>Dadweynaha Guud</value></data>
+  <data name="System Administrator" xml:space="preserve"><value>Maamule Nidaamka</value></data>
+  <data name="Verified Contributor" xml:space="preserve"><value>Ka Qayb Gale La Xaqiijiyey</value></data>
+  <data name="Pending Authorization" xml:space="preserve"><value>Awood La Sugayo</value></data>
+  <data name="Verify ID" xml:space="preserve"><value>Hubi ID</value></data>
+  <data name="Restrict access for this contributor?" xml:space="preserve"><value>Ma xakameysaa gelitaanka ka qaybgalahaan?</value></data>
+  <data name="Deactivate" xml:space="preserve"><value>Damiso</value></data>
+  <data name="Activate" xml:space="preserve"><value>Shididdo</value></data>
+  <data name="Showing" xml:space="preserve"><value>Muujinaya</value></data>
+  <data name="of" xml:space="preserve"><value>ka</value></data>
+  <data name="users" xml:space="preserve"><value>isticmaalayaal</value></data>
+  <data name="System Catalog Management" xml:space="preserve"><value>Maamulka Katalooga Nidaamka</value></data>
+  <data name="Export Data" xml:space="preserve"><value>Soo Deji Xogta</value></data>
+  <data name="Catalog Data" xml:space="preserve"><value>Xogta Kataloogga</value></data>
+  <data name="All Jobs" xml:space="preserve"><value>Dhammaan Shaqooyinka</value></data>
+  <data name="Water Schedules" xml:space="preserve"><value>Jadwalka Biyaha</value></data>
+  <data name="Clinic Records" xml:space="preserve"><value>Diiwaanada Isbitaalada</value></data>
+  <data name="Export by Job Title" xml:space="preserve"><value>Soo Deji Ciwaanka Shaqada</value></data>
+  <data name="Jobs" xml:space="preserve"><value>Shaqooyin</value></data>
+  <data name="Water" xml:space="preserve"><value>Biyo</value></data>
+  <data name="Clinics" xml:space="preserve"><value>Isbitaallo</value></data>
+  <data name="Title / Company" xml:space="preserve"><value>Ciwaan / Shirkad</value></data>
+  <data name="Location" xml:space="preserve"><value>Goob</value></data>
+  <data name="Date" xml:space="preserve"><value>Taariikh</value></data>
+  <data name="Actions" xml:space="preserve"><value>Ficilada</value></data>
+  <data name="Live on Site" xml:space="preserve"><value>Nool Bogga</value></data>
+  <data name="Private feedback..." xml:space="preserve"><value>Jawaab gaaban...</value></data>
+  <data name="Save" xml:space="preserve"><value>Keyd</value></data>
+  <data name="APPROVE" xml:space="preserve"><value>OGGOLOW</value></data>
+  <data name="Purge" xml:space="preserve"><value>Nadiifi</value></data>
+  <data name="No Job Postings" xml:space="preserve"><value>Ma jiraan Shaqaalaysiinno</value></data>
+  <data name="No job postings are currently in the system." xml:space="preserve"><value>Ma jiraan shaqooyin hadda nidaamka ku jira.</value></data>
+  <data name="View Public Job Board" xml:space="preserve"><value>Daawo Tusmada Shaqada Dadweynaha</value></data>
+  <data name="Page" xml:space="preserve"><value>Bog</value></data>
+  <data name="total" xml:space="preserve"><value>guud ahaan</value></data>
+  <data name="jobs" xml:space="preserve"><value>shaqooyin</value></data>
+  <data name="Neighborhood" xml:space="preserve"><value>Xaafad</value></data>
+  <data name="Status" xml:space="preserve"><value>Xaalad</value></data>
+  <data name="Update Time" xml:space="preserve"><value>Waqtiga Cusbooneysiinta</value></data>
+  <data name="Remove" xml:space="preserve"><value>Ka Saar</value></data>
+  <data name="No Water Schedules" xml:space="preserve"><value>Ma jiraan Jadwalada Biyaha</value></data>
+  <data name="No water distribution schedules are currently recorded." xml:space="preserve"><value>Ma jiraan jadwalada qaybinta biyaha hadda la diiwaan geliyey.</value></data>
+  <data name="View Public Water Page" xml:space="preserve"><value>Daawo Bogga Biyaha Dadweynaha</value></data>
+  <data name="Clinic Name" xml:space="preserve"><value>Magaca Isbitaalka</value></data>
+  <data name="Doctors" xml:space="preserve"><value>Dhakhtarro</value></data>
+  <data name="Medicine Status" xml:space="preserve"><value>Xaaladda Dawooyinka</value></data>
+  <data name="STOCK OK" xml:space="preserve"><value>SAAMI WANAAGSAN</value></data>
+  <data name="LOW STOCK" xml:space="preserve"><value>SAAMI YARANAYSA</value></data>
+  <data name="De-list" xml:space="preserve"><value>Ka Saar</value></data>
+  <data name="No Clinics Recorded" xml:space="preserve"><value>Ma jiraan Isbitaallo Diiwaan Gashan</value></data>
+  <data name="No healthcare facilities are currently in the system." xml:space="preserve"><value>Ma jiraan adeegyada caafimaadka hadda nidaamka ku jira.</value></data>
+  <data name="View Public Health Directory" xml:space="preserve"><value>Daawo Tusmada Caafimaadka Dadweynaha</value></data>
+  <data name="water" xml:space="preserve"><value>biyaha</value></data>
+  <data name="clinics" xml:space="preserve"><value>isbitaallo</value></data>
+  <data name="Complete record of all administrative actions and system events" xml:space="preserve"><value>Diiwaanka dhammaystiran ee dhammaan tallaabooyinka maamulka iyo dhacdooyinka nidaamka</value></data>
+  <data name="Total Events" xml:space="preserve"><value>Wadarta Dhacdooyinka</value></data>
+  <data name="Info Events" xml:space="preserve"><value>Dhacdooyinka Macluumaadka</value></data>
+  <data name="Warnings" xml:space="preserve"><value>Digniinnada</value></data>
+  <data name="Timestamp" xml:space="preserve"><value>Waqtiga Diiwaanka</value></data>
+  <data name="Target" xml:space="preserve"><value>Target</value></data>
+  <data name="events" xml:space="preserve"><value>dhacdooyin</value></data>
+  <data name="Manage Users" xml:space="preserve"><value>Maamul Isticmaalayaasha</value></data>
+  <data name="View Catalog" xml:space="preserve"><value>Daawo Kataloogga</value></data>
+  <data name="User Details" xml:space="preserve"><value>Faahfaahin Isticmaale</value></data>
+  <data name="Personnel Verification" xml:space="preserve"><value>Hubinta Shaqaalaha</value></data>
+  <data name="Reviewing system credentials for" xml:space="preserve"><value>Halka uu eegayo aqoonska nidaamka ee</value></data>
+  <data name="Authorization Blocked:" xml:space="preserve"><value>Awoodu Waa La Xidhay:</value></data>
+  <data name="This user cannot be authorized as a contributor until all verification checks are completed. Please verify the Work ID against the municipal database." xml:space="preserve"><value>Isticmaalahan lama oggolaan karo inuu noqdo ka qayb gale ilaa hubinnada dhammaystiran la dhammaystiro. Fadlan xaqiiji ID Shaqada iyadoo loo eegayo xogta maamulka.</value></data>
+  <data name="System Identity" xml:space="preserve"><value>Aqoons Nidaamka</value></data>
+  <data name="UUID" xml:space="preserve"><value>UUID</value></data>
+  <data name="Username" xml:space="preserve"><value>Magac Isticmaale</value></data>
+  <data name="Email Confirmed" xml:space="preserve"><value>Iimaylka La Xaqiijiyey</value></data>
+  <data name="ID Number" xml:space="preserve"><value>Lambarka Aqoonsiga</value></data>
+  <data name="Verification Status" xml:space="preserve"><value>Xaaladda Xaqiijinta</value></data>
+  <data name="Verified" xml:space="preserve"><value>La Xaqiijiyey</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>Ma Jiro</value></data>
+  <data name="ID Verification Panel" xml:space="preserve"><value>Panelka Xaqiijinta ID</value></data>
+  <data name="Verify this Work ID against the official Dire Dawa Municipality employee database." xml:space="preserve"><value>Hubi ID Shaqadaan iyadoo loo eegayo xogta shaqaalaha Magaalada Dire Dawa.</value></data>
+  <data name="Employee Name" xml:space="preserve"><value>Magaca Shaqaale</value></data>
+  <data name="Full name on record" xml:space="preserve"><value>Magaca oo dhan diiwaanka ku jira</value></data>
+  <data name="Department" xml:space="preserve"><value>Waaxda</value></data>
+  <data name="Select Department" xml:space="preserve"><value>Dooro Waaxda</value></data>
+  <data name="Water &amp; Sewerage" xml:space="preserve"><value>Biyo &amp; Sewerage</value></data>
+  <data name="Health Services" xml:space="preserve"><value>Adeegyada Caafimaadka</value></data>
+  <data name="Agriculture" xml:space="preserve"><value>Beeraha</value></data>
+  <data name="Employment Office" xml:space="preserve"><value>Xafiiska Shaqaalaysiinta</value></data>
+  <data name="City Administration" xml:space="preserve"><value>Maamulka Magaalada</value></data>
+  <data name="Uploaded ID Documents" xml:space="preserve"><value>Warqadaha ID la soo galiyey</value></data>
+  <data name="✓ Visually Verified" xml:space="preserve"><value>✓ La Xaqiijiyey Indhaha</value></data>
+  <data name="⏳ Pending Visual Check" xml:space="preserve"><value>⏳ Hubin Indho La Sugayo</value></data>
+  <data name="ID DOCUMENT" xml:space="preserve"><value>WARQAD ID</value></data>
+  <data name="View Full" xml:space="preserve"><value>Daawo oo Dhan</value></data>
+  <data name="SELFIE WITH ID (Optional)" xml:space="preserve"><value>Sawir ID la wadaago (Ikhtiyaar)</value></data>
+  <data name="No selfie provided" xml:space="preserve"><value>Ma jiro selfie la keenay</value></data>
+  <data name="Visual Verification Required" xml:space="preserve"><value>Hubin Indho ayaa Loo Baahan Yahay</value></data>
+  <data name="Review the ID photo to confirm it matches the user's information." xml:space="preserve"><value>Eeg sawirka ID si aad u xaqiijiso inuu la mid yahay macluumaadka isticmaalaha.</value></data>
+  <data name="Verification notes (optional)" xml:space="preserve"><value>Xusuusin xaqiijin (Ikhtiyaar)</value></data>
+  <data name="Mark as Verified" xml:space="preserve"><value>Calaamadi sida La Xaqiijiyey</value></data>
+  <data name="Visually Verified" xml:space="preserve"><value>La Xaqiijiyey Indhaha</value></data>
+  <data name="Notes:" xml:space="preserve"><value>Xusuusin:</value></data>
+  <data name="ID Documents" xml:space="preserve"><value>Warqadaha ID</value></data>
+  <data name="No ID Documents Uploaded" xml:space="preserve"><value>Ma jiraan Warqadaha ID la soo galiyey</value></data>
+  <data name="This user has not uploaded any ID documents yet. They should upload their ID during registration or from their profile." xml:space="preserve"><value>Isticmaalahan ma soo gelin warqadaha ID ilaa hadda. Waa inay soo galiyaan ID guddiha diiwaangelinta ama meesha astaamahooda ka yimaada.</value></data>
+  <data name="Security Verification Checklist" xml:space="preserve"><value>Liiska Hubinta Amniga</value></data>
+  <data name="Work ID matches Municipality Database" xml:space="preserve"><value>ID Shaqada ayaa la mid ah Xogta Maamulka</value></data>
+  <data name="✓ VERIFIED" xml:space="preserve"><value>✓ LA XAQIIJIYEY</value></data>
+  <data name="✗ NOT VERIFIED" xml:space="preserve"><value>✗ LA XAQIIJIYAYN</value></data>
+  <data name="Email domain is verified" xml:space="preserve"><value>Domain-ka iimaylka waa la xaqiijiyey</value></data>
+  <data name="Background check completed" xml:space="preserve"><value>Hubinta asalka waa la dhammaystiray</value></data>
+  <data name="✓ COMPLETED" xml:space="preserve"><value>✓ DHAMMAYSTIRAN</value></data>
+  <data name="⏳ PENDING" xml:space="preserve"><value>⏳ LA SUGAYO</value></data>
+  <data name="Current Role Assignment" xml:space="preserve"><value>Qaybta Doorarka Hadda</value></data>
+  <data name="✓ CONTRIBUTOR" xml:space="preserve"><value>✓ KA QAYB GALE</value></data>
+  <data name="🛡️ ADMIN" xml:space="preserve"><value>🛡️ MAAMULE</value></data>
+  <data name="👤 PENDING" xml:space="preserve"><value>👤 LA SUGAYO</value></data>
+  <data name="✓ AUTHORIZED AS CONTRIBUTOR" xml:space="preserve"><value>✓ LAAWADAY SIDA KA QAYB GALE</value></data>
+  <data name="AUTHORIZE AS CONTRIBUTOR" xml:space="preserve"><value>LA AWADO SIDA KA QAYB GALE</value></data>
+  <data name="Back to Registry" xml:space="preserve"><value>Ku Noqo Diiwaanka</value></data>
 </root>

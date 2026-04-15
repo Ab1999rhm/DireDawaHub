@@ -1,6 +1,6 @@
-@using DireDawaHub.Services
-@using DireDawaHub.Models
+@using Microsoft.AspNetCore.Mvc.Localization
 @using Microsoft.AspNetCore.Identity
+@inject IHtmlLocalizer<DireDawaHub.SharedResource> localizer
 @model IdentityUser
 @{
     ViewData["Title"] = "Command Center";
@@ -91,15 +91,15 @@
 <div class="container-fluid px-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-5 admin-header-anim">
         <div>
-            <h1 class="fw-bold mb-0">🛡️ HUB COMMAND CENTER</h1>
-            <p class="text-muted">Global Synchronization & System Governance</p>
+            <h1 class="fw-bold mb-0">🛡️ @localizer["HUB COMMAND CENTER"]</h1>
+            <p class="text-muted">@localizer["Global Synchronization & System Governance"]</p>
         </div>
         <div class="d-flex gap-3">
             <a asp-action="DownloadLogs" class="btn btn-outline-light border-opacity-25 px-4" style="border-radius: 10px;">
-                <i class="bi bi-download me-2"></i> Export Logs
+                <i class="bi bi-download me-2"></i> @localizer["Export Logs"]
             </a>
             <a asp-action="ManageUsers" class="btn btn-primary fw-bold px-4" style="border-radius: 10px;">
-                👥 Manage Access
+                👥 @localizer["Manage Access"]
             </a>
         </div>
     </div>
@@ -108,35 +108,35 @@
         <div class="col-md-3">
             <div class="admin-card text-center" style="animation-delay: 0.1s;">
                 <div class="fs-4">👤</div>
-                <div class="text-muted x-small text-uppercase">Total Users</div>
+                <div class="text-muted x-small text-uppercase">@localizer["Total Users"]</div>
                 <h4 class="fw-bold mb-0">@ViewBag.TotalUsers</h4>
-                <div class="small text-success">@ViewBag.TotalContributors Contributors</div>
+                <div class="small text-success">@ViewBag.TotalContributors @localizer["Contributors"]</div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="admin-card text-center" style="animation-delay: 0.2s;">
                 <div class="fs-4">💧</div>
-                <div class="text-muted x-small text-uppercase">Water Records</div>
+                <div class="text-muted x-small text-uppercase">@localizer["Water Records"]</div>
                 <h4 class="fw-bold mb-0">@ViewBag.TotalWaterRecords</h4>
-                <div class="small text-success">Active Schedules</div>
+                <div class="small text-success">@localizer["Active Schedules"]</div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="admin-card text-center" style="animation-delay: 0.3s;">
                 <div class="fs-4">💼</div>
-                <div class="text-muted x-small text-uppercase">Job Postings</div>
+                <div class="text-muted x-small text-uppercase">@localizer["Job Postings"]</div>
                 <h4 class="fw-bold mb-0">@ViewBag.TotalJobs</h4>
                 <div class="small @(ViewBag.PendingJobs > 0 ? "text-warning" : "text-success")">
-                    @ViewBag.ActiveJobs Active / @ViewBag.PendingJobs Pending
+                    @ViewBag.ActiveJobs @localizer["Active"] / @ViewBag.PendingJobs @localizer["Pending"]
                 </div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="admin-card text-center" style="animation-delay: 0.35s;">
                 <div class="fs-4">🏥</div>
-                <div class="text-muted x-small text-uppercase">Healthcare</div>
+                <div class="text-muted x-small text-uppercase">@localizer["Healthcare"]</div>
                 <h4 class="fw-bold mb-0">@ViewBag.TotalClinics</h4>
-                <div class="small text-success">Active Clinics</div>
+                <div class="small text-success">@localizer["Active Clinics"]</div>
             </div>
         </div>
     </div>
@@ -144,33 +144,33 @@
     <div class="row g-4 mb-5">
         <div class="col-md-6">
             <div class="admin-card" style="animation-delay: 0.4s;">
-                <h6 class="fw-bold small text-uppercase mb-3"><i class="bi bi-hdd-network me-2"></i> System Health</h6>
+                <h6 class="fw-bold small text-uppercase mb-3"><i class="bi bi-hdd-network me-2"></i> @localizer["System Health"]</h6>
                 <div class="d-flex justify-content-between x-small mb-1">
-                    <span>AGRI-FETCHER SERVICE</span>
+                    <span>@localizer["AGRI-FETCHER SERVICE"]</span>
                     <span class="text-success">@state.ServiceStatus</span>
                 </div>
                 <div class="integrity-bar">
                     <div class="integrity-fill" style="width: 100%; background: #22c55e;"></div>
                 </div>
                 <div class="d-flex justify-content-between x-small mb-1 mt-2">
-                    <span>DATABASE LATENCY</span>
+                    <span>@localizer["DATABASE LATENCY"]</span>
                     <span class="text-warning">@state.DatabaseLatency ms</span>
                 </div>
                 <div class="integrity-bar">
                     <div class="integrity-fill" style="width: 85%; background: #eab308;"></div>
                 </div>
                 <div class="small text-muted italic mt-2" style="font-size: 0.75rem;">
-                    <i class="bi bi-clock-history me-1"></i> Last Sync: @state.LastAgricultureFetch.ToString("HH:mm:ss")
+                    <i class="bi bi-clock-history me-1"></i> @localizer["Last Sync"]: @state.LastAgricultureFetch.ToString("HH:mm:ss")
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="admin-card" style="animation-delay: 0.45s;">
-                <h6 class="fw-bold small text-uppercase mb-3"><i class="bi bi-shield-check me-2"></i> Security Overview</h6>
+                <h6 class="fw-bold small text-uppercase mb-3"><i class="bi bi-shield-check me-2"></i> @localizer["Security Overview"]</h6>
                 <div class="row g-2">
                     <div class="col-6">
                         <div class="d-flex justify-content-between x-small mb-1">
-                            <span>Verified Contributors</span>
+                            <span>@localizer["Verified Contributors"]</span>
                             <span class="text-success">@ViewBag.TotalContributors</span>
                         </div>
                         <div class="integrity-bar">
@@ -179,7 +179,7 @@
                     </div>
                     <div class="col-6">
                         <div class="d-flex justify-content-between x-small mb-1">
-                            <span>Pending Approval</span>
+                            <span>@localizer["Pending Approval"]</span>
                             <span class="text-warning">@ViewBag.PendingUsers</span>
                         </div>
                         <div class="integrity-bar">
@@ -189,7 +189,7 @@
                 </div>
                 <div class="mt-3 text-center">
                     <a asp-action="ManageUsers" class="btn btn-sm btn-outline-light border-opacity-25">
-                        <i class="bi bi-people me-1"></i> Manage Identity Registry
+                        <i class="bi bi-people me-1"></i> @localizer["Manage Identity Registry"]
                     </a>
                 </div>
             </div>
@@ -200,21 +200,21 @@
         <!-- Emergency Intervention -->
         <div class="col-lg-4">
             <div class="admin-card h-100">
-                <h5 class="fw-bold mb-4"><i class="bi bi-megaphone me-2"></i> Emergency Broadcast</h5>
+                <h5 class="fw-bold mb-4"><i class="bi bi-megaphone me-2"></i> @localizer["Emergency Broadcast"]</h5>
                 <form asp-action="BroadcastAlert" method="post">
                     <div class="mb-3">
-                        <textarea name="message" class="form-control alert-input" rows="3" placeholder="Enter emergency message..."></textarea>
+                        <textarea name="message" class="form-control alert-input" rows="3" placeholder="@localizer["Enter emergency message..."]"></textarea>
                     </div>
                     <button type="submit" class="btn btn-danger w-100 fw-bold py-2 shadow-sm" style="border-radius: 10px;">
-                        <i class="bi bi-broadcast me-2"></i> Trigger Global Alert
+                        <i class="bi bi-broadcast me-2"></i> @localizer["Trigger Global Alert"]
                     </button>
                 </form>
                 <div class="mt-4">
                     <a asp-action="Catalog" class="btn btn-outline-primary w-100 fw-bold border-opacity-50 mb-2" style="border-radius: 10px;">
-                        <i class="bi bi-pencil-square me-2"></i> Open System Catalog (CRUD)
+                        <i class="bi bi-pencil-square me-2"></i> @localizer["Open System Catalog (CRUD)"]
                     </a>
                     <a asp-action="AuditLogs" class="btn btn-outline-light w-100 fw-bold border-opacity-25" style="border-radius: 10px;">
-                        <i class="bi bi-journal-text me-2"></i> View Full Audit Logs
+                        <i class="bi bi-journal-text me-2"></i> @localizer["View Full Audit Logs"]
                     </a>
                 </div>
             </div>
@@ -224,21 +224,21 @@
         <div class="col-lg-8">
             <div class="admin-card h-100 p-0 overflow-hidden">
                 <div class="p-4 border-bottom border-secondary border-opacity-10 d-flex justify-content-between align-items-center">
-                    <h5 class="fw-bold mb-0"><i class="bi bi-shield-lock me-2"></i> Security Audit Trail</h5>
+                    <h5 class="fw-bold mb-0"><i class="bi bi-shield-lock me-2"></i> @localizer["Security Audit Trail"]</h5>
                     <div class="d-flex gap-2">
-                        <span class="badge bg-info bg-opacity-25 text-info">@(ViewBag.RecentAuditLogs?.Count ?? 0) Recent Events</span>
-                        <span class="badge bg-success bg-opacity-25 text-success">Live</span>
+                        <span class="badge bg-info bg-opacity-25 text-info">@(ViewBag.RecentAuditLogs?.Count ?? 0) @localizer["Recent Events"]</span>
+                        <span class="badge bg-success bg-opacity-25 text-success">@localizer["Live"]</span>
                     </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-dark table-hover align-middle mb-0" style="--bs-table-bg: transparent; --bs-table-color: #f8fafc;">
                         <thead style="background: rgba(15, 23, 42, 0.5);">
                             <tr>
-                                <th class="ps-4 text-light fw-semibold" style="color: #e2e8f0 !important;">Time</th>
-                                <th class="text-light fw-semibold" style="color: #e2e8f0 !important;">Action</th>
-                                <th class="text-light fw-semibold" style="color: #e2e8f0 !important;">Description</th>
-                                <th class="text-light fw-semibold" style="color: #e2e8f0 !important;">Performed By</th>
-                                <th class="text-end pe-4 text-light fw-semibold" style="color: #e2e8f0 !important;">Severity</th>
+                                <th class="ps-4 text-light fw-semibold" style="color: #e2e8f0 !important;">@localizer["Time"]</th>
+                                <th class="text-light fw-semibold" style="color: #e2e8f0 !important;">@localizer["Action"]</th>
+                                <th class="text-light fw-semibold" style="color: #e2e8f0 !important;">@localizer["Description"]</th>
+                                <th class="text-light fw-semibold" style="color: #e2e8f0 !important;">@localizer["Performed By"]</th>
+                                <th class="text-end pe-4 text-light fw-semibold" style="color: #e2e8f0 !important;">@localizer["Severity"]</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -257,13 +257,13 @@
                                             @switch (log.Severity)
                                             {
                                                 case AuditSeverity.Info:
-                                                    <span class="badge" style="background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3);">ℹ️ Info</span>
+                                                    <span class="badge" style="background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3);">ℹ️ @localizer["Info"]</span>
                                                     break;
                                                 case AuditSeverity.Warning:
-                                                    <span class="badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3);">⚠️ Warning</span>
+                                                    <span class="badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3);">⚠️ @localizer["Warning"]</span>
                                                     break;
                                                 case AuditSeverity.Critical:
-                                                    <span class="badge" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239,68,68,0.3);">🚨 Critical</span>
+                                                    <span class="badge" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239,68,68,0.3);">🚨 @localizer["Critical"]</span>
                                                     break;
                                             }
                                         </td>
@@ -275,7 +275,7 @@
                                 <tr>
                                     <td colspan="5" class="text-center py-4" style="color: #64748b;">
                                         <i class="bi bi-inbox fs-3 d-block mb-2" style="color: #475569;"></i>
-                                        No audit logs available. Actions will be logged here.
+                                        @localizer["No audit logs available. Actions will be logged here."]
                                     </td>
                                 </tr>
                             }
@@ -291,12 +291,12 @@
         <div class="col-12">
             <div class="admin-card">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="fw-bold mb-0"><i class="bi bi-inboxes me-2"></i> Recent Content Submissions</h5>
-                    <a asp-action="Catalog" class="btn btn-sm btn-primary">View All in Catalog</a>
+                    <h5 class="fw-bold mb-0"><i class="bi bi-inboxes me-2"></i> @localizer["Recent Content Submissions"]</h5>
+                    <a asp-action="Catalog" class="btn btn-sm btn-primary">@localizer["View All in Catalog"]</a>
                 </div>
                 <div class="row g-3">
                     <div class="col-md-6">
-                        <h6 class="text-muted small text-uppercase">Recent Job Postings</h6>
+                        <h6 class="text-muted small text-uppercase">@localizer["Recent Job Postings"]</h6>
                         @foreach (var job in (IEnumerable<DireDawaHub.Models.JobPosting>)ViewBag.RecentJobs)
                         {
                             <div class="d-flex justify-content-between align-items-center p-2 mb-2 rounded" style="background: rgba(255,255,255,0.05);">
@@ -307,18 +307,18 @@
                                 <div class="d-flex align-items-center gap-2">
                                     @if (job.IsApproved)
                                     {
-                                        <span class="badge bg-success bg-opacity-25 text-success small">✓ Live</span>
+                                        <span class="badge bg-success bg-opacity-25 text-success small">✓ @localizer["Live"]</span>
                                     }
                                     else
                                     {
-                                        <span class="badge bg-warning bg-opacity-25 text-warning small">⏳ Pending</span>
+                                        <span class="badge bg-warning bg-opacity-25 text-warning small">⏳ @localizer["Pending"]</span>
                                     }
                                 </div>
                             </div>
                         }
                     </div>
                     <div class="col-md-6">
-                        <h6 class="text-muted small text-uppercase">Recent Water Updates</h6>
+                        <h6 class="text-muted small text-uppercase">@localizer["Recent Water Updates"]</h6>
                         @foreach (var water in (IEnumerable<DireDawaHub.Models.WaterSchedule>)ViewBag.RecentWater)
                         {
                             <div class="d-flex justify-content-between align-items-center p-2 mb-2 rounded" style="background: rgba(255,255,255,0.05);">

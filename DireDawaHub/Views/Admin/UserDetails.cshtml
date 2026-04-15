@@ -1,7 +1,9 @@
 @using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<DireDawaHub.SharedResource> localizer
 @model IdentityUser
 @{
-    ViewData["Title"] = "Personnel Verification";
+    ViewData["Title"] = @localizer["Personnel Verification"];
     var claims = (IEnumerable<System.Security.Claims.Claim>)ViewBag.Claims;
     var workId = claims.FirstOrDefault(c => c.Type == "WorkId")?.Value ?? "UNAVAILABLE";
     var userRoles = (IList<string>)ViewBag.Roles;
@@ -307,55 +309,55 @@
     <span class="breadcrumb-divider">/</span>
     <span class="breadcrumb-item"><a href="@Url.Action("ManageUsers")">Identity Registry</a></span>
     <span class="breadcrumb-divider">/</span>
-    <span class="breadcrumb-item active">User Details</span>
+    <span class="breadcrumb-item active">@localizer["User Details"]</span>
 </nav>
 
 <div class="verification-container">
     <div class="verification-header">
-        <h1>🛡️ Personnel Verification</h1>
-        <p>Reviewing system credentials for <strong style="color: #60a5fa;">@Model.Email</strong></p>
+        <h1>🛡️ @localizer["Personnel Verification"]</h1>
+        <p>@localizer["Reviewing system credentials for"] <strong style="color: #60a5fa;">@Model.Email</strong></p>
     </div>
 
     @if (!canAuthorize)
     {
         <div class="alert-box">
-            <strong>⚠️ Authorization Blocked:</strong> This user cannot be authorized as a contributor until all verification checks are completed. Please verify the Work ID against the municipal database.
+            <strong>⚠️ @localizer["Authorization Blocked:"]</strong> @localizer["This user cannot be authorized as a contributor until all verification checks are completed. Please verify the Work ID against the municipal database."]
         </div>
     }
 
     <div class="verification-card">
         <div class="row g-4">
             <div class="col-md-6">
-                <div class="section-title">🔐 System Identity</div>
+                <div class="section-title">🔐 @localizer["System Identity"]</div>
                 <div class="id-display">
-                    <span class="label">UUID</span>
+                    <span class="label">@localizer["UUID"]</span>
                     <span class="value uuid">@Model.Id</span>
                     <hr style="border-color: rgba(255,255,255,0.1); margin: 1rem 0;">
-                    <span class="label">Username</span>
+                    <span class="label">@localizer["Username"]</span>
                     <span class="value">@Model.UserName</span>
                     <hr style="border-color: rgba(255,255,255,0.1); margin: 1rem 0;">
-                    <span class="label">Email Confirmed</span>
+                    <span class="label">@localizer["Email Confirmed"]</span>
                     <span class="value @(isEmailVerified ? "status-yes" : "status-no")">@(isEmailVerified ? "✓ YES" : "✗ NO")</span>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="section-title">🏛️ Municipal Work ID</div>
                 <div class="id-display">
-                    <span class="label">ID Number</span>
+                    <span class="label">@localizer["ID Number"]</span>
                     <span class="value" style="color: @(workId != "UNAVAILABLE" ? "#10b981" : "#ef4444");">@workId</span>
                     <hr style="border-color: rgba(255,255,255,0.1); margin: 1rem 0;">
-                    <span class="label">Verification Status</span>
+                    <span class="label">@localizer["Verification Status"]</span>
                     @if (isIdVerified)
                     {
-                        <span class="status-badge status-verified">✓ Verified</span>
+                        <span class="status-badge status-verified">✓ @localizer["Verified"]</span>
                     }
                     else if (workId != "UNAVAILABLE")
                     {
-                        <span class="status-badge status-pending">⏳ Pending</span>
+                        <span class="status-badge status-pending">⏳ @localizer["Pending"]</span>
                     }
                     else
                     {
-                        <span class="status-badge status-unverified">✗ Unavailable</span>
+                        <span class="status-badge status-unverified">✗ @localizer["Unavailable"]</span>
                     }
                 </div>
             </div>
@@ -365,29 +367,29 @@
     @if (workId != "UNAVAILABLE" && !isIdVerified)
     {
         <div class="verification-card">
-            <div class="section-title">🔍 ID Verification Panel</div>
+            <div class="section-title">🔍 @localizer["ID Verification Panel"]</div>
             <p style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 1rem;">
-                Verify this Work ID against the official Dire Dawa Municipality employee database.
+                @localizer["Verify this Work ID against the official Dire Dawa Municipality employee database."]
             </p>
             <form asp-action="VerifyWorkId" method="post" class="id-verification-form">
                 <input type="hidden" name="userId" value="@Model.Id" />
                 <div class="row g-3">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="form-label">Employee Name</label>
-                            <input type="text" name="employeeName" class="form-input" placeholder="Full name on record" required />
+                            <label class="form-label">@localizer["Employee Name"]</label>
+                            <input type="text" name="employeeName" class="form-input" placeholder="@localizer["Full name on record"]" required />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="form-label">Department</label>
+                            <label class="form-label">@localizer["Department"]</label>
                             <select name="department" class="form-input" required>
-                                <option value="">Select Department</option>
-                                <option value="Water">Water & Sewerage</option>
-                                <option value="Health">Health Services</option>
-                                <option value="Agriculture">Agriculture</option>
-                                <option value="Employment">Employment Office</option>
-                                <option value="Admin">City Administration</option>
+                                <option value="">@localizer["Select Department"]</option>
+                                <option value="Water">@localizer["Water & Sewerage"]</option>
+                                <option value="Health">@localizer["Health Services"]</option>
+                                <option value="Agriculture">@localizer["Agriculture"]</option>
+                                <option value="Employment">@localizer["Employment Office"]</option>
+                                <option value="Admin">@localizer["City Administration"]</option>
                             </select>
                         </div>
                     </div>
@@ -395,7 +397,7 @@
                         <div class="form-group">
                             <label class="form-label">&nbsp;</label>
                             <button type="submit" class="btn-verify-id w-100">
-                                <i class="bi bi-shield-check"></i> Verify ID
+                                <i class="bi bi-shield-check"></i> @localizer["Verify ID"]
                             </button>
                         </div>
                     </div>
@@ -410,23 +412,23 @@
         var latestDoc = ViewBag.LatestDocument as DireDawaHub.Models.IdDocumentImage;
         <div class="verification-card">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <div class="section-title mb-0">📸 Uploaded ID Documents</div>
+                <div class="section-title mb-0">📸 @localizer["Uploaded ID Documents"]</div>
                 <span class="status-badge @(latestDoc.IsVisuallyVerified ? "status-verified" : "status-pending")">
-                    @(latestDoc.IsVisuallyVerified ? "✓ Visually Verified" : "⏳ Pending Visual Check")
+                    @(latestDoc.IsVisuallyVerified ? @localizer["✓ Visually Verified"] : @localizer["⏳ Pending Visual Check"])
                 </span>
             </div>
             
             <div class="row g-4">
                 <!-- ID Document Photo -->
                 <div class="col-md-6">
-                    <div class="section-title" style="font-size: 0.7rem;">ID DOCUMENT</div>
+                    <div class="section-title" style="font-size: 0.7rem;">@localizer["ID DOCUMENT"]</div>
                     <div class="position-relative">
                         <img src="@latestDoc.FilePath" alt="ID Document" 
                              class="img-fluid rounded" 
                              style="max-height: 300px; width: 100%; object-fit: contain; border: 1px solid rgba(255,255,255,0.1);" />
                         <div class="position-absolute top-0 end-0 m-2">
                             <a href="@latestDoc.FilePath" target="_blank" class="btn btn-sm btn-dark" style="opacity: 0.9;">
-                                <i class="bi bi-arrows-fullscreen"></i> View Full
+                                <i class="bi bi-arrows-fullscreen"></i> @localizer["View Full"]
                             </a>
                         </div>
                     </div>
@@ -440,14 +442,14 @@
                 @if (!string.IsNullOrEmpty(latestDoc.SelfieFilePath))
                 {
                     <div class="col-md-6">
-                        <div class="section-title" style="font-size: 0.7rem;">🤳 SELFIE WITH ID (Optional)</div>
+                        <div class="section-title" style="font-size: 0.7rem;">🤳 @localizer["SELFIE WITH ID (Optional)"]</div>
                         <div class="position-relative">
                             <img src="@latestDoc.SelfieFilePath" alt="Selfie with ID" 
                                  class="img-fluid rounded" 
                                  style="max-height: 300px; width: 100%; object-fit: contain; border: 1px solid rgba(255,255,255,0.1);" />
                             <div class="position-absolute top-0 end-0 m-2">
                                 <a href="@latestDoc.SelfieFilePath" target="_blank" class="btn btn-sm btn-dark" style="opacity: 0.9;">
-                                    <i class="bi bi-arrows-fullscreen"></i> View Full
+                                    <i class="bi bi-arrows-fullscreen"></i> @localizer["View Full"]
                                 </a>
                             </div>
                         </div>
@@ -459,12 +461,12 @@
                 else
                 {
                     <div class="col-md-6">
-                        <div class="section-title" style="font-size: 0.7rem;">🤳 SELFIE WITH ID (Optional)</div>
+                        <div class="section-title" style="font-size: 0.7rem;">🤳 @localizer["SELFIE WITH ID (Optional)"]</div>
                         <div class="d-flex align-items-center justify-content-center rounded" 
                              style="height: 200px; border: 2px dashed rgba(255,255,255,0.1); color: #64748b;">
                             <div class="text-center">
                                 <i class="bi bi-person-x fs-1"></i>
-                                <p class="small mt-2 mb-0">No selfie provided</p>
+                                <p class="small mt-2 mb-0">@localizer["No selfie provided"]</p>
                             </div>
                         </div>
                     </div>
@@ -477,16 +479,16 @@
                 <div class="mt-4 p-3 rounded" style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2);">
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
-                            <h6 class="mb-1 text-light">Visual Verification Required</h6>
+                            <h6 class="mb-1 text-light">@localizer["Visual Verification Required"]</h6>
                             <p class="small text-muted mb-0">
-                                Review the ID photo to confirm it matches the user's information.
+                                @localizer["Review the ID photo to confirm it matches the user's information."]
                             </p>
                         </div>
                         <form asp-action="VisualVerifyDocument" method="post" class="d-flex gap-2">
                             <input type="hidden" name="documentId" value="@latestDoc.Id" />
-                            <input type="text" name="notes" class="form-input" placeholder="Verification notes (optional)" style="width: 200px;" />
+                            <input type="text" name="notes" class="form-input" placeholder="@localizer["Verification notes (optional)"]" style="width: 200px;" />
                             <button type="submit" class="btn-verify-id">
-                                <i class="bi bi-eye"></i> Mark as Verified
+                                <i class="bi bi-eye"></i> @localizer["Mark as Verified"]
                             </button>
                         </form>
                     </div>
@@ -498,12 +500,12 @@
                     <div class="d-flex align-items-center gap-2 text-success">
                         <i class="bi bi-check-circle-fill fs-5"></i>
                         <div>
-                            <strong>Visually Verified</strong>
+                            <strong>@localizer["Visually Verified"]</strong>
                             <p class="small mb-0 text-muted">
                                 by @latestDoc.VerifiedBy on @latestDoc.VerifiedAt?.ToString("MMM dd, yyyy HH:mm")
                                 @if (!string.IsNullOrEmpty(latestDoc.VisualVerificationNotes))
                                 {
-                                    <br /><span class="text-info">Notes: @latestDoc.VisualVerificationNotes</span>
+                                    <br /><span class="text-info">@localizer["Notes:"] @latestDoc.VisualVerificationNotes</span>
                                 }
                             </p>
                         </div>
@@ -515,10 +517,10 @@
     else
     {
         <div class="verification-card">
-            <div class="section-title">📸 ID Documents</div>
+            <div class="section-title">📸 @localizer["ID Documents"]</div>
             <div class="alert-box">
-                <strong>⚠️ No ID Documents Uploaded</strong>
-                <p class="mb-0 mt-1">This user has not uploaded any ID documents yet. They should upload their ID during registration or from their profile.</p>
+                <strong>⚠️ @localizer["No ID Documents Uploaded"]</strong>
+                <p class="mb-0 mt-1">@localizer["This user has not uploaded any ID documents yet. They should upload their ID during registration or from their profile."]</p>
             </div>
         </div>
     }
@@ -527,34 +529,34 @@
         <div class="verification-checklist">
             <div class="checklist-title">
                 <i class="bi bi-clipboard-check"></i>
-                Security Verification Checklist
+                @localizer["Security Verification Checklist"]
             </div>
             
             <div class="checklist-item">
-                <span class="checklist-label">Work ID matches Municipality Database</span>
+                <span class="checklist-label">@localizer["Work ID matches Municipality Database"]</span>
                 <span class="checklist-status @(isIdVerified ? "status-yes" : "status-no")">
-                    @(isIdVerified ? "✓ VERIFIED" : "✗ NOT VERIFIED")
+                    @(isIdVerified ? @localizer["✓ VERIFIED"] : @localizer["✗ NOT VERIFIED"])
                 </span>
             </div>
             
             <div class="checklist-item">
-                <span class="checklist-label">Email domain is verified (@Model.Email?.Split('@').LastOrDefault())</span>
+                <span class="checklist-label">@localizer["Email domain is verified"] (@Model.Email?.Split('@').LastOrDefault())</span>
                 <span class="checklist-status @(isEmailVerified ? "status-yes" : "status-no")">
-                    @(isEmailVerified ? "✓ VERIFIED" : "✗ NOT VERIFIED")
+                    @(isEmailVerified ? @localizer["✓ VERIFIED"] : @localizer["✗ NOT VERIFIED"])
                 </span>
             </div>
             
             <div class="checklist-item">
-                <span class="checklist-label">Background check completed</span>
+                <span class="checklist-label">@localizer["Background check completed"]</span>
                 <span class="checklist-status @(isBackgroundCheckDone ? "status-yes" : "status-pending-text")">
-                    @(isBackgroundCheckDone ? "✓ COMPLETED" : "⏳ PENDING")
+                    @(isBackgroundCheckDone ? @localizer["✓ COMPLETED"] : @localizer["⏳ PENDING"])
                 </span>
             </div>
 
             <div class="checklist-item">
-                <span class="checklist-label">Current Role Assignment</span>
+                <span class="checklist-label">@localizer["Current Role Assignment"]</span>
                 <span class="checklist-status" style="color: #60a5fa;">
-                    @(userRoles.Contains("Contributor") ? "✓ CONTRIBUTOR" : userRoles.Contains("Admin") ? "🛡️ ADMIN" : "👤 PENDING")
+                    @(userRoles.Contains("Contributor") ? @localizer["✓ CONTRIBUTOR"] : userRoles.Contains("Admin") ? @localizer["🛡️ ADMIN"] : @localizer["👤 PENDING"])
                 </span>
             </div>
         </div>
@@ -566,16 +568,16 @@
             <button type="submit" class="btn-verify" @(canAuthorize ? "" : "disabled")>
                 @if (userRoles.Contains("Contributor"))
                 {
-                    <span>✓ AUTHORIZED AS CONTRIBUTOR</span>
+                    <span>@localizer["✓ AUTHORIZED AS CONTRIBUTOR"]</span>
                 }
                 else
                 {
-                    <span><i class="bi bi-patch-check"></i> AUTHORIZE AS CONTRIBUTOR</span>
+                    <span><i class="bi bi-patch-check"></i> @localizer["AUTHORIZE AS CONTRIBUTOR"]</span>
                 }
             </button>
         </form>
         <a asp-action="ManageUsers" class="btn-back">
-            <i class="bi bi-arrow-left"></i> Back to Registry
+            <i class="bi bi-arrow-left"></i> @localizer["Back to Registry"]
         </a>
     </div>
 </div>

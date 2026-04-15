@@ -1,6 +1,8 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<DireDawaHub.SharedResource> localizer
 @model List<DireDawaHub.ViewModels.AdminUserViewModel>
 @{
-    ViewData["Title"] = "Identity Registry";
+    ViewData["Title"] = @localizer["Identity Registry"];
 }
 
 <style>
@@ -187,21 +189,21 @@
     <span class="breadcrumb-divider">/</span>
     <span class="breadcrumb-item"><a href="@Url.Action("Index", "Admin")">Admin</a></span>
     <span class="breadcrumb-divider">/</span>
-    <span class="breadcrumb-item active">Identity Registry</span>
+    <span class="breadcrumb-item active">@localizer["Identity Registry"]</span>
 </nav>
 
 <div class="container-fluid px-4 py-3">
     <div class="registry-header">
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                <h2 class="fw-bold mb-1"><i class="bi bi-person-badge me-2"></i> Identity & Role Manager</h2>
-                <p class="text-muted mb-0">Verify municipal work IDs and authorize contributor credentials for the community platform.</p>
+                <h2 class="fw-bold mb-1"><i class="bi bi-person-badge me-2"></i> @localizer["Identity & Role Manager"]</h2>
+                <p class="text-muted mb-0">@localizer["Verify municipal work IDs and authorize contributor credentials for the community platform."]</p>
             </div>
             <div class="text-end">
                 <a href="@Url.Action("ExportUsersToCsv")" class="btn btn-outline-success btn-sm mb-2">
-                    <i class="bi bi-filetype-csv me-1"></i> Export CSV
+                    <i class="bi bi-filetype-csv me-1"></i> @localizer["Export CSV"]</a>
                 </a>
-                <div class="small text-muted">Total Users</div>
+                <div class="small text-muted">@localizer["Total Users"]</div>
                 <div class="fs-4 fw-bold text-white">@ViewBag.TotalUsers</div>
             </div>
         </div>
@@ -212,30 +214,30 @@
         <div class="search-filter-bar">
             <form method="get" class="row g-3 align-items-end">
                 <div class="col-md-5">
-                    <label class="small text-muted mb-1">Search</label>
+                    <label class="small text-muted mb-1">@localizer["Search"]</label>
                     <div class="input-group">
                         <span class="input-group-text bg-transparent border-secondary text-muted" style="border-right: none;">
                             <i class="bi bi-search"></i>
                         </span>
-                        <input type="text" name="searchTerm" class="search-input form-control" placeholder="Search by email or username..." 
+                        <input type="text" name="searchTerm" class="search-input form-control" placeholder="@localizer["Search by email or username..."]" 
                                value="@ViewBag.SearchTerm" style="border-left: none;" />
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <label class="small text-muted mb-1">Quick Filters</label>
+                    <label class="small text-muted mb-1">@localizer["Quick Filters"]</label>
                     <div class="filter-chips">
                         <a href="@Url.Action("ManageUsers", new { searchTerm = ViewBag.SearchTerm, filterRole = "", pageSize = ViewBag.PageSize })" 
-                           class="filter-chip @(string.IsNullOrEmpty(ViewBag.FilterRole) ? "active" : "")">All Users</a>
+                           class="filter-chip @(string.IsNullOrEmpty(ViewBag.FilterRole) ? "active" : "")">@localizer["All Users"]</a>
                         <a href="@Url.Action("ManageUsers", new { searchTerm = ViewBag.SearchTerm, filterRole = "Admin", pageSize = ViewBag.PageSize })" 
-                           class="filter-chip @(ViewBag.FilterRole == "Admin" ? "active" : "")">Admins</a>
+                           class="filter-chip @(ViewBag.FilterRole == "Admin" ? "active" : "")">@localizer["Admins"]</a>
                         <a href="@Url.Action("ManageUsers", new { searchTerm = ViewBag.SearchTerm, filterRole = "Contributor", pageSize = ViewBag.PageSize })" 
-                           class="filter-chip @(ViewBag.FilterRole == "Contributor" ? "active" : "")">Contributors</a>
+                           class="filter-chip @(ViewBag.FilterRole == "Contributor" ? "active" : "")">@localizer["Contributors"]</a>
                         <a href="@Url.Action("ManageUsers", new { searchTerm = ViewBag.SearchTerm, filterRole = "Pending", pageSize = ViewBag.PageSize })" 
-                           class="filter-chip @(ViewBag.FilterRole == "Pending" ? "active" : "")">Pending</a>
+                           class="filter-chip @(ViewBag.FilterRole == "Pending" ? "active" : "")">@localizer["Pending"]</a>
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <label class="small text-muted mb-1">Per Page</label>
+                    <label class="small text-muted mb-1">@localizer["Per Page"]</label>
                     <select name="pageSize" class="filter-select form-select" onchange="this.form.submit()">
                         <option value="10" selected="@(ViewBag.PageSize == 10 ? "selected" : null)">10</option>
                         <option value="25" selected="@(ViewBag.PageSize == 25 ? "selected" : null)">25</option>
@@ -245,14 +247,14 @@
                 </div>
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-primary w-100">
-                        <i class="bi bi-funnel me-1"></i> Apply
+                        <i class="bi bi-funnel me-1"></i> @localizer["Apply"]
                     </button>
                 </div>
                 @if (!string.IsNullOrWhiteSpace(ViewBag.SearchTerm) || !string.IsNullOrWhiteSpace(ViewBag.FilterRole))
                 {
                     <div class="col-12">
                         <a href="@Url.Action("ManageUsers")" class="btn btn-sm btn-outline-light border-opacity-25">
-                            <i class="bi bi-x-circle me-1"></i> Clear Filters
+                            <i class="bi bi-x-circle me-1"></i> @localizer["Clear Filters"]
                         </a>
                         @if (!string.IsNullOrWhiteSpace(ViewBag.SearchTerm))
                         {
@@ -274,18 +276,18 @@
         <!-- Bulk Actions Bar -->
         <div class="bulk-actions-bar" id="bulkActionsBar" style="display: none;">
             <input type="checkbox" class="user-checkbox" id="selectAllCheckbox" onclick="toggleSelectAll()" />
-            <label for="selectAllCheckbox" class="text-white mb-0 ms-2">Select All</label>
+            <label for="selectAllCheckbox" class="text-white mb-0 ms-2">@localizer["Select All"]</label>
             <span class="text-muted mx-2">|</span>
-            <span class="text-light" id="selectedCount">0 selected</span>
+            <span class="text-light" id="selectedCount">0 @localizer["selected"]</span>
             <div class="ms-auto d-flex gap-2">
                 <button type="button" class="btn btn-sm btn-success" onclick="bulkPromote()">
-                    <i class="bi bi-patch-check me-1"></i> Activate Selected
+                    <i class="bi bi-patch-check me-1"></i> @localizer["Activate Selected"]
                 </button>
                 <button type="button" class="btn btn-sm btn-warning" onclick="bulkDemote()">
-                    <i class="bi bi-slash-circle me-1"></i> Deactivate Selected
+                    <i class="bi bi-slash-circle me-1"></i> @localizer["Deactivate Selected"]
                 </button>
                 <button type="button" class="btn btn-sm btn-danger" onclick="bulkDelete()">
-                    <i class="bi bi-trash3 me-1"></i> Delete Selected
+                    <i class="bi bi-trash3 me-1"></i> @localizer["Delete Selected"]
                 </button>
             </div>
         </div>
@@ -296,10 +298,10 @@
                         <th class="ps-4" style="width: 40px;">
                             <input type="checkbox" class="user-checkbox" id="selectAllTop" onclick="toggleSelectAll()" />
                         </th>
-                        <th>Email / Identity ID</th>
-                        <th>Work Verification ID</th>
-                        <th>Auth Status</th>
-                        <th class="text-end pe-4">Permissions</th>
+                        <th>@localizer["Email / Identity ID"]</th>
+                        <th>@localizer["Work Verification ID"]</th>
+                        <th>@localizer["Auth Status"]</th>
+                        <th class="text-end pe-4">@localizer["Permissions"]</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -319,25 +321,25 @@
                                         <i class="bi bi-shield-check me-2"></i> @user.WorkId
                                     </span>
                                 } else {
-                                    <span class="text-muted small italic">General Public</span>
+                                    <span class="text-muted small italic">@localizer["General Public"]</span>
                                 }
                             </td>
                             <td>
                                 @if (user.Roles.Contains("Admin"))
                                 {
-                                    <span class="badge badge-admin px-3 py-2">System Administrator</span>
+                                    <span class="badge badge-admin px-3 py-2">@localizer["System Administrator"]</span>
                                 }
                                 else if (user.Roles.Contains("Contributor"))
                                 {
-                                    <span class="badge badge-contributor px-3 py-2">Verified Contributor</span>
+                                    <span class="badge badge-contributor px-3 py-2">@localizer["Verified Contributor"]</span>
                                 }
                                 else
                                 {
-                                    <span class="badge badge-pending px-3 py-2">Pending Authorization</span>
+                                    <span class="badge badge-pending px-3 py-2">@localizer["Pending Authorization"]</span>
                                 }
                             </td>
                             <td class="text-end pe-4">
-                                <a asp-action="UserDetails" asp-route-id="@user.Id" class="btn btn-sm btn-outline-light me-1" style="border-radius: 8px;" title="Verify ID">
+                                <a asp-action="UserDetails" asp-route-id="@user.Id" class="btn btn-sm btn-outline-light me-1" style="border-radius: 8px;" title="@localizer["Verify ID"]">
                                     <i class="bi bi-eye"></i>
                                 </a>
                                 
@@ -347,8 +349,8 @@
                                     {
                                         <form asp-action="Demote" method="post" class="d-inline">
                                             <input type="hidden" name="userId" value="@user.Id" />
-                                            <button type="submit" class="btn btn-sm btn-outline-warning me-1" style="border-radius: 8px;" onclick="return confirm('Restrict access for this contributor?');">
-                                                <i class="bi bi-slash-circle"></i> Deactivate
+                                            <button type="submit" class="btn btn-sm btn-outline-warning me-1" style="border-radius: 8px;" onclick="return confirm('@localizer["Restrict access for this contributor?"]');">
+                                                <i class="bi bi-slash-circle"></i> @localizer["Deactivate"]
                                             </button>
                                         </form>
                                     }
@@ -357,7 +359,7 @@
                                         <form asp-action="Promote" method="post" class="d-inline">
                                             <input type="hidden" name="userId" value="@user.Id" />
                                             <button type="submit" class="btn btn-sm btn-primary fw-bold me-1" style="border-radius: 8px;">
-                                                <i class="bi bi-patch-check"></i> Activate
+                                                <i class="bi bi-patch-check"></i> @localizer["Activate"]
                                             </button>
                                         </form>
                                     }
@@ -374,8 +376,8 @@
         {
             <div class="pagination-container">
                 <div class="results-info">
-                    Showing @(((ViewBag.CurrentPage - 1) * ViewBag.PageSize) + 1) - @(Math.Min(ViewBag.CurrentPage * ViewBag.PageSize, ViewBag.TotalUsers)) 
-                    of @ViewBag.TotalUsers users
+                    @localizer["Showing"] @(((ViewBag.CurrentPage - 1) * ViewBag.PageSize) + 1) - @(Math.Min(ViewBag.CurrentPage * ViewBag.PageSize, ViewBag.TotalUsers)) 
+                    @localizer["of"] @ViewBag.TotalUsers @localizer["users"]
                 </div>
                 <nav aria-label="Page navigation">
                     <ul class="pagination">

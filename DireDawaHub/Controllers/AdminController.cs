@@ -643,6 +643,42 @@ public class AdminController : Controller
         return File(Encoding.UTF8.GetBytes(csv.ToString()), "text/csv", $"water_schedules_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
     }
 
+    [HttpGet]
+    public async Task<IActionResult> ExportClinicsToCsv()
+    {
+        var clinics = await _context.ClinicRecords.ToListAsync();
+        var csv = new StringBuilder();
+        csv.AppendLine("Id,ClinicName,Location,AvailableDoctors,HasEssentialMedicines,ContactPhone,Services,LastUpdated,UpdatedBy");
+        
+        foreach (var clinic in clinics)
+        {
+            csv.AppendLine($"{clinic.Id},{EscapeCsv(clinic.ClinicName)},{EscapeCsv(clinic.Location)},{clinic.AvailableDoctors},{clinic.HasEssentialMedicines},{EscapeCsv(clinic.ContactPhone)},{EscapeCsv(clinic.Services)},{clinic.LastUpdated:yyyy-MM-dd HH:mm},{EscapeCsv(clinic.UpdatedBy)}");
+        }
+        
+        await LogSecurityAudit("Data_Exported", "Clinic records exported to CSV", null, null, null, AuditSeverity.Info);
+        
+        return File(Encoding.UTF8.GetBytes(csv.ToString()), "text/csv", $"clinics_export_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ExportJobsByTitle(string title)
+    {
+        var jobs = await _context.JobPostings
+            .Where(j => j.Title.Contains(title))
+            .ToListAsync();
+        var csv = new StringBuilder();
+        csv.AppendLine("Id,Title,Company,Location,JobType,Salary,Description,PostedDate,IsApproved,AdminComment,ContributorId");
+        
+        foreach (var job in jobs)
+        {
+            csv.AppendLine($"{job.Id},{EscapeCsv(job.Title)},{EscapeCsv(job.Company)},{EscapeCsv(job.Location)},{EscapeCsv(job.JobType)},{EscapeCsv(job.Salary)},{EscapeCsv(job.Description)},{job.PostedDate:yyyy-MM-dd},{job.IsApproved},{EscapeCsv(job.AdminComment)},{job.ContributorId}");
+        }
+        
+        await LogSecurityAudit("Data_Exported", $"Job postings filtered by title '{title}' exported to CSV", null, null, null, AuditSeverity.Info);
+        
+        return File(Encoding.UTF8.GetBytes(csv.ToString()), "text/csv", $"jobs_{title.Replace(" ", "_")}_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
+    }
+
     private string EscapeCsv(string? value)
     {
         if (string.IsNullOrEmpty(value)) return "";
