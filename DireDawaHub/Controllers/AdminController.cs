@@ -692,10 +692,40 @@ public class AdminController : Controller
     [HttpPost]
     public async Task<IActionResult> BroadcastAlert(string message)
     {
-        await _hubContext.Clients.All.SendAsync("ReceiveNotification", "📡 SYSTEM ALERT", message, "system");
+        var currentUser = await _userManager.GetUserAsync(User);
         
-        await LogSecurityAudit("Broadcast_Sent", $"System broadcast: {message}", null, null, null, AuditSeverity.Info);
+        // Save to database
+        var broadcast = new EmergencyBroadcast
+        {
+            Message = message,
+            SentAt = DateTime.Now,
+            SentBy = currentUser?.Email ?? "Admin",
+            Severity = "Critical",
+            IsActive = true,
+            ExpiresAt = DateTime.Now.AddHours(24) // Expire after 24 hours by default
+        };
         
+        _context.EmergencyBroadcasts.Add(broadcast);
+        await _context.SaveChangesAsync();
+        
+        // Send real-time notification via SignalR
+        await _hubContext.Clients.All.SendAsync("ReceiveEmergencyBroadcast", broadcast.Id, message, broadcast.Severity, broadcast.SentAt);
+        
+        await LogSecurityAudit("Broadcast_Sent", $"System broadcast: {message}", null, null, null, AuditSeverity.Critical);
+        
+        return RedirectToAction(nameof(Index));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeactivateBroadcast(int id)
+    {
+        var broadcast = await _context.EmergencyBroadcasts.FindAsync(id);
+        if (broadcast != null)
+        {
+            broadcast.IsActive = false;
+            await _context.SaveChangesAsync();
+            await LogSecurityAudit("Broadcast_Deactivated", $"Deactivated broadcast #{id}", null, null, null, AuditSeverity.Info);
+        }
         return RedirectToAction(nameof(Index));
     }
 

@@ -195,4 +195,7 @@
   <data name="✓ AUTHORIZED AS CONTRIBUTOR" xml:space="preserve"><value>✓ እንደ አበርካች ፍቀድ</value></data>
   <data name="AUTHORIZE AS CONTRIBUTOR" xml:space="preserve"><value>እንደ አበርካች ፍቀድ</value></data>
   <data name="Back to Registry" xml:space="preserve"><value>ወደ መዝገብ ተመለስ</value></data>
+  <data name="I Acknowledge &amp;amp; Close" xml:space="preserve"><value>ተቀብያለሁ እና ዝጋ</value></data>
+  <data name="Sent by" xml:space="preserve"><value>የተላከው በ</value></data>
 </root>
+

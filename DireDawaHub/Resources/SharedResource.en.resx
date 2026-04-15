@@ -237,4 +237,7 @@
   <data name="✓ AUTHORIZED AS CONTRIBUTOR" xml:space="preserve"><value>✓ AUTHORIZED AS CONTRIBUTOR</value></data>
   <data name="AUTHORIZE AS CONTRIBUTOR" xml:space="preserve"><value>AUTHORIZE AS CONTRIBUTOR</value></data>
   <data name="Back to Registry" xml:space="preserve"><value>Back to Registry</value></data>
+  <data name="I Acknowledge &amp;amp; Close" xml:space="preserve"><value>I Acknowledge &amp; Close</value></data>
+  <data name="Sent by" xml:space="preserve"><value>Sent by</value></data>
 </root>
+

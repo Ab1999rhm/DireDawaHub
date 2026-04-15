@@ -50,6 +50,118 @@
         --radius-full: 9999px;
     }
 
+    /* Emergency Broadcast Modal Styles */
+    .emergency-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(8px);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .emergency-modal {
+        background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #dc2626 100%);
+        border-radius: var(--radius-xl);
+        padding: 3rem;
+        max-width: 800px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        border: 3px solid rgba(239, 68, 68, 0.5);
+        animation: emergencyPulse 2s ease-in-out infinite;
+    }
+
+    @@keyframes emergencyPulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+        50% { box-shadow: 0 0 0 20px rgba(239, 68, 68, 0); }
+    }
+
+    .emergency-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .emergency-icon {
+        font-size: 3rem;
+        animation: emergencyBlink 1s ease-in-out infinite;
+    }
+
+    @@keyframes emergencyBlink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+    }
+
+    .emergency-title {
+        color: white;
+        font-size: 2.5rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .emergency-message {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        margin-bottom: 2rem;
+        font-size: 1.25rem;
+        line-height: 1.8;
+        color: var(--dd-dark);
+        white-space: pre-wrap;
+    }
+
+    .emergency-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+    }
+
+    .emergency-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .emergency-btn-acknowledge {
+        background: #10b981;
+        color: white;
+        border: none;
+        padding: 1rem 3rem;
+        font-size: 1.1rem;
+        font-weight: 700;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .emergency-btn-acknowledge:hover {
+        background: #059669;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .emergency-btn-acknowledge:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+
     /* Hero Section with Background Image */
     .hero-section {
         position: relative;
@@ -909,6 +1021,32 @@
     }
 </style>
 
+@* Emergency Broadcast Modal *@
+@if (Model.ActiveEmergencyBroadcasts?.Any() == true)
+{
+    var firstBroadcast = Model.ActiveEmergencyBroadcasts.First();
+    <div id="emergencyModal" class="emergency-modal-overlay">
+        <div class="emergency-modal" data-broadcast-id="@firstBroadcast.Id">
+            <div class="emergency-header">
+                <span class="emergency-icon">🚨</span>
+                <h1 class="emergency-title">@SharedLocalizer["Emergency Broadcast"]</h1>
+            </div>
+            <div class="emergency-message">
+                @firstBroadcast.Message
+            </div>
+            <div class="emergency-meta">
+                <span><i class="bi bi-clock"></i> @firstBroadcast.SentAt.ToString("MMM dd, yyyy HH:mm")</span>
+                <span><i class="bi bi-person"></i> Kan ergame Wiirtuu magalla Dire dawa irra.</span>
+            </div>
+            <div class="emergency-actions">
+                <button type="button" class="emergency-btn-acknowledge" onclick="acknowledgeBroadcast(@firstBroadcast.Id)">
+                    <i class="bi bi-check-circle"></i> @SharedLocalizer["I Acknowledge & Close"]
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
 <!-- Hero Section with Live Statistics -->
 <div class="hero-section text-center mt-3">
     <div class="hero-content">
@@ -1449,4 +1587,44 @@
             );
         }, 8000);
     });
+
+    // Emergency Broadcast Acknowledgment
+    window.acknowledgeBroadcast = async function(broadcastId) {
+        const btn = document.querySelector('.emergency-btn-acknowledge');
+        const modal = document.getElementById('emergencyModal');
+        
+        btn.disabled = true;
+        btn.innerHTML = '<i class="bi bi-check-circle-fill"></i> Processing...';
+        
+        try {
+            const response = await fetch('/Home/AcknowledgeBroadcast?broadcastId=' + broadcastId, {
+                method: 'POST',
+                headers: {
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value || ''
+                }
+            });
+            
+            if (response.ok) {
+                // Fade out and remove modal
+                modal.style.transition = 'opacity 0.5s ease';
+                modal.style.opacity = '0';
+                setTimeout(() => {
+                    modal.remove();
+                }, 500);
+                
+                // Show success notification
+                NotificationSystem.show(
+                    'Emergency Alert Acknowledged',
+                    'You have acknowledged the emergency broadcast. Stay safe!',
+                    'system'
+                );
+            } else {
+                throw new Error('Failed to acknowledge');
+            }
+        } catch (error) {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="bi bi-check-circle"></i> I Acknowledge & Close';
+            alert('Failed to acknowledge broadcast. Please try again.');
+        }
+    }
 </script>
