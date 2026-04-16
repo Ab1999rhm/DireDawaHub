@@ -87,6 +87,10 @@ app.MapHub<DireDawaHub.Hubs.NotificationHub>("/notificationHub");
 // ===== SEED DEFAULT ADMIN ACCCOUNT =====
 using (var scope = app.Services.CreateScope())
 {
+    // Ensure database is created and migrations are applied before using Identity managers
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    await db.Database.MigrateAsync();
+
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
