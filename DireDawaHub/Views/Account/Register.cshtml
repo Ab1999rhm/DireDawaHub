@@ -10,13 +10,13 @@
         margin: 0;
         padding: 0;
         font-family: 'Inter', sans-serif;
-        background: #0f172a;
+        background-color: #f1f5f9;
         background-image: 
-            radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-            radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
-            radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            radial-gradient(circle at 10% 20%, rgba(30, 64, 175, 0.03) 0%, transparent 20%),
+            radial-gradient(circle at 90% 80%, rgba(13, 148, 136, 0.03) 0%, transparent 20%);
+        background-attachment: fixed;
         min-height: 100vh;
-        color: #e2e8f0;
+        color: #0f172a;
     }
 
     .auth-container {
@@ -28,12 +28,12 @@
     }
 
     .auth-card {
-        background: rgba(30, 41, 59, 0.7);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px) saturate(180%);
+        -webkit-backdrop-filter: blur(12px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 20px;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
         width: 100%;
         max-width: 580px;
         overflow: hidden;
@@ -49,7 +49,7 @@
         width: 100%;
         height: 120px;
         object-fit: cover;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid #e2e8f0;
     }
 
     .auth-body {
@@ -63,74 +63,75 @@
 
     .auth-icon {
         font-size: 3rem;
-        color: #60a5fa;
+        color: #3b82f6;
         margin-bottom: 0.5rem;
         display: inline-block;
-        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+        filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
     }
 
     .auth-header h2 {
         font-size: 1.75rem;
         font-weight: 700;
-        color: #ffffff;
+        color: #0f172a;
         margin: 0 0 0.5rem 0;
         letter-spacing: -0.025em;
     }
 
     .auth-header p {
-        color: #94a3b8;
+        color: #475569;
         font-size: 0.95rem;
         margin: 0;
     }
 
     .document-requirements {
-        background: rgba(59, 130, 246, 0.1);
+        background: #f0f9ff;
         border-left: 4px solid #3b82f6;
         padding: 1rem;
         border-radius: 0 8px 8px 0;
         margin-bottom: 1.5rem;
-        color: #e2e8f0;
+        color: #0f172a;
     }
 
     .document-requirements ul {
         margin: 0;
         padding-left: 1.5rem;
         font-size: 0.85rem;
-        color: #cbd5e1;
+        color: #475569;
     }
 
     .form-label {
-        color: #cbd5e1;
+        color: #1e293b;
         font-weight: 500;
         font-size: 0.9rem;
         margin-bottom: 0.5rem;
     }
 
     .form-control {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: #ffffff;
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        color: #0f172a;
         border-radius: 10px;
         padding: 0.75rem 1rem;
         transition: all 0.2s ease;
     }
 
     .form-control:focus {
-        background: rgba(15, 23, 42, 0.8);
-        border-color: #60a5fa;
-        box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
-        color: #ffffff;
+        background: #ffffff;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+        color: #0f172a;
+        outline: none;
     }
 
     .form-control::placeholder {
-        color: #64748b;
+        color: #94a3b8;
     }
 
     .input-group-text {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
         border-right: none;
-        color: #94a3b8;
+        color: #64748b;
     }
 
     .form-control.with-icon {
@@ -138,8 +139,8 @@
     }
 
     .upload-section {
-        background: rgba(15, 23, 42, 0.4);
-        border: 2px dashed rgba(255, 255, 255, 0.2);
+        background: #f8fafc;
+        border: 2px dashed #cbd5e1;
         border-radius: 12px;
         padding: 1.5rem;
         text-align: center;
@@ -148,13 +149,13 @@
     }
 
     .upload-section:hover {
-        border-color: #60a5fa;
-        background: rgba(96, 165, 250, 0.05);
+        border-color: #3b82f6;
+        background: #f0f9ff;
     }
 
     .upload-section i {
         font-size: 2.2rem;
-        color: #94a3b8;
+        color: #64748b;
         margin-bottom: 0.5rem;
     }
 
@@ -167,7 +168,7 @@
     }
 
     .btn-primary {
-        background: linear-gradient(135deg, #3b82f6, #2563eb);
+        background: linear-gradient(135deg, #1e40af, #3b82f6);
         border: none;
         padding: 0.875rem;
         border-radius: 10px;
@@ -176,31 +177,32 @@
         width: 100%;
         transition: all 0.3s ease;
         margin-top: 1rem;
-        box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
+        color: #ffffff;
+        box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.2);
     }
 
     .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
     }
 
     .auth-footer {
         text-align: center;
         margin-top: 2rem;
         font-size: 0.95rem;
-        color: #94a3b8;
+        color: #475569;
     }
 
     .auth-footer a {
-        color: #60a5fa;
+        color: #2563eb;
         text-decoration: none;
         font-weight: 600;
         transition: color 0.2s;
     }
 
     .auth-footer a:hover {
-        color: #93c5fd;
+        color: #1e40af;
         text-decoration: underline;
     }
 </style>
@@ -216,7 +218,7 @@
             </div>
 
             <div class="document-requirements">
-                <strong class="text-info"><i class="bi bi-info-circle me-1"></i> Document Requirements:</strong>
+                <strong class="text-primary"><i class="bi bi-info-circle me-1"></i> Document Requirements:</strong>
                 <ul class="mt-2">
                     <li>Upload a clear photo of your <strong>Work ID card</strong> or <strong>Government ID</strong></li>
                     <li>All text on the ID must be clearly visible</li>
@@ -252,12 +254,12 @@
                     <label asp-for="DocumentType" class="form-label">Document Type</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-file-earmark-text"></i></span>
-                        <select asp-for="DocumentType" class="form-control with-icon" style="background-color: rgba(15, 23, 42, 0.6); color: #fff;">
-                            <option value="WorkId" style="background-color: #0f172a;">Municipal Employee Work ID</option>
-                            <option value="GovernmentId" style="background-color: #0f172a;">National Government ID</option>
-                            <option value="MunicipalEmployeeCard" style="background-color: #0f172a;">Municipal Employee Card</option>
-                            <option value="Passport" style="background-color: #0f172a;">Passport</option>
-                            <option value="DriverLicense" style="background-color: #0f172a;">Driver's License</option>
+                        <select asp-for="DocumentType" class="form-control with-icon">
+                            <option value="WorkId">Municipal Employee Work ID</option>
+                            <option value="GovernmentId">National Government ID</option>
+                            <option value="MunicipalEmployeeCard">Municipal Employee Card</option>
+                            <option value="Passport">Passport</option>
+                            <option value="DriverLicense">Driver's License</option>
                         </select>
                     </div>
                 </div>
@@ -267,8 +269,8 @@
                     <label asp-for="IdDocumentPhoto" class="form-label">ID Document Photo <span class="text-danger">*</span></label>
                     <div class="upload-section" onclick="document.getElementById('idPhotoInput').click()">
                         <i class="bi bi-cloud-arrow-up"></i>
-                        <p class="mb-1 fw-medium" style="color: #e2e8f0;">Click to upload ID document</p>
-                        <p class="small mb-0" style="color: #94a3b8;">or drag and drop here</p>
+                        <p class="mb-1 fw-medium" style="color: #1e293b;">Click to upload ID document</p>
+                        <p class="small mb-0" style="color: #64748b;">or drag and drop here</p>
                         <input asp-for="IdDocumentPhoto" type="file" id="idPhotoInput" class="d-none" accept="image/*,.pdf" onchange="previewImage(this, 'idPreview')" />
                         <img id="idPreview" class="upload-preview mx-auto" />
                     </div>
@@ -277,11 +279,11 @@
 
                 <!-- Selfie Upload (Optional) -->
                 <div class="mb-4">
-                    <label asp-for="SelfieWithId" class="form-label">Selfie with ID <span style="color: #94a3b8; font-weight: normal;">(Optional)</span></label>
+                    <label asp-for="SelfieWithId" class="form-label">Selfie with ID <span style="color: #64748b; font-weight: normal;">(Optional)</span></label>
                     <div class="upload-section" onclick="document.getElementById('selfieInput').click()">
                         <i class="bi bi-camera"></i>
-                        <p class="mb-1 fw-medium" style="color: #e2e8f0;">Click to upload selfie</p>
-                        <p class="small mb-0" style="color: #94a3b8;">Shows your face clearly holding the ID</p>
+                        <p class="mb-1 fw-medium" style="color: #1e293b;">Click to upload selfie</p>
+                        <p class="small mb-0" style="color: #64748b;">Shows your face clearly holding the ID</p>
                         <input asp-for="SelfieWithId" type="file" id="selfieInput" class="d-none" accept="image/*" onchange="previewImage(this, 'selfiePreview')" />
                         <img id="selfiePreview" class="upload-preview mx-auto" />
                     </div>

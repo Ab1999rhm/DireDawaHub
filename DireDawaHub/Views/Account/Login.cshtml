@@ -11,13 +11,13 @@
         margin: 0;
         padding: 0;
         font-family: 'Inter', sans-serif;
-        background: #0f172a;
+        background-color: #f1f5f9;
         background-image: 
-            radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-            radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
-            radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            radial-gradient(circle at 10% 20%, rgba(30, 64, 175, 0.03) 0%, transparent 20%),
+            radial-gradient(circle at 90% 80%, rgba(13, 148, 136, 0.03) 0%, transparent 20%);
+        background-attachment: fixed;
         min-height: 100vh;
-        color: #e2e8f0;
+        color: #0f172a;
     }
 
     .auth-container {
@@ -29,12 +29,12 @@
     }
 
     .auth-card {
-        background: rgba(30, 41, 59, 0.7);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px) saturate(180%);
+        -webkit-backdrop-filter: blur(12px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 20px;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
         width: 100%;
         max-width: 480px;
         overflow: hidden;
@@ -50,7 +50,7 @@
         width: 100%;
         height: 140px;
         object-fit: cover;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid #e2e8f0;
     }
 
     .auth-body {
@@ -64,58 +64,59 @@
 
     .auth-icon {
         font-size: 3rem;
-        color: #60a5fa;
+        color: #3b82f6;
         margin-bottom: 0.5rem;
         display: inline-block;
-        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+        filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
     }
 
     .auth-header h2 {
         font-size: 1.75rem;
         font-weight: 700;
-        color: #ffffff;
+        color: #0f172a;
         margin: 0 0 0.5rem 0;
         letter-spacing: -0.025em;
     }
 
     .auth-header p {
-        color: #94a3b8;
+        color: #475569;
         font-size: 0.95rem;
         margin: 0;
     }
 
     .form-label {
-        color: #cbd5e1;
+        color: #1e293b;
         font-weight: 500;
         font-size: 0.9rem;
         margin-bottom: 0.5rem;
     }
 
     .form-control {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: #ffffff;
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        color: #0f172a;
         border-radius: 10px;
         padding: 0.75rem 1rem;
         transition: all 0.2s ease;
     }
 
     .form-control:focus {
-        background: rgba(15, 23, 42, 0.8);
-        border-color: #60a5fa;
-        box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
-        color: #ffffff;
+        background: #ffffff;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+        color: #0f172a;
+        outline: none;
     }
 
     .form-control::placeholder {
-        color: #64748b;
+        color: #94a3b8;
     }
 
     .input-group-text {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
         border-right: none;
-        color: #94a3b8;
+        color: #64748b;
     }
 
     .form-control.with-icon {
@@ -123,7 +124,7 @@
     }
 
     .btn-primary {
-        background: linear-gradient(135deg, #3b82f6, #2563eb);
+        background: linear-gradient(135deg, #1e40af, #3b82f6);
         border: none;
         padding: 0.875rem;
         border-radius: 10px;
@@ -132,43 +133,44 @@
         width: 100%;
         transition: all 0.3s ease;
         margin-top: 1rem;
-        box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
+        color: #ffffff;
+        box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.2);
     }
 
     .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
     }
 
     .auth-footer {
         text-align: center;
         margin-top: 2rem;
         font-size: 0.95rem;
-        color: #94a3b8;
+        color: #475569;
     }
 
     .auth-footer a {
-        color: #60a5fa;
+        color: #2563eb;
         text-decoration: none;
         font-weight: 600;
         transition: color 0.2s;
     }
 
     .auth-footer a:hover {
-        color: #93c5fd;
+        color: #1e40af;
         text-decoration: underline;
     }
 
     .form-check-label {
-        color: #94a3b8;
+        color: #475569;
         font-size: 0.9rem;
     }
 </style>
 
 <div class="auth-container">
     <div class="auth-card">
-        <img src="/images/smart_banner.png" alt="Login Banner" class="auth-banner" />
+        <img src="/images/banner.png" alt="Login Banner" class="auth-banner" />
         <div class="auth-body">
             <div class="auth-header">
                 <i class="bi bi-person-circle auth-icon"></i>
@@ -193,7 +195,7 @@
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-lock"></i></span>
                         <input asp-for="Password" type="password" id="password" class="form-control with-icon border-end-0" placeholder="••••••••" />
-                        <span class="input-group-text bg-transparent border-start-0" style="cursor: pointer;" onclick="togglePassword()">
+                        <span class="input-group-text bg-transparent border-start-0" style="cursor: pointer; border-left: none; background: #ffffff;" onclick="togglePassword()">
                             <i class="bi bi-eye-slash" id="togglePasswordIcon" style="color: #64748b;"></i>
                         </span>
                     </div>
@@ -225,7 +227,7 @@
             password.type = "text";
             icon.classList.remove("bi-eye-slash");
             icon.classList.add("bi-eye");
-            icon.style.color = "#60a5fa";
+            icon.style.color = "#3b82f6";
         } else {
             password.type = "password";
             icon.classList.remove("bi-eye");
