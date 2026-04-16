@@ -3,36 +3,161 @@
 @{
     ViewData["Title"] = "Register as Contributor";
 }
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 <style>
-    body { background-color: #f3f4f6; font-family: 'Inter', sans-serif; }
-    .login-container { display: flex; align-items: center; justify-content: center; min-height: 85vh; padding: 20px;}
-    .login-card { background: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); width: 100%; max-width: 500px; }
-    .login-brand { text-align: center; margin-bottom: 30px; }
-    .login-brand h2 { font-weight: 700; color: #1f2937; margin: 0; }
-    .login-brand p { color: #6b7280; font-size: 14px; margin-top: 5px; }
-    .form-control { border-radius: 8px; padding: 12px 15px; border: 1px solid #d1d5db; transition: border-color 0.2s; }
-    .form-control:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); }
-    .btn-primary { background-color: #2563eb; border: none; padding: 12px; border-radius: 8px; font-weight: 600; width: 100%; transition: background-color 0.2s; }
-    .btn-primary:hover { background-color: #1d4ed8; }
-    
-    /* Photo Upload Styles */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+        background: #0f172a;
+        background-image: 
+            radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+            radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+            radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+        min-height: 100vh;
+        color: #e2e8f0;
+    }
+
+    .auth-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 2rem;
+    }
+
+    .auth-card {
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        width: 100%;
+        max-width: 580px;
+        overflow: hidden;
+        animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @@keyframes scaleIn {
+        from { opacity: 0; transform: scale(0.95) translateY(20px); }
+        to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .auth-banner {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .auth-body {
+        padding: 2.5rem;
+    }
+
+    .auth-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .auth-icon {
+        font-size: 3rem;
+        color: #60a5fa;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+    }
+
+    .auth-header h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0 0 0.5rem 0;
+        letter-spacing: -0.025em;
+    }
+
+    .auth-header p {
+        color: #94a3b8;
+        font-size: 0.95rem;
+        margin: 0;
+    }
+
+    .document-requirements {
+        background: rgba(59, 130, 246, 0.1);
+        border-left: 4px solid #3b82f6;
+        padding: 1rem;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 1.5rem;
+        color: #e2e8f0;
+    }
+
+    .document-requirements ul {
+        margin: 0;
+        padding-left: 1.5rem;
+        font-size: 0.85rem;
+        color: #cbd5e1;
+    }
+
+    .form-label {
+        color: #cbd5e1;
+        font-weight: 500;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        border-radius: 10px;
+        padding: 0.75rem 1rem;
+        transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+        background: rgba(15, 23, 42, 0.8);
+        border-color: #60a5fa;
+        box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
+        color: #ffffff;
+    }
+
+    .form-control::placeholder {
+        color: #64748b;
+    }
+
+    .input-group-text {
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-right: none;
+        color: #94a3b8;
+    }
+
+    .form-control.with-icon {
+        border-left: none;
+    }
+
     .upload-section {
-        border: 2px dashed #d1d5db;
+        background: rgba(15, 23, 42, 0.4);
+        border: 2px dashed rgba(255, 255, 255, 0.2);
         border-radius: 12px;
         padding: 1.5rem;
         text-align: center;
         transition: all 0.3s ease;
         cursor: pointer;
     }
+
     .upload-section:hover {
-        border-color: #3b82f6;
-        background: rgba(59, 130, 246, 0.05);
+        border-color: #60a5fa;
+        background: rgba(96, 165, 250, 0.05);
     }
+
     .upload-section i {
-        font-size: 2rem;
-        color: #9ca3af;
+        font-size: 2.2rem;
+        color: #94a3b8;
         margin-bottom: 0.5rem;
     }
+
     .upload-preview {
         max-width: 100%;
         max-height: 200px;
@@ -40,109 +165,157 @@
         margin-top: 1rem;
         display: none;
     }
-    .document-requirements {
-        background: #f0f9ff;
-        border-left: 4px solid #3b82f6;
-        padding: 1rem;
-        border-radius: 0 8px 8px 0;
-        margin-bottom: 1.5rem;
+
+    .btn-primary {
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+        border: none;
+        padding: 0.875rem;
+        border-radius: 10px;
+        font-weight: 600;
+        letter-spacing: 0.025em;
+        width: 100%;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+        box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
     }
-    .document-requirements ul {
-        margin: 0;
-        padding-left: 1.5rem;
-        font-size: 0.875rem;
-        color: #4b5563;
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    }
+
+    .auth-footer {
+        text-align: center;
+        margin-top: 2rem;
+        font-size: 0.95rem;
+        color: #94a3b8;
+    }
+
+    .auth-footer a {
+        color: #60a5fa;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.2s;
+    }
+
+    .auth-footer a:hover {
+        color: #93c5fd;
+        text-decoration: underline;
     }
 </style>
 
-<div class="login-container">
-    <div class="login-card">
-        <div class="login-brand">
-            <h2>🛡️ Contributor Registration</h2>
-            <p>Upload your ID document for secure verification by administrators.</p>
-        </div>
-
-        <div class="document-requirements">
-            <strong style="color: #1e40af;">📋 Document Requirements:</strong>
-            <ul class="mt-2">
-                <li>Upload a clear photo of your <strong>Work ID card</strong> or <strong>Government ID</strong></li>
-                <li>All text on the ID must be clearly visible</li>
-                <li>File size: Max 5MB (JPG, PNG, PDF accepted)</li>
-                <li>Optional: Include a selfie holding the ID for faster verification</li>
-            </ul>
-        </div>
-
-        <form asp-controller="Account" asp-action="Register" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-            
-            <div class="mb-3">
-                <label asp-for="Email" class="form-label text-muted fw-bold">📧 Official Email Address</label>
-                <input asp-for="Email" class="form-control" placeholder="name@gov.et" />
-                <span asp-validation-for="Email" class="text-danger small"></span>
+<div class="auth-container py-4">
+    <div class="auth-card">
+        <img src="/images/banner.png" alt="Registration Banner" class="auth-banner" />
+        <div class="auth-body">
+            <div class="auth-header">
+                <i class="bi bi-shield-lock auth-icon"></i>
+                <h2>Contributor Registration</h2>
+                <p>Join the Dire Dawa Hub community</p>
             </div>
 
-            <div class="mb-3">
-                <label asp-for="WorkId" class="form-label text-muted fw-bold">🆔 Work ID Number</label>
-                <input asp-for="WorkId" class="form-control" placeholder="e.g. DD-WBS-3829" />
-                <span asp-validation-for="WorkId" class="text-danger small"></span>
+            <div class="document-requirements">
+                <strong class="text-info"><i class="bi bi-info-circle me-1"></i> Document Requirements:</strong>
+                <ul class="mt-2">
+                    <li>Upload a clear photo of your <strong>Work ID card</strong> or <strong>Government ID</strong></li>
+                    <li>All text on the ID must be clearly visible</li>
+                    <li>File size: Max 5MB (JPG, PNG, PDF accepted)</li>
+                    <li>Optional: Include a selfie holding the ID for faster verification</li>
+                </ul>
             </div>
 
-            <div class="mb-3">
-                <label asp-for="DocumentType" class="form-label text-muted fw-bold">📄 Document Type</label>
-                <select asp-for="DocumentType" class="form-control">
-                    <option value="WorkId">Municipal Employee Work ID</option>
-                    <option value="GovernmentId">National Government ID</option>
-                    <option value="MunicipalEmployeeCard">Municipal Employee Card</option>
-                    <option value="Passport">Passport</option>
-                    <option value="DriverLicense">Driver's License</option>
-                </select>
-            </div>
+            <form asp-controller="Account" asp-action="Register" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3 small"></div>
+                
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="Email" class="form-label">Email Address</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <input asp-for="Email" class="form-control with-icon" placeholder="name@gov.et" />
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger small mt-1 d-block"></span>
+                    </div>
 
-            <!-- ID Document Upload -->
-            <div class="mb-4">
-                <label asp-for="IdDocumentPhoto" class="form-label text-muted fw-bold">📸 ID Document Photo <span class="text-danger">*</span></label>
-                <div class="upload-section" onclick="document.getElementById('idPhotoInput').click()">
-                    <i class="bi bi-cloud-upload"></i>
-                    <p class="mb-1 text-muted">Click to upload ID document</p>
-                    <p class="small text-muted">or drag and drop here</p>
-                    <input asp-for="IdDocumentPhoto" type="file" id="idPhotoInput" class="d-none" accept="image/*,.pdf" onchange="previewImage(this, 'idPreview')" />
-                    <img id="idPreview" class="upload-preview" />
+                    <div class="col-md-6">
+                        <label asp-for="WorkId" class="form-label">Work ID Number</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+                            <input asp-for="WorkId" class="form-control with-icon" placeholder="e.g. DD-WBS-3829" />
+                        </div>
+                        <span asp-validation-for="WorkId" class="text-danger small mt-1 d-block"></span>
+                    </div>
                 </div>
-                <span asp-validation-for="IdDocumentPhoto" class="text-danger small"></span>
-            </div>
 
-            <!-- Selfie Upload (Optional) -->
-            <div class="mb-4">
-                <label asp-for="SelfieWithId" class="form-label text-muted fw-bold">🤳 Selfie with ID <span class="text-muted">(Optional)</span></label>
-                <div class="upload-section" onclick="document.getElementById('selfieInput').click()">
-                    <i class="bi bi-person-square"></i>
-                    <p class="mb-1 text-muted">Click to upload selfie with ID</p>
-                    <p class="small text-muted">Shows your face clearly holding the ID</p>
-                    <input asp-for="SelfieWithId" type="file" id="selfieInput" class="d-none" accept="image/*" onchange="previewImage(this, 'selfiePreview')" />
-                    <img id="selfiePreview" class="upload-preview" />
+                <div class="mb-4">
+                    <label asp-for="DocumentType" class="form-label">Document Type</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-file-earmark-text"></i></span>
+                        <select asp-for="DocumentType" class="form-control with-icon" style="background-color: rgba(15, 23, 42, 0.6); color: #fff;">
+                            <option value="WorkId" style="background-color: #0f172a;">Municipal Employee Work ID</option>
+                            <option value="GovernmentId" style="background-color: #0f172a;">National Government ID</option>
+                            <option value="MunicipalEmployeeCard" style="background-color: #0f172a;">Municipal Employee Card</option>
+                            <option value="Passport" style="background-color: #0f172a;">Passport</option>
+                            <option value="DriverLicense" style="background-color: #0f172a;">Driver's License</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <div class="mb-3">
-                <label asp-for="Password" class="form-label text-muted fw-bold">🔒 Password</label>
-                <input asp-for="Password" class="form-control" placeholder="••••••••" />
-                <span asp-validation-for="Password" class="text-danger small"></span>
-            </div>
+                <!-- ID Document Upload -->
+                <div class="mb-4">
+                    <label asp-for="IdDocumentPhoto" class="form-label">ID Document Photo <span class="text-danger">*</span></label>
+                    <div class="upload-section" onclick="document.getElementById('idPhotoInput').click()">
+                        <i class="bi bi-cloud-arrow-up"></i>
+                        <p class="mb-1 fw-medium" style="color: #e2e8f0;">Click to upload ID document</p>
+                        <p class="small mb-0" style="color: #94a3b8;">or drag and drop here</p>
+                        <input asp-for="IdDocumentPhoto" type="file" id="idPhotoInput" class="d-none" accept="image/*,.pdf" onchange="previewImage(this, 'idPreview')" />
+                        <img id="idPreview" class="upload-preview mx-auto" />
+                    </div>
+                    <span asp-validation-for="IdDocumentPhoto" class="text-danger small mt-1 d-block"></span>
+                </div>
 
-            <div class="mb-4">
-                <label asp-for="ConfirmPassword" class="form-label text-muted fw-bold">🔒 Confirm Password</label>
-                <input asp-for="ConfirmPassword" class="form-control" placeholder="••••••••" />
-                <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
-            </div>
+                <!-- Selfie Upload (Optional) -->
+                <div class="mb-4">
+                    <label asp-for="SelfieWithId" class="form-label">Selfie with ID <span style="color: #94a3b8; font-weight: normal;">(Optional)</span></label>
+                    <div class="upload-section" onclick="document.getElementById('selfieInput').click()">
+                        <i class="bi bi-camera"></i>
+                        <p class="mb-1 fw-medium" style="color: #e2e8f0;">Click to upload selfie</p>
+                        <p class="small mb-0" style="color: #94a3b8;">Shows your face clearly holding the ID</p>
+                        <input asp-for="SelfieWithId" type="file" id="selfieInput" class="d-none" accept="image/*" onchange="previewImage(this, 'selfiePreview')" />
+                        <img id="selfiePreview" class="upload-preview mx-auto" />
+                    </div>
+                </div>
 
-            <button type="submit" class="btn btn-primary text-white mb-3">
-                <i class="bi bi-shield-check me-2"></i>Submit for Verification
-            </button>
-            
-            <div class="text-center">
-                <a asp-action="Login" class="text-decoration-none small fw-bold">← Go back to Login</a>
-            </div>
-        </form>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label asp-for="Password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                            <input asp-for="Password" type="password" class="form-control with-icon" placeholder="••••••••" />
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger small mt-1 d-block"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                            <input asp-for="ConfirmPassword" type="password" class="form-control with-icon" placeholder="••••••••" />
+                        </div>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger small mt-1 d-block"></span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary text-white">
+                    <i class="bi bi-shield-check me-2"></i>Submit for Verification
+                </button>
+                
+                <div class="auth-footer">
+                    Already have an account? <a asp-action="Login">Sign in here</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
