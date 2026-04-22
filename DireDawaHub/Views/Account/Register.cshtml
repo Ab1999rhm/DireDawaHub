@@ -367,8 +367,16 @@
                         <label asp-for="Password" class="form-label">Password</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                            <input asp-for="Password" type="password" class="form-control with-icon" placeholder="••••••••" />
+                            <input asp-for="Password" type="password" class="form-control with-icon" placeholder="••••••••" style="border-right: none;" id="Password" oninput="checkPasswordStrength(this.value)" />
+                            <span class="input-group-text bg-white" style="cursor: pointer; border-left: none;" onclick="togglePassword('Password', this)">
+                                <i class="bi bi-eye text-secondary"></i>
+                            </span>
                         </div>
+                        <!-- Password Strength Line -->
+                        <div class="progress mt-1" style="height: 4px; background-color: #e2e8f0; border-radius: 2px;">
+                            <div id="password-strength-bar" class="progress-bar" role="progressbar" style="width: 0%; transition: width 0.3s ease, background-color 0.3s ease;"></div>
+                        </div>
+                        <small id="password-strength-text" class="text-muted" style="font-size: 0.75rem;"></small>
                         <span asp-validation-for="Password" class="text-danger small mt-1 d-block"></span>
                     </div>
 
@@ -376,7 +384,10 @@
                         <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-                            <input asp-for="ConfirmPassword" type="password" class="form-control with-icon" placeholder="••••••••" />
+                            <input asp-for="ConfirmPassword" type="password" class="form-control with-icon" placeholder="••••••••" style="border-right: none;" id="ConfirmPassword" />
+                            <span class="input-group-text bg-white" style="cursor: pointer; border-left: none;" onclick="togglePassword('ConfirmPassword', this)">
+                                <i class="bi bi-eye text-secondary"></i>
+                            </span>
                         </div>
                         <span asp-validation-for="ConfirmPassword" class="text-danger small mt-1 d-block"></span>
                     </div>
@@ -395,6 +406,44 @@
 </div>
 
 <script>
+    // Toggle Password Visibility
+    function togglePassword(inputId, spanElement) {
+        const input = document.getElementById(inputId);
+        const icon = spanElement.querySelector('i');
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.remove('bi-eye');
+            icon.classList.add('bi-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.classList.remove('bi-eye-slash');
+            icon.classList.add('bi-eye');
+        }
+    }
+
+    // Password Strength Logic
+    function checkPasswordStrength(password) {
+        const bar = document.getElementById('password-strength-bar');
+        const text = document.getElementById('password-strength-text');
+        let strength = 0;
+        
+        if (password.length >= 8) strength++;
+        if (/[A-Z]/.test(password)) strength++;
+        if (/[a-z]/.test(password)) strength++;
+        if (/[0-9]/.test(password)) strength++;
+        if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+        const colors = ['#cbd5e1', '#ef4444', '#f59e0b', '#3b82f6', '#10b981', '#10b981'];
+        const labels = ['', 'Very Weak', 'Weak', 'Good', 'Strong', 'Excellent'];
+        const widths = ['0%', '20%', '40%', '60%', '80%', '100%'];
+
+        bar.style.width = widths[strength];
+        bar.style.backgroundColor = colors[strength];
+        text.innerText = labels[strength];
+        text.style.color = colors[strength];
+    }
+
+    // ID Image Preview
     function previewImage(input, previewId) {
         const preview = document.getElementById(previewId);
         if (input.files && input.files[0]) {
