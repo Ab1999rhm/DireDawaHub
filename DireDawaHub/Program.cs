@@ -25,6 +25,10 @@ builder.Services.AddHostedService<DireDawaHub.Services.ContentSchedulerService>(
 // Register Email Service
 builder.Services.AddScoped<DireDawaHub.Services.EmailService>();
 
+// Register Weather Service
+builder.Services.AddHttpClient<DireDawaHub.Services.WeatherService>();
+builder.Services.AddScoped<DireDawaHub.Services.WeatherService>();
+
 // Register Version Tracking Service
 builder.Services.AddScoped<DireDawaHub.Services.VersionTrackingService>();
 
@@ -35,14 +39,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => 
 {
     options.SignIn.RequireConfirmedAccount = false;
-    options.Password.RequireDigit = false;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireUppercase = false;
+    options.Password.RequireDigit = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequiredLength = 8;
     
     // Two-Factor Authentication Settings
     options.SignIn.RequireConfirmedEmail = false;
     options.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
-    options.Password.RequireLowercase = false;
 })
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();

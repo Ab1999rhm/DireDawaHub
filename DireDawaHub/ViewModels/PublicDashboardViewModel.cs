@@ -10,4 +10,27 @@ public class PublicDashboardViewModel
     public IEnumerable<JobPosting> Jobs { get; set; } = new List<JobPosting>();
     public IEnumerable<AgricultureMarket> AgMarkets { get; set; } = new List<AgricultureMarket>();
     public IEnumerable<EmergencyBroadcast> ActiveEmergencyBroadcasts { get; set; } = new List<EmergencyBroadcast>();
+    public IEnumerable<CommunityPoster> Posters { get; set; } = new List<CommunityPoster>();
+    
+    // New sections for the enhanced dashboard
+    public IEnumerable<EducationAnnouncement> EducationAnnouncements { get; set; } = new List<EducationAnnouncement>();
+    public WeatherData Weather { get; set; } = new WeatherData();
+}
+
+public class EducationAnnouncement
+{
+    public string Title { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string Icon { get; set; } = "📚";
+    public DateTime Date { get; set; } = DateTime.Now;
+}
+
+public class WeatherData
+{
+    public double Temperature { get; set; } = 28.5;
+    public string Condition { get; set; } = "Sunny";
+    public string Icon { get; set; } = "🌤️";
+    public double Humidity { get; set; } = 45;
+    public double WindSpeed { get; set; } = 12.4;
+    public string Forecast { get; set; } = "Clear skies expected for the next 24 hours.";
 }
