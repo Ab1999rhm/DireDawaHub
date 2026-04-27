@@ -10,10 +10,12 @@ namespace DireDawaHub.Controllers;
 public class HomeController : Controller
 {
     private readonly ApplicationDbContext _context;
+    private readonly DireDawaHub.Services.WeatherService _weatherService;
 
-    public HomeController(ApplicationDbContext context)
+    public HomeController(ApplicationDbContext context, DireDawaHub.Services.WeatherService weatherService)
     {
         _context = context;
+        _weatherService = weatherService;
     }
 
     public async Task<IActionResult> Index()
@@ -41,6 +43,23 @@ public class HomeController : Controller
             .ToListAsync();
 
         model.ActiveEmergencyBroadcasts = broadcasts.Where(b => !Request.Cookies.ContainsKey($"AckBroadcast_{b.Id}")).ToList();
+
+        // Fetch Community Posters
+        model.Posters = await _context.CommunityPosters
+            .Where(p => p.IsApproved)
+            .OrderByDescending(p => p.PostedDate)
+            .Take(4)
+            .ToListAsync();
+
+        // Fetch Education Announcements
+        model.EducationAnnouncements = new List<EducationAnnouncement>
+        {
+            new EducationAnnouncement { Title = "University Entrance Exam Prep", Description = "Free prep sessions starting next week at the Public Library.", Date = DateTime.Now.AddDays(2) },
+            new EducationAnnouncement { Title = "TVET Skills Workshop", Description = "Learn digital masonry and advanced plumbing techniques.", Date = DateTime.Now.AddDays(5) }
+        };
+
+        // Fetch Real Weather Data
+        model.Weather = await _weatherService.GetCurrentWeatherAsync();
 
         return View(model);
     }

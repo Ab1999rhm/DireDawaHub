@@ -1,0 +1,62 @@
+@{
+    ViewData["Title"] = "Create Community Poster";
+    Layout = "_Layout";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-5">
+                    <h2 class="fw-bold mb-4">🖼️ Post a New Poster</h2>
+                    <p class="text-muted mb-5">Share events, announcements, or educational content with the community.</p>
+
+                    <form asp-action="CreatePoster" method="post" enctype="multipart/form-data">
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Poster Title</label>
+                            <input type="text" name="title" class="form-control form-control-lg rounded-3" placeholder="e.g., Cultural Festival 2026" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Short Description (Snippet)</label>
+                            <input type="text" name="description" class="form-control rounded-3" placeholder="A brief summary for the dashboard card..." required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Detailed Content (Full Blog)</label>
+                            <textarea name="content" class="form-control rounded-3" rows="8" placeholder="Write your full announcement or blog post here..."></textarea>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Category</label>
+                                <select name="category" class="form-select rounded-3">
+                                    <option value="Event">Event</option>
+                                    <option value="Announcement">Announcement</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Health">Health</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Location (Optional)</label>
+                                <input type="text" name="location" class="form-control rounded-3" placeholder="e.g., Taiwan Market">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">High Quality Image</label>
+                            <input type="file" name="image" class="form-control rounded-3" accept="image/*" required>
+                                <div class="form-text">Upload a clear, high-resolution image (JPG, PNG).</div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-pill py-3 fw-bold">
+                                <i class="bi bi-cloud-upload"></i> PUBLISH POSTER
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

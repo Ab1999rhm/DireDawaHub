@@ -22,4 +22,5 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     public DbSet<ContentVersion> ContentVersions { get; set; }
     public DbSet<EmergencyBroadcast> EmergencyBroadcasts { get; set; }
     public DbSet<UserBroadcastAcknowledgment> UserBroadcastAcknowledgments { get; set; }
+    public DbSet<CommunityPoster> CommunityPosters { get; set; }
 }
