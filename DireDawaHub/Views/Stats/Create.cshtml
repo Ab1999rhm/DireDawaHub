@@ -1,0 +1,44 @@
+@model DireDawaHub.Models.CityStatistic
+@{
+    ViewData["Title"] = "Add Statistic";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="glass-card p-5">
+                <h2 class="fw-bold mb-4">📈 Add City Statistic</h2>
+                <form asp-action="Create" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Label" class="form-label text-white">Metric Label</label>
+                        <input asp-for="Label" class="form-control bg-dark text-white border-opacity-25" placeholder="e.g. Total Population" required />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Value" class="form-label text-white">Current Value</label>
+                        <input asp-for="Value" class="form-control bg-dark text-white border-opacity-25" placeholder="e.g. 1,250,000" required />
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <label asp-for="Icon" class="form-label text-white">Emoji Icon</label>
+                            <input asp-for="Icon" class="form-control bg-dark text-white border-opacity-25" placeholder="📊" required />
+                        </div>
+                        <div class="col-6">
+                            <label asp-for="Category" class="form-label text-white">Category</label>
+                            <select asp-for="Category" class="form-select bg-dark text-white border-opacity-25">
+                                <option value="Population">Population</option>
+                                <option value="Infrastructure">Infrastructure</option>
+                                <option value="Economy">Economy</option>
+                                <option value="Health">Health</option>
+                                <option value="General">General</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary rounded-pill py-3 fw-bold">PUBLISH METRIC</button>
+                        <a asp-action="Index" class="btn btn-link text-white-50 text-decoration-none">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

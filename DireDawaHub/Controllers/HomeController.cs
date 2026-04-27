@@ -24,13 +24,13 @@ public class HomeController : Controller
         var model = new PublicDashboardViewModel();
         
         // Fetch all data live from the database
-        model.WaterSchedules = await _context.WaterSchedules.OrderByDescending(w => w.StartTime).Take(6).ToListAsync();
+        model.WaterSchedules = await _context.WaterSchedules.OrderByDescending(w => w.StartTime).ToListAsync();
         model.Clinics = await _context.ClinicRecords.OrderByDescending(c => c.LastUpdated).ToListAsync();
         model.Jobs = await _context.JobPostings
             .Where(j => j.IsApproved)
             .OrderByDescending(j => j.PostedDate)
-            .Take(8).ToListAsync();
-        model.AgMarkets = await _context.AgricultureMarkets.OrderByDescending(a => a.RecordedDate).Take(6).ToListAsync();
+            .ToListAsync();
+        model.AgMarkets = await _context.AgricultureMarkets.OrderByDescending(a => a.RecordedDate).ToListAsync();
 
         // Fetch active emergency broadcasts that user hasn't acknowledged
         var currentUserId = User.Identity?.IsAuthenticated == true ? User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value : null;
@@ -48,7 +48,6 @@ public class HomeController : Controller
         model.Posters = await _context.CommunityPosters
             .Where(p => p.IsApproved)
             .OrderByDescending(p => p.PostedDate)
-            .Take(4)
             .ToListAsync();
 
         // Fetch Education Announcements
@@ -58,10 +57,26 @@ public class HomeController : Controller
             new EducationAnnouncement { Title = "TVET Skills Workshop", Description = "Learn digital masonry and advanced plumbing techniques.", Date = DateTime.Now.AddDays(5) }
         };
 
+        // Fetch Public Safety Incidents
+        model.SafetyIncidents = await _context.PublicSafetyIncidents
+            .OrderByDescending(i => i.ReportedAt)
+            .ToListAsync();
+
+        // Fetch City Statistics
+        model.CityStats = await _context.CityStatistics.ToListAsync();
+
         // Fetch Real Weather Data
         model.Weather = await _weatherService.GetCurrentWeatherAsync();
 
         return View(model);
+    }
+
+    public async Task<IActionResult> PosterDetails(int id)
+    {
+        var poster = await _context.CommunityPosters.FirstOrDefaultAsync(p => p.Id == id);
+        if (poster == null) return NotFound();
+
+        return View(poster);
     }
 
     [HttpPost]

@@ -14,6 +14,8 @@ public class PublicDashboardViewModel
     
     // New sections for the enhanced dashboard
     public IEnumerable<EducationAnnouncement> EducationAnnouncements { get; set; } = new List<EducationAnnouncement>();
+    public IEnumerable<PublicSafetyIncident> SafetyIncidents { get; set; } = new List<PublicSafetyIncident>();
+    public IEnumerable<CityStatistic> CityStats { get; set; } = new List<CityStatistic>();
     public WeatherData Weather { get; set; } = new WeatherData();
 }
 
