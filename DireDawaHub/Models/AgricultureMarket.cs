@@ -10,4 +10,5 @@ public class AgricultureMarket
     public string MarketLocation { get; set; } = string.Empty;
     public DateTime RecordedDate { get; set; } = DateTime.Now;
     public string DiseaseAlerts { get; set; } = string.Empty;
+    public string? ProductImagePath { get; set; }
 }
