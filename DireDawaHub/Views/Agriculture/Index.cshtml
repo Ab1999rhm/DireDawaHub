@@ -35,6 +35,15 @@
                         </div>
                     }
                 </div>
+                @if (User.Identity != null && User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Contributor")))
+                {
+                    <div class="card-footer bg-white border-top text-end p-3 d-flex justify-content-end gap-2">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary px-3">Edit</a>
+                        <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Delete this report?');">
+                            <button type="submit" class="btn btn-sm btn-outline-danger px-3">Delete</button>
+                        </form>
+                    </div>
+                }
             </div>
         </div>
     }

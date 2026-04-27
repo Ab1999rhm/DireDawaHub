@@ -1,0 +1,52 @@
+@model DireDawaHub.Models.PublicSafetyIncident
+@{
+    ViewData["Title"] = "Report Incident";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="glass-card p-5">
+                <h2 class="fw-bold mb-4">🚔 Report Safety Incident</h2>
+                <form asp-action="Create" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label text-white">Incident Title</label>
+                        <input asp-for="Title" class="form-control bg-dark text-white border-opacity-25" required />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label text-white">Description</label>
+                        <textarea asp-for="Description" class="form-control bg-dark text-white border-opacity-25" rows="4" required></textarea>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="IncidentType" class="form-label text-white">Type</label>
+                            <select asp-for="IncidentType" class="form-select bg-dark text-white border-opacity-25">
+                                <option value="Traffic">Traffic</option>
+                                <option value="Fire">Fire</option>
+                                <option value="Security">Security</option>
+                                <option value="Medical">Medical</option>
+                                <option value="General">General</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Status" class="form-label text-white">Status</label>
+                            <select asp-for="Status" class="form-select bg-dark text-white border-opacity-25">
+                                <option value="Active">Active</option>
+                                <option value="Resolved">Resolved</option>
+                                <option value="Alert">Alert</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="Location" class="form-label text-white">Location</label>
+                        <input asp-for="Location" class="form-control bg-dark text-white border-opacity-25" placeholder="e.g. Taiwan Market area" required />
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary rounded-pill py-3 fw-bold">PUBLISH ALERT</button>
+                        <a asp-action="Index" class="btn btn-link text-white-50 text-decoration-none">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

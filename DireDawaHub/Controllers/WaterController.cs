@@ -43,4 +43,47 @@ public class WaterController : Controller
         }
         return View(waterSchedule);
     }
+
+    [Authorize(Roles = "Admin, Contributor")]
+    public async Task<IActionResult> Edit(int id)
+    {
+        var item = await _context.WaterSchedules.FindAsync(id);
+        if (item == null) return NotFound();
+        return View(item);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Admin, Contributor")]
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Location,StartTime,EndTime,Status,Notes")] WaterSchedule waterSchedule)
+    {
+        if (id != waterSchedule.Id) return NotFound();
+
+        if (ModelState.IsValid)
+        {
+            _context.Update(waterSchedule);
+            await _context.SaveChangesAsync();
+
+            // SIGNALR NOTIFICATION PUSH
+            var alertMessage = $"Update: {waterSchedule.Location} status is {waterSchedule.Status}";
+            await _hubContext.Clients.All.SendAsync("ReceiveWaterAlert", waterSchedule.Location, waterSchedule.Status, alertMessage);
+
+            return RedirectToAction(nameof(Index));
+        }
+        return View(waterSchedule);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Admin, Contributor")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var item = await _context.WaterSchedules.FindAsync(id);
+        if (item != null)
+        {
+            _context.WaterSchedules.Remove(item);
+            await _context.SaveChangesAsync();
+        }
+        return RedirectToAction(nameof(Index));
+    }
 }

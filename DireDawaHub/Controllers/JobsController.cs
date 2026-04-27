@@ -33,4 +33,41 @@ public class JobsController : Controller
         }
         return View(jobPosting);
     }
+
+    [Authorize(Roles = "Admin, Contributor")]
+    public async Task<IActionResult> Edit(int id)
+    {
+        var item = await _context.JobPostings.FindAsync(id);
+        if (item == null) return NotFound();
+        return View(item);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Admin, Contributor")]
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Company,Location,Description,IsTrainingOpportunity,PostedDate,ContributorId,IsApproved")] JobPosting jobPosting)
+    {
+        if (id != jobPosting.Id) return NotFound();
+        if (ModelState.IsValid)
+        {
+            _context.Update(jobPosting);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        return View(jobPosting);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Admin, Contributor")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var item = await _context.JobPostings.FindAsync(id);
+        if (item != null)
+        {
+            _context.JobPostings.Remove(item);
+            await _context.SaveChangesAsync();
+        }
+        return RedirectToAction(nameof(Index));
+    }
 }

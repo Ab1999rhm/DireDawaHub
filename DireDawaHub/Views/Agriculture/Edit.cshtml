@@ -1,0 +1,46 @@
+@model DireDawaHub.Models.AgricultureMarket
+@{
+    ViewData["Title"] = "Edit Market Report";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body p-5">
+                    <h2 class="fw-bold mb-4">🌾 Edit Market Update</h2>
+                    <form asp-action="Edit" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="RecordedDate" />
+                        
+                        <div class="mb-3">
+                            <label asp-for="CropName" class="form-label fw-bold">Crop / Product Name</label>
+                            <input asp-for="CropName" class="form-control rounded-3" required />
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label asp-for="PricePerKg" class="form-label fw-bold">Price / KG (ETB)</label>
+                                <input asp-for="PricePerKg" type="number" step="0.01" class="form-control rounded-3" required />
+                            </div>
+                            <div class="col-6">
+                                <label asp-for="MarketLocation" class="form-label fw-bold">Market Location</label>
+                                <input asp-for="MarketLocation" class="form-control rounded-3" required />
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="DiseaseAlerts" class="form-label fw-bold">Health / Disease Alerts (Optional)</label>
+                            <textarea asp-for="DiseaseAlerts" class="form-control rounded-3" rows="3" placeholder="Leave empty if no alerts..."></textarea>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success text-white rounded-pill py-3 fw-bold">SAVE CHANGES</button>
+                            <a asp-action="Index" class="btn btn-light rounded-pill py-3">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

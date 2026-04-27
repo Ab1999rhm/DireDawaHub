@@ -38,12 +38,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer bg-white border-top text-muted small p-4 d-flex justify-content-between align-items-center">
-                    <span>Last updated: @item.LastUpdated.ToString("g")</span>
-                    <div>
-                        <button class="btn btn-sm btn-outline-secondary px-3">Edit</button>
+                @if (User.Identity != null && User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Contributor")))
+                {
+                    <div class="card-footer bg-white border-top text-muted small p-4 d-flex justify-content-between align-items-center">
+                        <span>Last updated: @item.LastUpdated.ToString("g")</span>
+                        <div class="d-flex gap-2">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary px-3">Edit</a>
+                            <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Delete this record?');">
+                                <button type="submit" class="btn btn-sm btn-outline-danger px-3">Delete</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                }
+                else
+                {
+                    <div class="card-footer bg-white border-top text-muted small p-4">
+                        <span>Last updated: @item.LastUpdated.ToString("g")</span>
+                    </div>
+                }
             </div>
         </div>
     }

@@ -224,6 +224,26 @@
         .sidebar-nav { 
             flex-grow: 1; 
             padding-top: 16px; 
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.2) transparent;
+        }
+
+        .sidebar-nav::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar-nav::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar-nav::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .sidebar-nav::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
         
         .nav-link.custom-nav { 
@@ -699,6 +719,10 @@
                                    asp-area="" asp-controller="Contributor" asp-action="Index">👩‍💻 @localizer["My Dashboard"]</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Contributor/MyPosters") ? "active" : "")" 
+                                   asp-area="" asp-controller="Contributor" asp-action="MyPosters">🖼️ @localizer["Community Posters"]</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Water") ? "active" : "")" 
                                    asp-area="" asp-controller="Water" asp-action="Index">💧 Water Tracker</a>
                             </li>
@@ -713,6 +737,14 @@
                             <li class="nav-item">
                                 <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Agriculture") ? "active" : "")" 
                                    asp-area="" asp-controller="Agriculture" asp-action="Index">🌾 Agriculture</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Safety") ? "active" : "")" 
+                                   asp-area="" asp-controller="Safety" asp-action="Index">🚔 Public Safety</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link custom-nav @(Context.Request.Path.StartsWithSegments("/Stats") ? "active" : "")" 
+                                   asp-area="" asp-controller="Stats" asp-action="Index">📈 Statistics</a>
                             </li>
                         }
                         
@@ -776,6 +808,7 @@
                     }
                     else
                     {
+                        <a class="auth-btn" asp-area="" asp-controller="Account" asp-action="Login" style="background: rgba(30, 64, 175, 0.1); color: #1e40af; border: 1px solid rgba(30, 64, 175, 0.2);">Login</a>
                         <a class="auth-btn" asp-area="" asp-controller="Account" asp-action="Login">Contributors Portal</a>
                     }
                 </div>
