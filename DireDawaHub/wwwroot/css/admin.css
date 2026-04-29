@@ -1,0 +1,329 @@
+/* 
+    Premium Admin Dashboard Design System
+    Dire Dawa Hub Command Center
+*/
+
+:root {
+    --admin-primary: #3b82f6;
+    --admin-primary-hover: #2563eb;
+    --admin-accent: #10b981;
+    --admin-accent-hover: #059669;
+    --admin-warning: #f59e0b;
+    --admin-danger: #ef4444;
+    --admin-info: #0ea5e9;
+    --admin-dark: #0f172a;
+    --admin-text-main: #f8fafc;
+    --admin-text-muted: #94a3b8;
+    
+    /* Premium Glassmorphism Tokens */
+    --glass-bg: rgba(15, 23, 42, 0.75);
+    --glass-bg-hover: rgba(15, 23, 42, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-border-light: rgba(255, 255, 255, 0.15);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+/* Base Overrides for Admin Context */
+.admin-header-anim { 
+    animation: fadeInDown 0.8s ease backwards; 
+}
+
+/* Premium Cards */
+.admin-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 1.5rem;
+    color: var(--admin-text-main);
+    box-shadow: var(--glass-shadow);
+    transition: var(--transition-smooth);
+    animation: fadeInUp 0.6s ease backwards;
+}
+
+.admin-card:hover {
+    border-color: var(--glass-border-light);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+}
+
+.admin-card h1, .admin-card h2, .admin-card h3, .admin-card h4, .admin-card h5, .admin-card h6 {
+    color: #ffffff !important;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.admin-card .text-muted {
+    color: var(--admin-text-muted) !important;
+}
+
+/* Premium Tables */
+.admin-table-wrapper {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--glass-shadow);
+}
+
+.admin-table {
+    width: 100%;
+    margin-bottom: 0;
+    color: var(--admin-text-main);
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.admin-table th {
+    background: rgba(15, 23, 42, 0.85);
+    color: #e2e8f0;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--glass-border-light);
+}
+
+.admin-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--glass-border);
+    vertical-align: middle;
+    transition: var(--transition-smooth);
+}
+
+.admin-table tbody tr {
+    transition: var(--transition-smooth);
+}
+
+.admin-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Beautiful Badges */
+.admin-badge {
+    padding: 0.35em 0.8em;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border: 1px solid transparent;
+}
+
+.admin-badge-success {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.admin-badge-warning {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.admin-badge-danger {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.admin-badge-info {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.admin-badge-neutral {
+    background: rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Premium Buttons */
+.admin-btn {
+    border-radius: 10px;
+    padding: 0.5rem 1.25rem;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.admin-btn-primary {
+    background: linear-gradient(135deg, var(--admin-primary) 0%, #2563eb 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.admin-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    color: white;
+}
+
+.admin-btn-outline {
+    background: rgba(255, 255, 255, 0.05);
+    color: #f8fafc;
+    border: 1px solid var(--glass-border-light);
+}
+
+.admin-btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Action Icons */
+.action-icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    color: #94a3b8;
+    border: 1px solid var(--glass-border);
+    transition: var(--transition-smooth);
+    text-decoration: none;
+}
+
+.action-icon-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.action-icon-btn.delete:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+.action-icon-btn.edit:hover {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+    border-color: rgba(59, 130, 246, 0.4);
+}
+
+/* Integrity Bars (Dashboards) */
+.integrity-bar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.integrity-fill {
+    height: 100%;
+    background: var(--admin-primary);
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Inputs & Form Controls */
+.admin-input {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border-light);
+    color: white;
+    border-radius: 10px;
+    padding: 0.6rem 1rem;
+    transition: var(--transition-smooth);
+}
+
+.admin-input:focus {
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    border-color: var(--admin-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    outline: none;
+}
+
+.admin-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Pagination */
+.admin-pagination-container {
+    background: rgba(15, 23, 42, 0.5);
+    border-top: 1px solid var(--glass-border);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-pagination .page-link {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    margin: 0 2px;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.admin-pagination .page-link:hover {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #60a5fa;
+}
+
+.admin-pagination .page-item.active .page-link {
+    background: var(--admin-primary);
+    border-color: var(--admin-primary);
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+.admin-pagination .page-item.disabled .page-link {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.05);
+    color: #475569;
+    cursor: not-allowed;
+}
+
+/* User Avatars */
+.admin-avatar-sm {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}

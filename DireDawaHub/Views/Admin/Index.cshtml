@@ -7,87 +7,6 @@
     var state = (DireDawaHub.Services.SystemStateService)ViewBag.SystemState;
 }
 
-<style>
-    :root {
-        --admin-primary: #3b82f6;
-        --admin-accent: #10b981;
-        --admin-dark: #0f172a;
-        --glass-bg: rgba(15, 23, 42, 0.75);
-        --glass-border: rgba(255, 255, 255, 0.1);
-    }
-
-    body {
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.97) 0%, rgba(30, 64, 175, 0.95) 100%),
-                    url('/images/smart_banner.png');
-        background-size: cover;
-        background-attachment: fixed;
-        color: #f8fafc;
-    }
-
-    .admin-card {
-        background: var(--glass-bg);
-        backdrop-filter: blur(15px);
-        border: 1px solid var(--glass-border);
-        border-radius: 20px;
-        padding: 1.5rem;
-        transition: 0.3s;
-        color: #f8fafc;
-    }
-
-    .admin-card h2, .admin-card h5, .admin-card h6 {
-        color: #ffffff !important;
-    }
-
-    .admin-card .text-muted {
-        color: #94a3b8 !important;
-    }
-
-    .monitor-glow {
-        box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
-    }
-
-    .integrity-bar {
-        height: 6px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
-        margin-bottom: 20px;
-        overflow: hidden;
-    }
-
-    .integrity-fill {
-        height: 100%;
-        background: var(--admin-primary);
-        transition: width 1s ease-in-out;
-    }
-
-    .alert-input {
-        background: rgba(0, 0, 0, 0.2);
-        border: 1px solid var(--glass-border);
-        color: white;
-        border-radius: 10px;
-    }
-
-    .alert-input:focus {
-        background: rgba(0, 0, 0, 0.3);
-        color: white;
-        border-color: var(--admin-primary);
-        box-shadow: none;
-    }
-
-    @@keyframes fadeInDown {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @@keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .admin-card { animation: fadeInUp 0.6s ease backwards; }
-    .admin-header-anim { animation: fadeInDown 0.8s ease backwards; }
-</style>
-
 <div class="container-fluid px-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-5 admin-header-anim">
         <div>
@@ -95,10 +14,10 @@
             <p class="text-muted">@localizer["Global Synchronization & System Governance"]</p>
         </div>
         <div class="d-flex gap-3">
-            <a asp-action="DownloadLogs" class="btn btn-outline-light border-opacity-25 px-4" style="border-radius: 10px;">
+            <a asp-action="DownloadLogs" class="admin-btn admin-btn-outline">
                 <i class="bi bi-download me-2"></i> @localizer["Export Logs"]
             </a>
-            <a asp-action="ManageUsers" class="btn btn-primary fw-bold px-4" style="border-radius: 10px;">
+            <a asp-action="ManageUsers" class="admin-btn admin-btn-primary">
                 👥 @localizer["Manage Access"]
             </a>
         </div>
@@ -188,7 +107,7 @@
                     </div>
                 </div>
                 <div class="mt-3 text-center">
-                    <a asp-action="ManageUsers" class="btn btn-sm btn-outline-light border-opacity-25">
+                    <a asp-action="ManageUsers" class="admin-btn admin-btn-outline btn-sm">
                         <i class="bi bi-people me-1"></i> @localizer["Manage Identity Registry"]
                     </a>
                 </div>
@@ -203,17 +122,17 @@
                 <h5 class="fw-bold mb-4"><i class="bi bi-megaphone me-2"></i> @localizer["Emergency Broadcast"]</h5>
                 <form asp-action="BroadcastAlert" method="post">
                     <div class="mb-3">
-                        <textarea name="message" class="form-control alert-input" rows="3" placeholder="@localizer["Enter emergency message..."]"></textarea>
+                        <textarea name="message" class="form-control admin-input" rows="3" placeholder="@localizer["Enter emergency message..."]"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-danger w-100 fw-bold py-2 shadow-sm" style="border-radius: 10px;">
+                    <button type="submit" class="admin-btn admin-btn-primary w-100" style="background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);">
                         <i class="bi bi-broadcast me-2"></i> @localizer["Trigger Global Alert"]
                     </button>
                 </form>
-                <div class="mt-4">
-                    <a asp-action="Catalog" class="btn btn-outline-primary w-100 fw-bold border-opacity-50 mb-2" style="border-radius: 10px;">
+                <div class="mt-4 d-flex flex-column gap-2">
+                    <a asp-action="Catalog" class="admin-btn admin-btn-outline w-100">
                         <i class="bi bi-pencil-square me-2"></i> @localizer["Open System Catalog (CRUD)"]
                     </a>
-                    <a asp-action="AuditLogs" class="btn btn-outline-light w-100 fw-bold border-opacity-25" style="border-radius: 10px;">
+                    <a asp-action="AuditLogs" class="admin-btn admin-btn-outline w-100">
                         <i class="bi bi-journal-text me-2"></i> @localizer["View Full Audit Logs"]
                     </a>
                 </div>
@@ -222,23 +141,23 @@
 
         <!-- Recent Security Audit Logs -->
         <div class="col-lg-8">
-            <div class="admin-card h-100 p-0 overflow-hidden">
-                <div class="p-4 border-bottom border-secondary border-opacity-10 d-flex justify-content-between align-items-center">
-                    <h5 class="fw-bold mb-0"><i class="bi bi-shield-lock me-2"></i> @localizer["Security Audit Trail"]</h5>
+            <div class="admin-table-wrapper h-100 d-flex flex-column">
+                <div class="p-4 border-bottom border-secondary border-opacity-10 d-flex justify-content-between align-items-center" style="background: rgba(15, 23, 42, 0.5);">
+                    <h5 class="fw-bold mb-0 text-white"><i class="bi bi-shield-lock me-2"></i> @localizer["Security Audit Trail"]</h5>
                     <div class="d-flex gap-2">
-                        <span class="badge bg-info bg-opacity-25 text-info">@(ViewBag.RecentAuditLogs?.Count ?? 0) @localizer["Recent Events"]</span>
-                        <span class="badge bg-success bg-opacity-25 text-success">@localizer["Live"]</span>
+                        <span class="admin-badge admin-badge-info">@(ViewBag.RecentAuditLogs?.Count ?? 0) @localizer["Recent Events"]</span>
+                        <span class="admin-badge admin-badge-success">@localizer["Live"]</span>
                     </div>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-dark table-hover align-middle mb-0" style="--bs-table-bg: transparent; --bs-table-color: #f8fafc;">
-                        <thead style="background: rgba(15, 23, 42, 0.5);">
+                <div class="table-responsive flex-grow-1">
+                    <table class="admin-table">
+                        <thead>
                             <tr>
-                                <th class="ps-4 text-light fw-semibold" style="color: #e2e8f0 !important;">@localizer["Time"]</th>
-                                <th class="text-light fw-semibold" style="color: #e2e8f0 !important;">@localizer["Action"]</th>
-                                <th class="text-light fw-semibold" style="color: #e2e8f0 !important;">@localizer["Description"]</th>
-                                <th class="text-light fw-semibold" style="color: #e2e8f0 !important;">@localizer["Performed By"]</th>
-                                <th class="text-end pe-4 text-light fw-semibold" style="color: #e2e8f0 !important;">@localizer["Severity"]</th>
+                                <th class="ps-4">@localizer["Time"]</th>
+                                <th>@localizer["Action"]</th>
+                                <th>@localizer["Description"]</th>
+                                <th>@localizer["Performed By"]</th>
+                                <th class="text-end pe-4">@localizer["Severity"]</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -246,24 +165,31 @@
                             {
                                 @foreach (var log in (IEnumerable<DireDawaHub.Models.SecurityAuditLog>)ViewBag.RecentAuditLogs)
                                 {
-                                    <tr style="border-color: rgba(255,255,255,0.05);">
-                                        <td class="ps-4 small font-monospace" style="color: #94a3b8;">@log.Timestamp.ToString("MM/dd HH:mm")</td>
+                                    <tr>
+                                        <td class="ps-4 small font-monospace text-muted">@log.Timestamp.ToString("MM/dd HH:mm")</td>
                                         <td>
-                                            <span class="badge" style="background: rgba(30, 41, 59, 0.8); color: #e2e8f0; border: 1px solid rgba(255,255,255,0.1);">@log.Action</span>
+                                            <span class="admin-badge admin-badge-neutral">@log.Action</span>
                                         </td>
-                                        <td class="small" style="color: #f8fafc;">@log.Description</td>
-                                        <td class="small" style="color: #cbd5e1;">@log.PerformedBy</td>
+                                        <td class="small">@log.Description</td>
+                                        <td class="small text-muted">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div class="admin-avatar-sm" style="width: 24px; height: 24px; font-size: 10px;">
+                                                    @(string.IsNullOrEmpty(log.PerformedBy) ? "?" : log.PerformedBy.Substring(0, 1).ToUpper())
+                                                </div>
+                                                @log.PerformedBy
+                                            </div>
+                                        </td>
                                         <td class="text-end pe-4">
                                             @switch (log.Severity)
                                             {
                                                 case AuditSeverity.Info:
-                                                    <span class="badge" style="background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3);">ℹ️ @localizer["Info"]</span>
+                                                    <span class="admin-badge admin-badge-info">ℹ️ @localizer["Info"]</span>
                                                     break;
                                                 case AuditSeverity.Warning:
-                                                    <span class="badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3);">⚠️ @localizer["Warning"]</span>
+                                                    <span class="admin-badge admin-badge-warning">⚠️ @localizer["Warning"]</span>
                                                     break;
                                                 case AuditSeverity.Critical:
-                                                    <span class="badge" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239,68,68,0.3);">🚨 @localizer["Critical"]</span>
+                                                    <span class="admin-badge admin-badge-danger">🚨 @localizer["Critical"]</span>
                                                     break;
                                             }
                                         </td>
@@ -291,8 +217,8 @@
         <div class="col-12">
             <div class="admin-card">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="fw-bold mb-0"><i class="bi bi-inboxes me-2"></i> @localizer["Recent Content Submissions"]</h5>
-                    <a asp-action="Catalog" class="btn btn-sm btn-primary">@localizer["View All in Catalog"]</a>
+                    <h5 class="fw-bold mb-0 text-white"><i class="bi bi-inboxes me-2"></i> @localizer["Recent Content Submissions"]</h5>
+                    <a asp-action="Catalog" class="admin-btn admin-btn-outline btn-sm">@localizer["View All in Catalog"]</a>
                 </div>
                 <div class="row g-3">
                     <div class="col-md-6">

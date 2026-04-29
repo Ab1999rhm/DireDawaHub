@@ -5,279 +5,50 @@
     ViewData["Title"] = @localizer["Audit Logs"];
 }
 
-<style>
-    :root {
-        --admin-primary: #3b82f6;
-        --admin-success: #10b981;
-        --admin-warning: #f59e0b;
-        --admin-danger: #ef4444;
-        --glass-bg: rgba(15, 23, 42, 0.9);
-        --glass-border: rgba(255, 255, 255, 0.15);
-    }
-
-    body {
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(30, 64, 175, 0.9) 100%),
-                    url('/images/smart_banner.png');
-        background-size: cover;
-        background-attachment: fixed;
-        color: #f8fafc;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-
-    .audit-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 2rem;
-    }
-
-    .audit-header {
-        margin-bottom: 2rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .audit-header h1 {
-        color: #ffffff;
-        font-size: 1.75rem;
-        font-weight: 800;
-        margin-bottom: 0.5rem;
-    }
-
-    .audit-header p {
-        color: #94a3b8;
-        font-size: 0.875rem;
-    }
-
-    /* Pagination Styles */
-    .pagination-container {
-        background: rgba(15, 23, 42, 0.5);
-        border-top: 1px solid var(--glass-border);
-        padding: 1rem 1.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .pagination {
-        margin: 0;
-        gap: 0.25rem;
-    }
-
-    .pagination .page-link {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: #94a3b8;
-        padding: 0.5rem 0.75rem;
-        border-radius: 6px;
-        text-decoration: none;
-        transition: all 0.2s ease;
-    }
-
-    .pagination .page-link:hover {
-        background: rgba(59, 130, 246, 0.2);
-        border-color: rgba(59, 130, 246, 0.3);
-        color: #60a5fa;
-    }
-
-    .pagination .page-item.active .page-link {
-        background: rgba(59, 130, 246, 0.3);
-        border-color: #3b82f6;
-        color: #ffffff;
-    }
-
-    .pagination .page-item.disabled .page-link {
-        background: rgba(255, 255, 255, 0.02);
-        border-color: rgba(255, 255, 255, 0.05);
-        color: #475569;
-        cursor: not-allowed;
-    }
-
-    .results-info {
-        color: #94a3b8;
-        font-size: 0.875rem;
-    }
-
-    .audit-card {
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px);
-        border: 1px solid var(--glass-border);
-        border-radius: 16px;
-        overflow: hidden;
-    }
-
-    .audit-table {
-        width: 100%;
-        color: #cbd5e1;
-        font-size: 0.875rem;
-    }
-
-    .audit-table thead th {
-        background: rgba(255, 255, 255, 0.05);
-        color: #94a3b8;
-        font-weight: 600;
-        text-transform: uppercase;
-        font-size: 0.6875rem;
-        letter-spacing: 0.05em;
-        padding: 1rem;
-        border-bottom: 1px solid var(--glass-border);
-    }
-
-    .audit-table tbody td {
-        padding: 1rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        vertical-align: middle;
-    }
-
-    .audit-table tbody tr:hover {
-        background: rgba(255, 255, 255, 0.03);
-    }
-
-    .severity-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.375rem;
-        padding: 0.375rem 0.75rem;
-        border-radius: 9999px;
-        font-size: 0.6875rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-
-    .severity-info {
-        background: rgba(59, 130, 246, 0.15);
-        color: #60a5fa;
-        border: 1px solid rgba(59, 130, 246, 0.3);
-    }
-
-    .severity-warning {
-        background: rgba(245, 158, 11, 0.15);
-        color: #fbbf24;
-        border: 1px solid rgba(245, 158, 11, 0.3);
-    }
-
-    .severity-critical {
-        background: rgba(239, 68, 68, 0.15);
-        color: #f87171;
-        border: 1px solid rgba(239, 68, 68, 0.3);
-    }
-
-    .action-cell {
-        font-weight: 600;
-        color: #e2e8f0;
-    }
-
-    .description-cell {
-        max-width: 300px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    .timestamp-cell {
-        font-family: 'Fira Code', monospace;
-        font-size: 0.8125rem;
-        color: #94a3b8;
-    }
-
-    .performed-by {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .admin-avatar {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.75rem;
-        font-weight: 700;
-    }
-
-    .stats-row {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-        margin-bottom: 2rem;
-    }
-
-    .stat-card {
-        background: var(--glass-bg);
-        backdrop-filter: blur(10px);
-        border: 1px solid var(--glass-border);
-        border-radius: 12px;
-        padding: 1.25rem;
-        text-align: center;
-    }
-
-    .stat-value {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: #ffffff;
-    }
-
-    .stat-label {
-        font-size: 0.75rem;
-        color: #94a3b8;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-top: 0.25rem;
-    }
-
-    .empty-state {
-        text-align: center;
-        padding: 4rem 2rem;
-        color: #94a3b8;
-    }
-
-    .empty-state-icon {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-        opacity: 0.5;
-    }
-</style>
-
-<div class="audit-container">
-    <div class="audit-header">
+<div class="container-fluid px-4 py-4">
+    <div class="d-flex justify-content-between align-items-center mb-5 admin-header-anim">
         <div>
-            <h1>📜 @localizer["Security Audit Logs"]</h1>
-            <p>@localizer["Complete record of all administrative actions and system events"]</p>
+            <h1 class="fw-bold mb-0">📜 @localizer["Security Audit Logs"]</h1>
+            <p class="text-muted">@localizer["Complete record of all administrative actions and system events"]</p>
         </div>
         <div class="text-end">
-            <a href="@Url.Action("ExportAuditLogsToCsv")" class="btn btn-outline-success">
+            <a href="@Url.Action("ExportAuditLogsToCsv")" class="admin-btn admin-btn-outline">
                 <i class="bi bi-filetype-csv me-1"></i> @localizer["Export CSV"]
             </a>
         </div>
     </div>
-    <div class="stats-row">
-        <div class="stat-card">
-            <div class="stat-value">@Model.Count()</div>
-            <div class="stat-label">@localizer["Total Events"]</div>
+    <div class="row g-4 mb-4 admin-header-anim" style="animation-delay: 0.1s;">
+        <div class="col-md-3">
+            <div class="admin-card text-center">
+                <div class="fs-4 fw-bold">@Model.Count()</div>
+                <div class="text-muted x-small text-uppercase">@localizer["Total Events"]</div>
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-value" style="color: #60a5fa;">@Model.Count(l => l.Severity == AuditSeverity.Info)</div>
-            <div class="stat-label">@localizer["Info Events"]</div>
+        <div class="col-md-3">
+            <div class="admin-card text-center">
+                <div class="fs-4 fw-bold text-info">@Model.Count(l => l.Severity == AuditSeverity.Info)</div>
+                <div class="text-muted x-small text-uppercase">@localizer["Info Events"]</div>
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-value" style="color: #fbbf24;">@Model.Count(l => l.Severity == AuditSeverity.Warning)</div>
-            <div class="stat-label">@localizer["Warnings"]</div>
+        <div class="col-md-3">
+            <div class="admin-card text-center">
+                <div class="fs-4 fw-bold text-warning">@Model.Count(l => l.Severity == AuditSeverity.Warning)</div>
+                <div class="text-muted x-small text-uppercase">@localizer["Warnings"]</div>
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-value" style="color: #f87171;">@Model.Count(l => l.Severity == AuditSeverity.Critical)</div>
-            <div class="stat-label">@localizer["Critical"]</div>
+        <div class="col-md-3">
+            <div class="admin-card text-center">
+                <div class="fs-4 fw-bold text-danger">@Model.Count(l => l.Severity == AuditSeverity.Critical)</div>
+                <div class="text-muted x-small text-uppercase">@localizer["Critical"]</div>
+            </div>
         </div>
     </div>
 
-    <div class="audit-card">
+    <div class="admin-table-wrapper admin-header-anim" style="animation-delay: 0.2s;">
         @if (Model.Any())
         {
             <div class="table-responsive">
-                <table class="audit-table">
+                <table class="admin-table">
                     <thead>
                         <tr>
                             <th>@localizer["Timestamp"]</th>
@@ -307,11 +78,11 @@
                             foreach (var group in groupedLogs)
                             {
                                 <tr class="time-group-header">
-                                    <td colspan="6" class="py-2">
-                                        <span class="badge bg-dark bg-opacity-50 px-3 py-2">
+                                    <td colspan="6" class="py-2 bg-transparent">
+                                        <span class="admin-badge admin-badge-neutral d-inline-flex align-items-center gap-2">
                                             @(group.Key == "Today" ? "📅" : group.Key == "Yesterday" ? "📆" : group.Key == "This Week" ? "📊" : group.Key == "This Month" ? "📈" : "📁") 
                                             @group.Key
-                                            <span class="ms-2 text-muted">(@group.Count() @localizer["events"])</span>
+                                            <span class="text-white-50 ms-1">(@group.Count() @localizer["events"])</span>
                                         </span>
                                     </td>
                                 </tr>
@@ -319,45 +90,46 @@
                                 foreach (var log in group.OrderByDescending(l => l.Timestamp))
                                 {
                                     <tr>
-                                        <td class="timestamp-cell">@log.Timestamp.ToString("yyyy-MM-dd HH:mm:ss")</td>
-                                        <td class="action-cell">@log.Action</td>
-                                        <td class="description-cell" title="@log.Description">@log.Description</td>
+                                        <td class="ps-4 small font-monospace text-muted">@log.Timestamp.ToString("yyyy-MM-dd HH:mm:ss")</td>
                                         <td>
-                                            <div class="performed-by">
-                                                <div class="admin-avatar">@log.PerformedBy?.Substring(0, 1).ToUpper()</div>
-                                                <span>@log.PerformedBy</span>
+                                            <span class="admin-badge admin-badge-neutral">@log.Action</span>
+                                        </td>
+                                        <td class="small text-muted" title="@log.Description">@log.Description</td>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2 small text-white">
+                                                <div class="admin-avatar-sm" style="width: 24px; height: 24px; font-size: 10px;">
+                                                    @(string.IsNullOrEmpty(log.PerformedBy) ? "?" : log.PerformedBy.Substring(0, 1).ToUpper())
+                                                </div>
+                                                <span>@(log.PerformedBy ?? "System")</span>
                                             </div>
                                         </td>
                                         <td>
                                             @if (!string.IsNullOrEmpty(log.TargetUserId))
                                             {
-                                                <span class="badge bg-secondary bg-opacity-25">User: @log.TargetUserId.Substring(0, 8)...</span>
+                                                <span class="admin-badge admin-badge-neutral">User: @log.TargetUserId.Substring(0, 8)...</span>
                                             }
                                             else if (!string.IsNullOrEmpty(log.TargetEntityType))
                                             {
-                                                <span class="badge bg-info bg-opacity-25">@log.TargetEntityType #@log.TargetEntityId</span>
+                                                <span class="admin-badge admin-badge-info">@log.TargetEntityType #@log.TargetEntityId</span>
                                             }
                                             else
                                             {
                                                 <span class="text-muted">-</span>
                                             }
                                         </td>
-                                        <td>
-                                            <span class="severity-badge severity-@log.Severity.ToString().ToLower()">
-                                                @switch (log.Severity)
-                                                {
-                                                    case AuditSeverity.Info:
-                                                        <span>ℹ️</span>
-                                                        break;
-                                                    case AuditSeverity.Warning:
-                                                        <span>⚠️</span>
-                                                        break;
-                                                    case AuditSeverity.Critical:
-                                                        <span>🚨</span>
-                                                        break;
-                                                }
-                                                @log.Severity
-                                            </span>
+                                        <td class="text-end">
+                                            @switch (log.Severity)
+                                            {
+                                                case AuditSeverity.Info:
+                                                    <span class="admin-badge admin-badge-info">ℹ️ @localizer["Info"]</span>
+                                                    break;
+                                                case AuditSeverity.Warning:
+                                                    <span class="admin-badge admin-badge-warning">⚠️ @localizer["Warning"]</span>
+                                                    break;
+                                                case AuditSeverity.Critical:
+                                                    <span class="admin-badge admin-badge-danger">🚨 @localizer["Critical"]</span>
+                                                    break;
+                                            }
                                         </td>
                                     </tr>
                                 }

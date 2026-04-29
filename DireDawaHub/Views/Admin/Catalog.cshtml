@@ -5,87 +5,7 @@
     ViewData["Title"] = @localizer["System Catalog"];
 }
 
-<style>
-    :root {
-        --admin-primary: #3b82f6;
-        --glass-bg: rgba(15, 23, 42, 0.8);
-        --glass-border: rgba(255, 255, 255, 0.1);
-    }
 
-    body {
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.97) 0%, rgba(30, 64, 175, 0.95) 100%),
-                    url('/images/smart_banner.png');
-        background-size: cover;
-        background-attachment: fixed;
-        color: #f8fafc;
-    }
-
-    .catalog-card {
-        background: var(--glass-bg);
-        backdrop-filter: blur(15px);
-        border: 1px solid var(--glass-border);
-        border-radius: 20px;
-        margin-bottom: 2rem;
-        overflow: hidden;
-    }
-
-    .table { color: #cbd5e1; }
-    .table thead th { background: rgba(255, 255, 255, 0.05); color: #94a3b8; }
-    .table tbody td { border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-    
-    .nav-tabs { border-bottom: 1px solid var(--glass-border); }
-    .nav-link { color: #94a3b8; border: none !important; }
-    .nav-link.active { background: transparent !important; color: var(--admin-primary) !important; border-bottom: 2px solid var(--admin-primary) !important; }
-
-    /* Pagination Styles */
-    .pagination-container {
-        background: rgba(15, 23, 42, 0.5);
-        border-top: 1px solid var(--glass-border);
-        padding: 1rem 1.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .pagination {
-        margin: 0;
-        gap: 0.25rem;
-    }
-
-    .pagination .page-link {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: #94a3b8;
-        padding: 0.5rem 0.75rem;
-        border-radius: 6px;
-        text-decoration: none;
-        transition: all 0.2s ease;
-    }
-
-    .pagination .page-link:hover {
-        background: rgba(59, 130, 246, 0.2);
-        border-color: rgba(59, 130, 246, 0.3);
-        color: #60a5fa;
-    }
-
-    .pagination .page-item.active .page-link {
-        background: rgba(59, 130, 246, 0.3);
-        border-color: #3b82f6;
-        color: #ffffff;
-    }
-
-    .pagination .page-item.disabled .page-link {
-        background: rgba(255, 255, 255, 0.02);
-        border-color: rgba(255, 255, 255, 0.05);
-        color: #475569;
-        cursor: not-allowed;
-    }
-
-    .results-info {
-        color: #94a3b8;
-        font-size: 0.875rem;
-    }
-</style>
 
 <!-- Breadcrumb Navigation -->
 <nav class="breadcrumb-nav">
@@ -98,9 +18,9 @@
 
 <div class="container-fluid px-4 py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold"><i class="bi bi-folder2-open me-2"></i> @localizer["System Catalog Management"]</h2>
-        <div class="dropdown">
-            <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <h2 class="fw-bold mb-0 text-white admin-header-anim"><i class="bi bi-folder2-open me-2"></i> @localizer["System Catalog Management"]</h2>
+        <div class="dropdown admin-header-anim" style="animation-delay: 0.1s;">
+            <button class="admin-btn admin-btn-outline dropdown-toggle" type="button" id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-download me-1"></i> @localizer["Export Data"]
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="exportDropdown">
@@ -133,11 +53,11 @@
         </li>
     </ul>
 
-    <div class="tab-content" id="catalogContent">
+    <div class="tab-content admin-header-anim" id="catalogContent" style="animation-delay: 0.2s;">
         <!-- JOBS TAB -->
         <div class="tab-pane fade show active" id="jobs">
-            <div class="catalog-card">
-                <table class="table hover align-middle mb-0">
+            <div class="admin-table-wrapper mb-4">
+                <table class="admin-table">
                     <thead>
                         <tr>
                             <th class="ps-4">@localizer["Title / Company"]</th>
@@ -173,12 +93,12 @@
                                     @if (!job.IsApproved) {
                                         <form asp-action="ApproveJob" method="post" class="d-inline">
                                             <input type="hidden" name="id" value="@job.Id" />
-                                            <button class="btn btn-sm btn-success fw-bold me-1">@localizer["APPROVE"]</button>
+                                            <button class="admin-btn admin-btn-primary btn-sm me-1" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">@localizer["APPROVE"]</button>
                                         </form>
                                     }
                                     <form asp-action="DeleteJob" method="post" class="d-inline">
                                         <input type="hidden" name="id" value="@job.Id" />
-                                        <button class="btn btn-sm btn-outline-danger">@localizer["Purge"]</button>
+                                        <button class="admin-btn admin-btn-outline btn-sm text-danger border-danger border-opacity-25">@localizer["Purge"]</button>
                                     </form>
                                 </td>
                             </tr>
@@ -201,10 +121,10 @@
                 <!-- Jobs Pagination -->
                 @if (ViewBag.JobsTotalPages > 1)
                 {
-                    <div class="pagination-container">
+                    <div class="admin-pagination-container">
                         <div class="results-info">@localizer["Page"] @ViewBag.JobsCurrentPage @localizer["of"] @ViewBag.JobsTotalPages (@ViewBag.JobsTotal @localizer["total"])</div>
                         <nav aria-label="Page navigation">
-                            <ul class="pagination">
+                            <ul class="admin-pagination list-unstyled d-flex mb-0">
                                 <li class="page-item @(ViewBag.JobsCurrentPage == 1 ? "disabled" : "")">
                                     <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = 1, waterPage = ViewBag.WaterCurrentPage, clinicsPage = ViewBag.ClinicsCurrentPage, pageSize = ViewBag.PageSize })#jobs">
                                         <i class="bi bi-chevron-double-left"></i>
@@ -237,7 +157,7 @@
                 }
                 else
                 {
-                    <div class="pagination-container">
+                    <div class="admin-pagination-container">
                         <div class="results-info">@localizer["Showing"] @Model.Jobs.Count @localizer["of"] @ViewBag.JobsTotal @localizer["jobs"]</div>
                     </div>
                 }
@@ -246,8 +166,8 @@
 
         <!-- WATER TAB -->
         <div class="tab-pane fade" id="water">
-            <div class="catalog-card">
-                <table class="table hover align-middle mb-0">
+            <div class="admin-table-wrapper mb-4">
+                <table class="admin-table">
                     <thead>
                         <tr>
                             <th class="ps-4">@localizer["Neighborhood"]</th>
@@ -265,7 +185,7 @@
                                 <td class="text-end pe-4">
                                     <form asp-action="DeleteWater" method="post" class="d-inline">
                                         <input type="hidden" name="id" value="@w.Id" />
-                                        <button class="btn btn-sm btn-outline-danger">@localizer["Remove"]</button>
+                                        <button class="admin-btn admin-btn-outline btn-sm text-danger border-danger border-opacity-25">@localizer["Remove"]</button>
                                     </form>
                                 </td>
                             </tr>
@@ -288,10 +208,10 @@
                 <!-- Water Pagination -->
                 @if (ViewBag.WaterTotalPages > 1)
                 {
-                    <div class="pagination-container">
+                    <div class="admin-pagination-container">
                         <div class="results-info">@localizer["Page"] @ViewBag.WaterCurrentPage @localizer["of"] @ViewBag.WaterTotalPages (@ViewBag.WaterTotal @localizer["total"])</div>
                         <nav aria-label="Page navigation">
-                            <ul class="pagination">
+                            <ul class="admin-pagination list-unstyled d-flex mb-0">
                                 <li class="page-item @(ViewBag.WaterCurrentPage == 1 ? "disabled" : "")">
                                     <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = ViewBag.JobsCurrentPage, waterPage = 1, clinicsPage = ViewBag.ClinicsCurrentPage, pageSize = ViewBag.PageSize })#water">
                                         <i class="bi bi-chevron-double-left"></i>
@@ -324,7 +244,7 @@
                 }
                 else
                 {
-                    <div class="pagination-container">
+                    <div class="admin-pagination-container">
                         <div class="results-info">@localizer["Showing"] @Model.Water.Count @localizer["of"] @ViewBag.WaterTotal @localizer["water"]</div>
                     </div>
                 }
@@ -333,8 +253,8 @@
 
         <!-- CLINICS TAB -->
         <div class="tab-pane fade" id="clinics">
-            <div class="catalog-card">
-                <table class="table hover align-middle mb-0">
+            <div class="admin-table-wrapper mb-4">
+                <table class="admin-table">
                     <thead>
                         <tr>
                             <th class="ps-4">@localizer["Clinic Name"]</th>
@@ -352,7 +272,7 @@
                                 <td class="text-end pe-4">
                                     <form asp-action="DeleteClinic" method="post" class="d-inline">
                                         <input type="hidden" name="id" value="@c.Id" />
-                                        <button class="btn btn-sm btn-outline-danger">@localizer["De-list"]</button>
+                                        <button class="admin-btn admin-btn-outline btn-sm text-danger border-danger border-opacity-25">@localizer["De-list"]</button>
                                     </form>
                                 </td>
                             </tr>
@@ -375,10 +295,10 @@
                 <!-- Clinics Pagination -->
                 @if (ViewBag.ClinicsTotalPages > 1)
                 {
-                    <div class="pagination-container">
+                    <div class="admin-pagination-container">
                         <div class="results-info">@localizer["Page"] @ViewBag.ClinicsCurrentPage @localizer["of"] @ViewBag.ClinicsTotalPages (@ViewBag.ClinicsTotal @localizer["total"])</div>
                         <nav aria-label="Page navigation">
-                            <ul class="pagination">
+                            <ul class="admin-pagination list-unstyled d-flex mb-0">
                                 <li class="page-item @(ViewBag.ClinicsCurrentPage == 1 ? "disabled" : "")">
                                     <a class="page-link" href="@Url.Action("Catalog", new { jobsPage = ViewBag.JobsCurrentPage, waterPage = ViewBag.WaterCurrentPage, clinicsPage = 1, pageSize = ViewBag.PageSize })#clinics">
                                         <i class="bi bi-chevron-double-left"></i>
@@ -411,7 +331,7 @@
                 }
                 else
                 {
-                    <div class="pagination-container">
+                    <div class="admin-pagination-container">
                         <div class="results-info">@localizer["Showing"] @Model.Clinics.Count @localizer["of"] @ViewBag.ClinicsTotal @localizer["clinics"]</div>
                     </div>
                 }
