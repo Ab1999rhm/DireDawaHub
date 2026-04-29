@@ -30,3 +30,6 @@ bld/
 
 # Mac
 .DS_Store
+
+# Uploads
+DireDawaHub/wwwroot/uploads/
