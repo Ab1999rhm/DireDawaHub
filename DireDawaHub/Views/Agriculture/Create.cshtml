@@ -7,7 +7,7 @@
     <div class="card-body p-5">
         <h3 class="mb-4 fw-bold text-success">Report Market Price</h3>
         
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-8 mb-4">
                     <label asp-for="CropName" class="form-label fw-bold text-muted small text-uppercase">Crop / Produce Name</label>
@@ -22,6 +22,12 @@
             <div class="mb-4">
                 <label asp-for="MarketLocation" class="form-label fw-bold text-muted small text-uppercase">Market Name</label>
                 <input asp-for="MarketLocation" class="form-control" style="padding: 12px; border-radius: 8px;" placeholder="e.g. Ashawa Market" required />
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label fw-bold text-muted small text-uppercase">Product Image</label>
+                <input type="file" name="productImage" class="form-control" style="padding: 12px; border-radius: 8px;" accept="image/*" required />
+                <span class="text-danger">@Html.ValidationMessage("ProductImagePath")</span>
             </div>
 
             <div class="mb-5 p-4 border rounded-3 bg-danger bg-opacity-10 border-danger border-opacity-25">
