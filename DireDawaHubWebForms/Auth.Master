@@ -1,0 +1,54 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Auth.master.cs" Inherits="DireDawaHubWebForms.AuthMaster" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Dire Dawa Hub</title>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
+    <style type="text/css">
+        body { 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background-color: #0f172a;
+        }
+    </style>
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
+        
+        <!-- MODERATED CANVAS FOR AUTH PAGES -->
+        <asp:Panel ID="pnlMasterCanvas" runat="server" Style="position: relative; width: 1200px; height: 1300px; margin: 0 auto;">
+            
+            <!-- DRAG AND DROP BACKGROUND IMAGE -->
+            <asp:Image ID="imgBackground" runat="server" ImageUrl="~/images/smart_banner.png" Style="position: absolute; left: 0px; top: 0px; width: 1200px; height: 1300px; object-fit: cover; z-index: -2;" />
+            
+            <!-- HEADER NAVBAR PANEL -->
+            <asp:Panel ID="pnlHeader" runat="server" BackColor="#0F172A" BorderStyle="Solid" BorderColor="#334155" BorderWidth="1px" Style="position: absolute; left: 0px; top: 0px; width: 1200px; height: 80px; border-radius: 8px;">
+                <asp:Label ID="lblLogo" runat="server" Text="Dire Dawa Hub" Font-Bold="true" Font-Size="24px" ForeColor="White" Style="position: absolute; left: 20px; top: 25px;"></asp:Label>
+                
+                <asp:Button ID="BtnLogin" runat="server" Text="Login" BackColor="#1E40AF" ForeColor="White" Font-Bold="true" BorderStyle="None" Width="120px" Height="40px" Style="position: absolute; left: 808px; top: 18px; border-radius: 20px;" OnClick="BtnLogin_Click" />
+                
+                <asp:Button ID="BtnContributor" runat="server" Text="Contributors Portal" BackColor="#3B82F6" ForeColor="White" Font-Bold="true" BorderStyle="None" Height="40px" Style="position: absolute; left: 971px; top: 20px; border-radius: 20px; width: 209px;" OnClick="BtnContributor_Click" />
+            </asp:Panel>
+
+            <!-- MAIN CONTENT AREA -->
+            <asp:Panel ID="pnlMainContentArea" runat="server" Style="position: absolute; left: 0px; top: 100px; width: 1200px; height: 1000px;">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+            </asp:Panel>
+
+            <!-- FOOTER PANEL REPOSITIONED -->
+            <asp:Panel ID="pnlFooter" runat="server" BackColor="Black" BorderStyle="Solid" BorderColor="#334155" BorderWidth="1px" Style="position: absolute; left: 0px; top: 1150px; width: 1200px; height: 150px; border-radius: 8px; text-align: center;">
+                <asp:Label ID="lblFooterTitle" runat="server" Text="Dire Dawa Community Hub" Font-Bold="true" Font-Size="20px" ForeColor="#3B82F6" Style="position: absolute; left: 450px; top: 30px; width: 300px;"></asp:Label>
+                <asp:Label ID="lblFooterText" runat="server" Text="The official digital gateway for the residents of Dire Dawa." Font-Size="14px" ForeColor="White" Style="position: absolute; left: 400px; top: 70px; width: 400px;"></asp:Label>
+                <asp:Label ID="lblFooterCopyright" runat="server" Text="Copyright 2026 Dire Dawa City Administration." Font-Bold="true" Font-Size="12px" ForeColor="#94A3B8" Style="position: absolute; left: 450px; top: 110px; width: 300px;"></asp:Label>
+            </asp:Panel>
+
+        </asp:Panel>
+
+    </form>
+    <asp:ContentPlaceHolder ID="Scripts" runat="server"></asp:ContentPlaceHolder>
+</body>
+</html>

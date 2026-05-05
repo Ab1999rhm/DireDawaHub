@@ -1,0 +1,230 @@
+/* ============================================
+   DIRE DAWA COMMUNITY HUB - GLOBAL STYLES
+   ============================================ */
+
+/* CSS Custom Properties - Design System */
+:root {
+    /* Primary Brand Colors */
+    --dd-primary: #1e40af;
+    --dd-primary-light: #3b82f6;
+    --dd-primary-dark: #1e3a8a;
+    
+    /* Secondary Accent Colors */
+    --dd-teal: #0d9488;
+    --dd-emerald: #059669;
+    --dd-amber: #d97706;
+    --dd-rose: #e11d48;
+    --dd-violet: #7c3aed;
+    
+    /* Neutral Palette */
+    --dd-dark: #0f172a;
+    --dd-gray-800: #1e293b;
+    --dd-gray-600: #475569;
+    --dd-gray-400: #94a3b8;
+    --dd-gray-200: #e2e8f0;
+    --dd-gray-100: #f1f5f9;
+    --dd-white: #ffffff;
+    
+    /* Semantic Colors */
+    --dd-water: #0ea5e9;
+    --dd-health: #f43f5e;
+    --dd-agriculture: #10b981;
+    --dd-employment: #8b5cf6;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+}
+
+/* Base Typography */
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 60px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--dd-gray-800);
+    background-color: var(--dd-gray-100);
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(30, 64, 175, 0.03) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(13, 148, 136, 0.03) 0%, transparent 20%);
+    background-attachment: fixed;
+}
+
+/* Focus States */
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem var(--dd-primary-light);
+}
+
+/* Enhanced Form Controls */
+.form-control {
+    border-color: var(--dd-gray-200);
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: var(--dd-primary-light);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Modern Button Styles */
+.btn {
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--dd-primary);
+    border-color: var(--dd-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--dd-primary-dark);
+    border-color: var(--dd-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Card Enhancements */
+.card {
+    border-radius: var(--radius-md);
+    border-color: var(--dd-gray-200);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* Navbar Styling */
+.navbar {
+    background: linear-gradient(135deg, var(--dd-primary) 0%, var(--dd-primary-dark) 100%) !important;
+    box-shadow: var(--shadow-md);
+}
+
+.navbar-brand {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Badge Styles */
+.badge {
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    padding: 0.5em 0.75em;
+}
+
+/* Table Styling */
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-border-color: var(--dd-gray-200);
+}
+
+.table thead th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: var(--dd-gray-600);
+    background-color: var(--dd-gray-100);
+    border-bottom: 2px solid var(--dd-gray-200);
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: var(--dd-gray-100);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--dd-white);
+    border-top: 1px solid var(--dd-gray-200);
+    padding: 1.5rem 0;
+    font-size: 0.875rem;
+    color: var(--dd-gray-600);
+}
+
+/* Utility Classes */
+.text-gradient {
+    background: linear-gradient(135deg, var(--dd-primary) 0%, var(--dd-violet) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, var(--dd-primary) 0%, var(--dd-primary-dark) 100%);
+}
+
+/* Form Floating Labels */
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+    color: var(--dd-gray-400);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+/* Alert Enhancements */
+.alert {
+    border-radius: var(--radius-md);
+    border: none;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Modal Enhancements */
+.modal-content {
+    border-radius: var(--radius-lg);
+    border: none;
+    box-shadow: var(--shadow-xl);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dd-gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--dd-gray-400);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--dd-gray-600);
+}
